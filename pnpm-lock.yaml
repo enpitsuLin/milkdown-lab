@@ -35,7 +35,9 @@ importers:
   example:
     specifiers:
       '@milkdown-js/plugin-fullscreen': workspace:^1.0.0
+      '@milkdown-js/plugin-two-columns': workspace:^1.0.0
       '@milkdown/core': ^6.5.4
+      '@milkdown/plugin-menu': ^6.5.4
       '@milkdown/preset-commonmark': ^6.5.4
       '@milkdown/prose': ^6.5.4
       '@milkdown/theme-nord': ^6.5.4
@@ -43,6 +45,8 @@ importers:
       vite: ^4.0.0
     dependencies:
       '@milkdown-js/plugin-fullscreen': link:../packages/plugin-fullscreen
+      '@milkdown-js/plugin-two-columns': link:../packages/plugin-two-columns
+      '@milkdown/plugin-menu': 6.5.4_hcx5jzbrehmpjr4bwjtmcqoyxa
     devDependencies:
       '@milkdown/core': 6.5.4_@milkdown+prose@6.5.4
       '@milkdown/preset-commonmark': 6.5.4_hcx5jzbrehmpjr4bwjtmcqoyxa
@@ -668,6 +672,19 @@ packages:
     resolution: {integrity: sha512-ZBiGT7iEocwsAY2zvY0Ft+xO2RKgY9VbEiu9tk4l3sZP3JNAPmVgssIjQhJL6eEln53oPel48/fXzs2NvyXSFQ==}
     dependencies:
       tslib: 2.4.1
+
+  /@milkdown/plugin-menu/6.5.4_hcx5jzbrehmpjr4bwjtmcqoyxa:
+    resolution: {integrity: sha512-SgwfrS7rq8hh1kDHnOcUITmuYryUtsZcJl2aFFSuHg4a1cfecq7pZ+vkERuAcfQm7P9wwJ3j5xbkBIj3QEjRaw==}
+    peerDependencies:
+      '@milkdown/core': ^6.0.1
+      '@milkdown/prose': ^6.0.1
+    dependencies:
+      '@milkdown/core': 6.5.4_@milkdown+prose@6.5.4
+      '@milkdown/exception': 6.5.4
+      '@milkdown/prose': 6.5.4
+      '@milkdown/utils': 6.5.4_hcx5jzbrehmpjr4bwjtmcqoyxa
+      tslib: 2.4.1
+    dev: false
 
   /@milkdown/preset-commonmark/6.5.4_hcx5jzbrehmpjr4bwjtmcqoyxa:
     resolution: {integrity: sha512-WCuoXjAmd8tcAa4F6iEHItvy7vTSSq78kD1CjLc2EFJWDpLbGduZYsJwqAAWZXLDtlLWLqO58EBwC6M7UY+BJg==}
