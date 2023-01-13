@@ -2,7 +2,7 @@ import { Ctx, ThemeColor } from '@milkdown/core'
 import { EditorView } from '@milkdown/prose/view'
 import { ThemeUtils, replaceAll } from '@milkdown/utils'
 
-const textareaColumn = (utils: ThemeUtils, ctx: Ctx, _onInput?: () => void) => {
+const textareaColumn = (utils: ThemeUtils, ctx: Ctx) => {
   const twoColumns = document.createElement('div')
   twoColumns.classList.add('milkdown-two-columns')
 
@@ -39,9 +39,13 @@ const textareaColumn = (utils: ThemeUtils, ctx: Ctx, _onInput?: () => void) => {
     replaceAll(content)(ctx)
   })
 
+  const onEditorInput = (content: string) => {
+    textarea.value = content
+  }
+
   twoColumns.append(textarea)
 
-  return twoColumns
+  return { twoColumns, onEditorInput }
 }
 
 export const initWrapper = (_ctx: Ctx, view: EditorView) => {
@@ -67,9 +71,10 @@ export const initTwoColumns = (
 ) => {
   if (!twoColumnsWrapper) throw new Error('Missing wrapper element')
 
-  const twoColumns = textareaColumn(utils, ctx)
+  const { twoColumns, onEditorInput } = textareaColumn(utils, ctx)
 
   const editorDOM = view.dom as HTMLDivElement
+
   const { themeManager } = utils
 
   themeManager.onFlush(() => {
@@ -98,5 +103,5 @@ export const initTwoColumns = (
     return milkdownDOM
   }
 
-  return [twoColumns, restoreDOM] as const
+  return [twoColumns, restoreDOM, onEditorInput] as const
 }

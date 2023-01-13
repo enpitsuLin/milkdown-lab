@@ -1,7 +1,7 @@
 import { createCmd, createCmdKey, createSlice, Ctx, rootDOMCtx } from '@milkdown/core'
 import { Plugin } from '@milkdown/prose/state'
 import type { EditorView } from '@milkdown/prose/view'
-import { AtomList, createPlugin } from '@milkdown/utils'
+import { AtomList, createPlugin, getMarkdown } from '@milkdown/utils'
 import { initTwoColumns, initWrapper } from './two-columns'
 
 export const twoColumnsCtx = createSlice({ value: false }, 'two-columns')
@@ -9,6 +9,7 @@ export const twoColumnsCtx = createSlice({ value: false }, 'two-columns')
 export const ToggleTwoColumn = createCmdKey('ToggleTwoColumn')
 
 export const twoColumnsPlugin = createPlugin((utils) => {
+  let onEditorInput: ((content: string) => void) | null = null
   let restoreDOM: (() => void) | null = null
   let twoColumns: HTMLDivElement | null = null
   let twoColumnWrapper: HTMLDivElement | null = null
@@ -19,7 +20,7 @@ export const twoColumnsPlugin = createPlugin((utils) => {
     }
 
     if (!twoColumns) {
-      const [_twoColumns, _restoreDOM] = initTwoColumns(utils, editorView, ctx, twoColumnWrapper)
+      const [_twoColumns, _restoreDOM, _onEditorInput] = initTwoColumns(utils, editorView, ctx, twoColumnWrapper)
       twoColumns = _twoColumns
       restoreDOM = () => {
         const milkdownDOM = _restoreDOM()
@@ -27,6 +28,9 @@ export const twoColumnsPlugin = createPlugin((utils) => {
         twoColumns = null
         restoreDOM = null
         ctx.set(rootDOMCtx, milkdownDOM)
+      }
+      onEditorInput = (content) => {
+        _onEditorInput(content)
       }
     }
   }
@@ -46,6 +50,8 @@ export const twoColumnsPlugin = createPlugin((utils) => {
           initView(ctx, editorView)
           return {
             update: () => {
+              const content = getMarkdown()(ctx)
+              onEditorInput?.(content)
               initView(ctx, editorView)
             },
             destroy: () => {
