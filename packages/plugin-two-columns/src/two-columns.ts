@@ -76,6 +76,7 @@ export const initTwoColumns = (
     const wrapperStyle = utils.getStyle(({ css }) => {
       return css`
         display: flex;
+        height: 100%;
         > div {
           width: 50%;
         }
