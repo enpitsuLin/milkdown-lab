@@ -6,9 +6,6 @@ importers:
     specifiers:
       '@commitlint/cli': ^17.4.2
       '@commitlint/config-conventional': ^17.4.2
-      '@milkdown/core': ^6.5.4
-      '@milkdown/prose': ^6.5.4
-      '@milkdown/utils': ^6.5.4
       '@types/node': ^18.11.18
       '@typescript-eslint/eslint-plugin': ^5.48.1
       '@typescript-eslint/parser': ^5.48.1
@@ -20,13 +17,9 @@ importers:
       prettier: ^2.8.2
       typescript: ^4.9.4
       vite: ^4.0.4
-    dependencies:
-      '@milkdown/utils': 6.5.4_hcx5jzbrehmpjr4bwjtmcqoyxa
     devDependencies:
       '@commitlint/cli': 17.4.2
       '@commitlint/config-conventional': 17.4.2
-      '@milkdown/core': 6.5.4_@milkdown+prose@6.5.4
-      '@milkdown/prose': 6.5.4
       '@types/node': 18.11.18
       '@typescript-eslint/eslint-plugin': 5.48.1_3jon24igvnqaqexgwtxk6nkpse
       '@typescript-eslint/parser': 5.48.1_iukboom6ndih5an6iafl45j2fe
@@ -41,18 +34,48 @@ importers:
 
   example:
     specifiers:
+      '@milkdown-js/plugin-fullscreen': workspace:^1.0.0
+      '@milkdown/core': ^6.5.4
       '@milkdown/preset-commonmark': ^6.5.4
+      '@milkdown/prose': ^6.5.4
       '@milkdown/theme-nord': ^6.5.4
-      milkdown-plugin-fullscreen: workspace:^1.0.0
       typescript: ^4.9.3
       vite: ^4.0.0
     dependencies:
-      milkdown-plugin-fullscreen: link:..
+      '@milkdown-js/plugin-fullscreen': link:../packages/plugin-fullscreen
     devDependencies:
-      '@milkdown/preset-commonmark': 6.5.4
-      '@milkdown/theme-nord': 6.5.4
+      '@milkdown/core': 6.5.4_@milkdown+prose@6.5.4
+      '@milkdown/preset-commonmark': 6.5.4_hcx5jzbrehmpjr4bwjtmcqoyxa
+      '@milkdown/prose': 6.5.4
+      '@milkdown/theme-nord': 6.5.4_hcx5jzbrehmpjr4bwjtmcqoyxa
       typescript: 4.9.4
       vite: 4.0.4
+
+  packages/plugin-fullscreen:
+    specifiers:
+      '@milkdown/core': ^6.5.4
+      '@milkdown/prose': ^6.5.4
+      '@milkdown/utils': ^6.5.4
+      typescript: ^4.9.4
+    dependencies:
+      '@milkdown/utils': 6.5.4_hcx5jzbrehmpjr4bwjtmcqoyxa
+    devDependencies:
+      '@milkdown/core': 6.5.4_@milkdown+prose@6.5.4
+      '@milkdown/prose': 6.5.4
+      typescript: 4.9.4
+
+  packages/plugin-two-columns:
+    specifiers:
+      '@milkdown/core': ^6.5.4
+      '@milkdown/prose': ^6.5.4
+      '@milkdown/utils': ^6.5.4
+      typescript: ^4.9.4
+    dependencies:
+      '@milkdown/utils': 6.5.4_hcx5jzbrehmpjr4bwjtmcqoyxa
+    devDependencies:
+      '@milkdown/core': 6.5.4_@milkdown+prose@6.5.4
+      '@milkdown/prose': 6.5.4
+      typescript: 4.9.4
 
 packages:
 
@@ -646,14 +669,16 @@ packages:
     dependencies:
       tslib: 2.4.1
 
-  /@milkdown/preset-commonmark/6.5.4:
+  /@milkdown/preset-commonmark/6.5.4_hcx5jzbrehmpjr4bwjtmcqoyxa:
     resolution: {integrity: sha512-WCuoXjAmd8tcAa4F6iEHItvy7vTSSq78kD1CjLc2EFJWDpLbGduZYsJwqAAWZXLDtlLWLqO58EBwC6M7UY+BJg==}
     peerDependencies:
       '@milkdown/core': ^6.0.1
       '@milkdown/prose': ^6.0.1
     dependencies:
+      '@milkdown/core': 6.5.4_@milkdown+prose@6.5.4
       '@milkdown/exception': 6.5.4
-      '@milkdown/utils': 6.5.4
+      '@milkdown/prose': 6.5.4
+      '@milkdown/utils': 6.5.4_hcx5jzbrehmpjr4bwjtmcqoyxa
       remark-inline-links: 6.0.1
       tslib: 2.4.1
       unist-util-visit: 4.1.1
@@ -676,22 +701,26 @@ packages:
       prosemirror-view: 1.29.1
       tslib: 2.4.1
 
-  /@milkdown/theme-nord/6.5.4:
+  /@milkdown/theme-nord/6.5.4_hcx5jzbrehmpjr4bwjtmcqoyxa:
     resolution: {integrity: sha512-797sJZoyQR0/w8dtgpeWKG6wn0A3Z4NVHsG4NFotZBSSVGUab248TuCTQzA4pF7ASKy/gZ6RwPdDclr2vcNuKg==}
     peerDependencies:
       '@milkdown/core': ^6.0.1
       '@milkdown/prose': ^6.0.1
     dependencies:
-      '@milkdown/theme-pack-helper': 6.5.4
+      '@milkdown/core': 6.5.4_@milkdown+prose@6.5.4
+      '@milkdown/prose': 6.5.4
+      '@milkdown/theme-pack-helper': 6.5.4_hcx5jzbrehmpjr4bwjtmcqoyxa
     dev: true
 
-  /@milkdown/theme-pack-helper/6.5.4:
+  /@milkdown/theme-pack-helper/6.5.4_hcx5jzbrehmpjr4bwjtmcqoyxa:
     resolution: {integrity: sha512-4QudD8W9aaMvdwqukHFr1JGjIKJkzqlIqhkqLWhIez8TarWA989vBgKA1dNZQVB83TSjpuFJ0Rxm13o1cAhjoA==}
     peerDependencies:
       '@milkdown/core': ^6.0.1
       '@milkdown/prose': ^6.0.1
     dependencies:
+      '@milkdown/core': 6.5.4_@milkdown+prose@6.5.4
       '@milkdown/exception': 6.5.4
+      '@milkdown/prose': 6.5.4
       tslib: 2.4.1
     dev: true
 
@@ -712,17 +741,6 @@ packages:
     transitivePeerDependencies:
       - supports-color
 
-  /@milkdown/utils/6.5.4:
-    resolution: {integrity: sha512-2kH6lT3g8fMgCwZu8+fX3o5VYQeLHe3WxxGXzprtmtfI7SIrHNUXkHEayiiLRRX2MZS7e9pHpjJaaSrEYY1EIA==}
-    peerDependencies:
-      '@milkdown/core': ^6.0.1
-      '@milkdown/prose': ^6.0.1
-    dependencies:
-      '@milkdown/exception': 6.5.4
-      nanoid: 4.0.0
-      tslib: 2.4.1
-    dev: true
-
   /@milkdown/utils/6.5.4_hcx5jzbrehmpjr4bwjtmcqoyxa:
     resolution: {integrity: sha512-2kH6lT3g8fMgCwZu8+fX3o5VYQeLHe3WxxGXzprtmtfI7SIrHNUXkHEayiiLRRX2MZS7e9pHpjJaaSrEYY1EIA==}
     peerDependencies:
@@ -734,7 +752,6 @@ packages:
       '@milkdown/prose': 6.5.4
       nanoid: 4.0.0
       tslib: 2.4.1
-    dev: false
 
   /@nodelib/fs.scandir/2.1.5:
     resolution: {integrity: sha512-vq24Bq3ym5HEQm2NKCr3yXDwjc7vTsEThRDnkp2DK9p1uqLR+DHurm/NOTo0KG7HYHU7eppKZj3MyqYuMBf62g==}

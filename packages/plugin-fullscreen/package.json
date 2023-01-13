@@ -1,0 +1,28 @@
+{
+  "name": "@milkdown-js/plugin-fullscreen",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./lib/index.js",
+  "typings": "./lib/index.d.ts",
+  "scripts": {
+    "lint": "eslint '*/**/*.{js,ts}' --quiet --fix",
+    "dev": "vite",
+    "tsc": "tsc --noEmit",
+    "build": "tsc --outDir lib"
+  },
+  "keywords": [],
+  "author": "enpitsulin <enpitsulin@gmail.com>",
+  "peerDependencies": {
+    "@milkdown/core": "^6.5.4",
+    "@milkdown/prose": "^6.5.4"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@milkdown/core": "^6.5.4",
+    "@milkdown/prose": "^6.5.4",
+    "typescript": "^4.9.4"
+  },
+  "dependencies": {
+    "@milkdown/utils": "^6.5.4"
+  }
+}

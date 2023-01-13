@@ -2,8 +2,6 @@
   "compilerOptions": {
     "target": "esnext",
     "module": "esnext",
-    "rootDir": "src",
-    "outDir": "lib",
     "lib": ["dom", "es2017", "es2018", "es2019"],
     "types": ["node"],
     "noEmitOnError": true,

@@ -9,12 +9,14 @@
     "preview": "vite preview"
   },
   "devDependencies": {
+    "@milkdown/core": "^6.5.4",
     "@milkdown/preset-commonmark": "^6.5.4",
+    "@milkdown/prose": "^6.5.4",
     "@milkdown/theme-nord": "^6.5.4",
     "typescript": "^4.9.3",
     "vite": "^4.0.0"
   },
   "dependencies": {
-    "milkdown-plugin-fullscreen": "workspace:^1.0.0"
+    "@milkdown-js/plugin-fullscreen": "workspace:^1.0.0"
   }
 }
