@@ -1,0 +1,44 @@
+{
+  "name": "milkdown-plugin-fullscreen",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./lib/index.js",
+  "typings": "./lib/index.d.ts",
+  "scripts": {
+    "lint": "eslint '*/**/*.{js,ts}' --quiet --fix",
+    "dev": "vite",
+    "tsc": "tsc --noEmit",
+    "build": "tsc",
+    "prepare": "husky install"
+  },
+  "keywords": [
+    "milkdown",
+    "milkdown plugin"
+  ],
+  "author": "enpitsulin",
+  "peerDependencies": {
+    "@milkdown/core": "^6.0.1",
+    "@milkdown/prose": "^6.0.1"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@commitlint/cli": "^17.4.2",
+    "@commitlint/config-conventional": "^17.4.2",
+    "@milkdown/core": "^6.5.4",
+    "@milkdown/prose": "^6.5.4",
+    "@types/node": "^18.11.18",
+    "@typescript-eslint/eslint-plugin": "^5.48.1",
+    "@typescript-eslint/parser": "^5.48.1",
+    "eslint": "^8.31.0",
+    "eslint-config-prettier": "^8.6.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "husky": "^8.0.3",
+    "lint-staged": "^13.1.0",
+    "prettier": "^2.8.2",
+    "typescript": "^4.9.4",
+    "vite": "^4.0.4"
+  },
+  "dependencies": {
+    "@milkdown/utils": "^6.5.4"
+  }
+}
