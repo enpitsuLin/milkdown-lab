@@ -53,10 +53,12 @@ export const twoColumnsPlugin = createPlugin((utils) => {
     prosePlugins: (_, ctx) => {
       const plugin = new Plugin({
         props: {
-          handleTextInput: () => {
-            const editor = ctx.get(editorCtx)
-            const content = editor.action(getMarkdown())
-            onEditorInput?.(content)
+          handleDOMEvents: {
+            input: () => {
+              const editor = ctx.get(editorCtx)
+              const content = editor.action(getMarkdown())
+              onEditorInput?.(content)
+            },
           },
         },
         view: (editorView) => {
