@@ -13,6 +13,9 @@ const textareaColumn = (utils: ThemeUtils, ctx: Ctx) => {
       return css`
         background: ${utils.themeManager.get(ThemeColor, ['background'])};
         padding: 20px 10px;
+        &.hidden {
+          display: none;
+        }
       `
     })
     if (style) twoColumns.classList.add(style)
@@ -83,7 +86,7 @@ export const initTwoColumns = (
         display: flex;
         height: 100%;
         > div {
-          width: 50%;
+          flex: 1;
         }
       `
     })

@@ -39,7 +39,13 @@ export const twoColumnsPlugin = createPlugin((utils) => {
       createCmd(ToggleTwoColumn, () => {
         const { value } = ctx.get(twoColumnsCtx)
         ctx.set(twoColumnsCtx, { value: !value })
-
+        if (twoColumns) {
+          if (value) {
+            twoColumns.classList.remove('hidden')
+          } else {
+            twoColumns.classList.add('hidden')
+          }
+        }
         return () => true
       }),
     ],
