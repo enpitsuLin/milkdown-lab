@@ -1,4 +1,4 @@
-import { Ctx, ThemeColor } from '@milkdown/core'
+import { Ctx, ThemeColor, ThemeScrollbar } from '@milkdown/core'
 import { EditorView } from '@milkdown/prose/view'
 import { ThemeUtils, replaceAll } from '@milkdown/utils'
 
@@ -12,7 +12,6 @@ const textareaColumn = (utils: ThemeUtils, ctx: Ctx) => {
     const style = utils.getStyle(({ css }) => {
       return css`
         background: ${utils.themeManager.get(ThemeColor, ['background'])};
-        padding: 20px 10px;
         &.hidden {
           display: none;
         }
@@ -22,6 +21,7 @@ const textareaColumn = (utils: ThemeUtils, ctx: Ctx) => {
 
     const textareaStyle = utils.getStyle(({ css }) => {
       const style = css`
+        padding: 20px 10px;
         appearance: none;
         outline: none;
         resize: none;
@@ -31,6 +31,7 @@ const textareaColumn = (utils: ThemeUtils, ctx: Ctx) => {
         background: transparent;
         border: none;
         color: ${utils.themeManager.get(ThemeColor, ['solid'])};
+        ${utils.themeManager.get(ThemeScrollbar, ['y'])}
       `
       return style
     })
