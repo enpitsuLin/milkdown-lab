@@ -1,4 +1,4 @@
-import { createCmd, createCmdKey, createSlice, Ctx, rootDOMCtx } from '@milkdown/core'
+import { createCmd, createCmdKey, createSlice, Ctx, editorCtx, rootDOMCtx } from '@milkdown/core'
 import { Plugin } from '@milkdown/prose/state'
 import type { EditorView } from '@milkdown/prose/view'
 import { AtomList, createPlugin, getMarkdown } from '@milkdown/utils'
@@ -52,12 +52,17 @@ export const twoColumnsPlugin = createPlugin((utils) => {
     injectSlices: [twoColumnsCtx],
     prosePlugins: (_, ctx) => {
       const plugin = new Plugin({
+        props: {
+          handleTextInput: () => {
+            const editor = ctx.get(editorCtx)
+            const content = editor.action(getMarkdown())
+            onEditorInput?.(content)
+          },
+        },
         view: (editorView) => {
           initView(ctx, editorView)
           return {
             update: () => {
-              const content = getMarkdown()(ctx)
-              onEditorInput?.(content)
               initView(ctx, editorView)
             },
             destroy: () => {

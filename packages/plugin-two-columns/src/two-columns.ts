@@ -1,53 +1,41 @@
-import { Ctx, ThemeColor, ThemeScrollbar } from '@milkdown/core'
+import { Ctx, editorCtx, ThemeColor, ThemeScrollbar } from '@milkdown/core'
 import { EditorView } from '@milkdown/prose/view'
-import { ThemeUtils, replaceAll } from '@milkdown/utils'
+import { replaceAll, ThemeUtils } from '@milkdown/utils'
+import { CodemirrorEditor } from './codemirror'
 
 const textareaColumn = (utils: ThemeUtils, ctx: Ctx) => {
   const twoColumns = document.createElement('div')
   twoColumns.classList.add('milkdown-two-columns')
 
-  const textarea = document.createElement('textarea')
+  const codemirror = new CodemirrorEditor(twoColumns)
+  codemirror.onChange = (content: string) => {
+    const editor = ctx.get(editorCtx)
+    editor.action(replaceAll(content))
+  }
 
   utils.themeManager.onFlush(() => {
     const style = utils.getStyle(({ css }) => {
       return css`
         background: ${utils.themeManager.get(ThemeColor, ['background'])};
+        color: ${utils.themeManager.get(ThemeColor, ['solid'])};
         &.hidden {
           display: none;
         }
+        > .cm-editor {
+          height: 100%;
+        }
+        .cm-scroller {
+          ${utils.themeManager.get(ThemeScrollbar, ['y'])}
+        }
       `
     })
+
     if (style) twoColumns.classList.add(style)
-
-    const textareaStyle = utils.getStyle(({ css }) => {
-      const style = css`
-        padding: 20px 10px;
-        appearance: none;
-        outline: none;
-        resize: none;
-        width: 100%;
-        height: 100%;
-        box-sizing: border-box;
-        background: transparent;
-        border: none;
-        color: ${utils.themeManager.get(ThemeColor, ['solid'])};
-        ${utils.themeManager.get(ThemeScrollbar, ['y'])}
-      `
-      return style
-    })
-    if (textareaStyle) textarea.classList.add(textareaStyle)
   })
 
-  textarea.addEventListener('input', (e) => {
-    const content = (e.target as HTMLTextAreaElement).value
-    replaceAll(content)(ctx)
-  })
-
-  const onEditorInput = (content: string) => {
-    textarea.value = content
+  const onEditorInput = (_content: string) => {
+    codemirror.setContent(_content)
   }
-
-  twoColumns.append(textarea)
 
   return { twoColumns, onEditorInput }
 }
