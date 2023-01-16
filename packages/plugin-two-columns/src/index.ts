@@ -55,9 +55,11 @@ export const twoColumnsPlugin = createPlugin((utils) => {
         props: {
           handleDOMEvents: {
             input: () => {
-              const editor = ctx.get(editorCtx)
-              const content = editor.action(getMarkdown())
-              onEditorInput?.(content)
+              setTimeout(() => {
+                const editor = ctx.get(editorCtx)
+                const content = editor.action(getMarkdown())
+                onEditorInput?.(content)
+              })
             },
           },
         },
