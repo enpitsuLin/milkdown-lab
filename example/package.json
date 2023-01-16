@@ -1,7 +1,7 @@
 {
   "name": "example",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.0.1",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -17,8 +17,8 @@
     "vite": "^4.0.0"
   },
   "dependencies": {
-    "@milkdown-lab/plugin-fullscreen": "workspace:^0.0.0",
-    "@milkdown-lab/plugin-split-editing": "workspace:^0.0.0",
+    "@milkdown-lab/plugin-fullscreen": "workspace:^0.1.0",
+    "@milkdown-lab/plugin-split-editing": "workspace:^0.1.0",
     "@milkdown/plugin-menu": "^6.5.4"
   }
 }
