@@ -36,8 +36,8 @@ importers:
 
   example:
     specifiers:
-      '@milkdown-lab/plugin-fullscreen': workspace:^0.0.0
-      '@milkdown-lab/plugin-split-editing': workspace:^0.0.0
+      '@milkdown-lab/plugin-fullscreen': workspace:^0.1.0
+      '@milkdown-lab/plugin-split-editing': workspace:^0.1.0
       '@milkdown/core': ^6.5.4
       '@milkdown/plugin-menu': ^6.5.4
       '@milkdown/preset-commonmark': ^6.5.4
