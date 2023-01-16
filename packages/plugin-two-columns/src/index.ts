@@ -1,7 +1,7 @@
-import { createCmd, createCmdKey, createSlice, Ctx, rootDOMCtx, serializerCtx } from '@milkdown/core'
+import { createCmd, createCmdKey, createSlice, Ctx, editorCtx, rootDOMCtx } from '@milkdown/core'
 import { Plugin } from '@milkdown/prose/state'
 import type { EditorView } from '@milkdown/prose/view'
-import { AtomList, createPlugin } from '@milkdown/utils'
+import { AtomList, createPlugin, getMarkdown } from '@milkdown/utils'
 import { initTwoColumns, initWrapper } from './two-columns'
 
 export const twoColumnsCtx = createSlice({ value: false }, 'two-columns')
@@ -52,15 +52,13 @@ export const twoColumnsPlugin = createPlugin((utils) => {
     injectSlices: [twoColumnsCtx],
     prosePlugins: (_, ctx) => {
       const plugin = new Plugin({
-        state: {
-          init() {
-            return ''
-          },
-          apply(tr, content) {
-            const serializer = ctx.get(serializerCtx)
-            if (tr.docChanged) content = serializer(tr.doc)
-            onEditorInput?.(content)
-            return content
+        props: {
+          handleDOMEvents: {
+            input: () => {
+              const editor = ctx.get(editorCtx)
+              const content = editor.action(getMarkdown())
+              onEditorInput?.(content)
+            },
           },
         },
         view: (editorView) => {
