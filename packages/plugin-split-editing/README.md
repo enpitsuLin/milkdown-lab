@@ -22,6 +22,35 @@ const editor = await Editor.make()
     ctx.set(rootCtx, document.querySelector('#app'))
   })
   .use(splitEditing)
+  .create()
+```
+
+This plugins also provide a command key named `ToggleSplitEditing` can integrate easily with the official plugin `@milkdown/plugin-menu`.
+
+```javascript
+import { defaultConfig, menu, menuPlugin } from '@milkdown/plugin-menu'
+import { splitEditing } from '@milkdown-lab/plugin-split-editing'
+// ...
+const editor = await Editor.make()
+  .config(() => {
+    ctx.set(rootCtx, document.querySelector('#app'))
+  })
+  .use(
+    menu.configure(menuPlugin, {
+      config: [
+        ...defaultConfig,
+        [
+          {
+            type: 'button',
+            icon: 'splitEditing',
+            key: 'ToggleSplitEditing',
+          },
+        ],
+      ],
+    }),
+  )
+  .use(splitEditing)
+  .create()
 ```
 
 ## Options
