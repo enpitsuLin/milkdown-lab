@@ -52,19 +52,16 @@ export const twoColumnsPlugin = createPlugin((utils) => {
     injectSlices: [twoColumnsCtx],
     prosePlugins: (_, ctx) => {
       const plugin = new Plugin({
-        props: {
-          handleDOMEvents: {
-            input: () => {
-              setTimeout(() => {
-                const editor = ctx.get(editorCtx)
-                const content = editor.action(getMarkdown())
-                onEditorInput?.(content)
-              })
-            },
-          },
-        },
         view: (editorView) => {
           initView(ctx, editorView)
+          editorView.dispatch = (tr) => {
+            editorView.updateState(editorView.state.apply(tr))
+            if (!tr.getMeta('sync')) {
+              const editor = ctx.get(editorCtx)
+              const content = editor.action(getMarkdown())
+              onEditorInput?.(content)
+            }
+          }
           return {
             update: () => {
               initView(ctx, editorView)

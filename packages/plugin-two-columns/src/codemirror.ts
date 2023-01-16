@@ -48,23 +48,22 @@ export class CodemirrorEditor {
   }
   constructor(root: HTMLElement, defaultValue?: string) {
     this.state = this.createState(defaultValue)
-    this.view = new EditorView({ state: this.state, parent: root })
+    this.view = new EditorView({
+      state: this.state,
+      parent: root,
+      dispatch: (tr) => {
+        this.view.update([tr])
+        if (tr.isUserEvent('input')) {
+          const content = this.view.state.doc.toString()
+          this.onChange(content)
+        }
+      },
+    })
   }
   createState(value?: string) {
     return EditorState.create({
       doc: value,
-      extensions: [
-        basicSetup,
-        markdown(),
-        EditorView.inputHandler.of((view) => {
-          setTimeout(() => {
-            const content = view.state.doc.toString()
-            this.onChange(content)
-          })
-          return false
-        }),
-        EditorView.lineWrapping,
-      ],
+      extensions: [basicSetup, markdown(), EditorView.lineWrapping],
     })
   }
   setContent = (content: string) => {

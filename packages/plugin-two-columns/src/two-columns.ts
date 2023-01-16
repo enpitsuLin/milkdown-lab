@@ -1,7 +1,21 @@
-import { Ctx, editorCtx, ThemeColor, ThemeScrollbar } from '@milkdown/core'
+import { Ctx, editorCtx, editorViewCtx, parserCtx, ThemeColor, ThemeScrollbar } from '@milkdown/core'
+import { Slice } from '@milkdown/prose/model'
 import { EditorView } from '@milkdown/prose/view'
-import { replaceAll, ThemeUtils } from '@milkdown/utils'
+import { ThemeUtils } from '@milkdown/utils'
 import { CodemirrorEditor } from './codemirror'
+
+const updateContent = (content: string) => {
+  return (ctx: Ctx) => {
+    const view = ctx.get(editorViewCtx)
+    const parser = ctx.get(parserCtx)
+    const doc = parser(content)
+    if (!doc) return
+    const { state } = view
+    const tr = state.tr.replace(0, state.doc.content.size, new Slice(doc.content, 0, 0))
+    tr.setMeta('sync', true)
+    view.dispatch(tr)
+  }
+}
 
 const textareaColumn = (utils: ThemeUtils, ctx: Ctx) => {
   const twoColumns = document.createElement('div')
@@ -10,7 +24,7 @@ const textareaColumn = (utils: ThemeUtils, ctx: Ctx) => {
   const codemirror = new CodemirrorEditor(twoColumns)
   codemirror.onChange = (content: string) => {
     const editor = ctx.get(editorCtx)
-    editor.action(replaceAll(content))
+    editor.action(updateContent(content))
   }
 
   utils.themeManager.onFlush(() => {
