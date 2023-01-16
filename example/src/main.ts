@@ -1,5 +1,5 @@
 import { fullscreen } from '@milkdown-lab/plugin-fullscreen'
-import { twoColumns } from '@milkdown-lab/plugin-two-columns'
+import { splitEditing } from '@milkdown-lab/plugin-split-editing'
 import { Editor, rootCtx } from '@milkdown/core'
 import { defaultConfig, menu, menuPlugin } from '@milkdown/plugin-menu'
 import { commonmark } from '@milkdown/preset-commonmark'
@@ -22,8 +22,8 @@ async function main() {
           [
             {
               type: 'button',
-              icon: 'twoColumns',
-              key: 'ToggleTwoColumn',
+              icon: 'splitEditing',
+              key: 'ToggleSplitEditing',
             },
             {
               type: 'button',
@@ -34,7 +34,7 @@ async function main() {
         ],
       }),
     )
-    .use(twoColumns)
+    .use(splitEditing)
     .create()
 }
 

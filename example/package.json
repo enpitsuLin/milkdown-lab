@@ -18,7 +18,7 @@
   },
   "dependencies": {
     "@milkdown-lab/plugin-fullscreen": "workspace:^1.0.0",
-    "@milkdown-lab/plugin-two-columns": "workspace:^1.0.0",
+    "@milkdown-lab/plugin-split-editing": "workspace:^1.0.0",
     "@milkdown/plugin-menu": "^6.5.4"
   }
 }

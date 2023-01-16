@@ -35,7 +35,7 @@ importers:
   example:
     specifiers:
       '@milkdown-lab/plugin-fullscreen': workspace:^1.0.0
-      '@milkdown-lab/plugin-two-columns': workspace:^1.0.0
+      '@milkdown-lab/plugin-split-editing': workspace:^1.0.0
       '@milkdown/core': ^6.5.4
       '@milkdown/plugin-menu': ^6.5.4
       '@milkdown/preset-commonmark': ^6.5.4
@@ -45,7 +45,7 @@ importers:
       vite: ^4.0.0
     dependencies:
       '@milkdown-lab/plugin-fullscreen': link:../packages/plugin-fullscreen
-      '@milkdown-lab/plugin-two-columns': link:../packages/plugin-two-columns
+      '@milkdown-lab/plugin-split-editing': link:../packages/plugin-split-editing
       '@milkdown/plugin-menu': 6.5.4_hcx5jzbrehmpjr4bwjtmcqoyxa
     devDependencies:
       '@milkdown/core': 6.5.4_@milkdown+prose@6.5.4
@@ -68,7 +68,7 @@ importers:
       '@milkdown/prose': 6.5.4
       typescript: 4.9.4
 
-  packages/plugin-two-columns:
+  packages/plugin-split-editing:
     specifiers:
       '@codemirror/commands': ^6.1.3
       '@codemirror/lang-markdown': ^6.0.5

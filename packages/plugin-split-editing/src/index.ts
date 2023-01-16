@@ -4,11 +4,11 @@ import type { EditorView } from '@milkdown/prose/view'
 import { AtomList, createPlugin, getMarkdown } from '@milkdown/utils'
 import { initTwoColumns, initWrapper } from './two-columns'
 
-export const twoColumnsCtx = createSlice({ value: false }, 'two-columns')
+export const splitEditingCtx = createSlice({ value: false }, 'two-columns')
 
-export const ToggleTwoColumn = createCmdKey('ToggleTwoColumn')
+export const ToggleSplitEditing = createCmdKey('ToggleTwoColumn')
 
-export const twoColumnsPlugin = createPlugin((utils) => {
+export const splitEditingPlugin = createPlugin((utils) => {
   let onEditorInput: ((content: string) => void) | null = null
   let restoreDOM: (() => void) | null = null
   let twoColumns: HTMLDivElement | null = null
@@ -36,9 +36,9 @@ export const twoColumnsPlugin = createPlugin((utils) => {
   }
   return {
     commands: (_type, ctx) => [
-      createCmd(ToggleTwoColumn, () => {
-        const { value } = ctx.get(twoColumnsCtx)
-        ctx.set(twoColumnsCtx, { value: !value })
+      createCmd(ToggleSplitEditing, () => {
+        const { value } = ctx.get(splitEditingCtx)
+        ctx.set(splitEditingCtx, { value: !value })
         if (twoColumns) {
           if (value) {
             twoColumns.classList.remove('hidden')
@@ -49,7 +49,7 @@ export const twoColumnsPlugin = createPlugin((utils) => {
         return () => true
       }),
     ],
-    injectSlices: [twoColumnsCtx],
+    injectSlices: [splitEditingCtx],
     prosePlugins: (_, ctx) => {
       const plugin = new Plugin({
         view: (editorView) => {
@@ -77,4 +77,4 @@ export const twoColumnsPlugin = createPlugin((utils) => {
   }
 })
 
-export const twoColumns = AtomList.create([twoColumnsPlugin()])
+export const splitEditing = AtomList.create([splitEditingPlugin()])
