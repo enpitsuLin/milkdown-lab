@@ -6,7 +6,7 @@ import { initTwoColumns, initWrapper } from './two-columns'
 
 export const splitEditingCtx = createSlice({ value: false }, 'two-columns')
 
-export const ToggleSplitEditing = createCmdKey('ToggleTwoColumn')
+export const ToggleSplitEditing = createCmdKey('ToggleSplitEditing')
 
 export const splitEditingPlugin = createPlugin((utils) => {
   let onEditorInput: ((content: string) => void) | null = null
