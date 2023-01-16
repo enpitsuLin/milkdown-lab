@@ -34,8 +34,8 @@ importers:
 
   example:
     specifiers:
-      '@milkdown-js/plugin-fullscreen': workspace:^1.0.0
-      '@milkdown-js/plugin-two-columns': workspace:^1.0.0
+      '@milkdown-lab/plugin-fullscreen': workspace:^1.0.0
+      '@milkdown-lab/plugin-two-columns': workspace:^1.0.0
       '@milkdown/core': ^6.5.4
       '@milkdown/plugin-menu': ^6.5.4
       '@milkdown/preset-commonmark': ^6.5.4
@@ -44,8 +44,8 @@ importers:
       typescript: ^4.9.3
       vite: ^4.0.0
     dependencies:
-      '@milkdown-js/plugin-fullscreen': link:../packages/plugin-fullscreen
-      '@milkdown-js/plugin-two-columns': link:../packages/plugin-two-columns
+      '@milkdown-lab/plugin-fullscreen': link:../packages/plugin-fullscreen
+      '@milkdown-lab/plugin-two-columns': link:../packages/plugin-two-columns
       '@milkdown/plugin-menu': 6.5.4_hcx5jzbrehmpjr4bwjtmcqoyxa
     devDependencies:
       '@milkdown/core': 6.5.4_@milkdown+prose@6.5.4

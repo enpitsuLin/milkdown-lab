@@ -1,5 +1,5 @@
-import { fullscreen } from '@milkdown-js/plugin-fullscreen'
-import { twoColumns } from '@milkdown-js/plugin-two-columns'
+import { fullscreen } from '@milkdown-lab/plugin-fullscreen'
+import { twoColumns } from '@milkdown-lab/plugin-two-columns'
 import { Editor, rootCtx } from '@milkdown/core'
 import { defaultConfig, menu, menuPlugin } from '@milkdown/plugin-menu'
 import { commonmark } from '@milkdown/preset-commonmark'

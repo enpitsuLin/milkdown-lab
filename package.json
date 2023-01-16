@@ -1,12 +1,12 @@
 {
-  "name": "milkdown-js",
+  "name": "milkdown-lab",
   "private": true,
   "version": "0.0.0",
   "packageManager": "pnpm@7.0.0",
   "main": "n/a",
   "scripts": {
     "lint": "eslint '*/**/*.{js,ts}' --quiet --fix",
-    "build": "pnpm --parallel --filter=@milkdown-js/* run build",
+    "build": "pnpm --parallel --filter=@milkdown-lab/* run build",
     "prepare": "husky install"
   },
   "author": "enpitsulin",

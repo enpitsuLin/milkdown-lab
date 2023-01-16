@@ -1,5 +1,5 @@
 {
-  "name": "@milkdown-js/plugin-two-columns",
+  "name": "@milkdown-lab/plugin-two-columns",
   "version": "1.0.0",
   "description": "",
   "main": "./lib/index.js",

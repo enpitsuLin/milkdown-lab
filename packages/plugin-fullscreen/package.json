@@ -1,5 +1,5 @@
 {
-  "name": "@milkdown-js/plugin-fullscreen",
+  "name": "@milkdown-lab/plugin-fullscreen",
   "version": "1.0.0",
   "description": "",
   "main": "./lib/index.js",

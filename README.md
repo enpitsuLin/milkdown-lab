@@ -1,7 +1,7 @@
-# Milkdown-js
+# milkdown-lab
 
 Unofficial plugins collection repo
 
 | name                             | description |
 | -------------------------------- | ----------- |
-| `@milkdown-js/plugin-fullscreen` | none        |
+| `@milkdown-lab/plugin-fullscreen` | none        |

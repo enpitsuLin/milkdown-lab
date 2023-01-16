@@ -17,8 +17,8 @@
     "vite": "^4.0.0"
   },
   "dependencies": {
-    "@milkdown-js/plugin-fullscreen": "workspace:^1.0.0",
-    "@milkdown-js/plugin-two-columns": "workspace:^1.0.0",
+    "@milkdown-lab/plugin-fullscreen": "workspace:^1.0.0",
+    "@milkdown-lab/plugin-two-columns": "workspace:^1.0.0",
     "@milkdown/plugin-menu": "^6.5.4"
   }
 }
