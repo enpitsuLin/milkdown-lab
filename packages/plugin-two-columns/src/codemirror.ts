@@ -61,6 +61,7 @@ export class CodemirrorEditor {
           this.onChange(content)
           return false
         }),
+        EditorView.lineWrapping,
       ],
     })
   }

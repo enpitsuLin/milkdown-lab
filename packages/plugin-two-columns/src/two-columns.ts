@@ -74,8 +74,13 @@ export const initTwoColumns = (
       return css`
         display: flex;
         height: 100%;
+        &:has(.milkdown-two-columns.hidden) {
+          > div {
+            width: 100%;
+          }
+        }
         > div {
-          flex: 1;
+          width: 50%;
         }
       `
     })
