@@ -38,7 +38,7 @@ export const IconMapping: Record<Icon, { icon: string; label: string }> = {
   dragHandle: { label: 'drag handle', icon: 'drag_indicator' },
   text: { label: 'text', icon: 'title' },
   /** extra */
-  twoColumns: { label: 'twoColumns', icon: 'view_week' },
+  twoColumns: { label: 'splitEditing', icon: 'view_week' },
   fullscreen: { label: 'fullscreen', icon: 'fullscreen' },
 }
 
