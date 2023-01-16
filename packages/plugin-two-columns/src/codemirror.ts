@@ -57,8 +57,10 @@ export class CodemirrorEditor {
         basicSetup,
         markdown(),
         EditorView.inputHandler.of((view) => {
-          const content = view.state.doc.toString()
-          this.onChange(content)
+          setTimeout(() => {
+            const content = view.state.doc.toString()
+            this.onChange(content)
+          })
           return false
         }),
         EditorView.lineWrapping,
