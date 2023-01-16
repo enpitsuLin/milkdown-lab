@@ -9,5 +9,5 @@ Unofficial plugins collection for [milkdown](https://github.com/Saul-Mirone/milk
 
 <!-- definition -->
 
-[plugin-fullscreen-docs]: /tree/master/packages/plugin-fullscreen
-[plugin-split-editing-doc]: /tree/master/packages/plugin-split-editing
+[plugin-fullscreen-docs]: ./tree/master/packages/plugin-fullscreen
+[plugin-split-editing-doc]: ./tree/master/packages/plugin-split-editing
