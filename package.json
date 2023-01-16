@@ -5,13 +5,16 @@
   "packageManager": "pnpm@7.0.0",
   "main": "n/a",
   "scripts": {
+    "preinstall": "npx only-allow pnpm",
     "lint": "eslint '*/**/*.{js,ts}' --quiet --fix",
     "build": "pnpm --parallel --filter=@milkdown-lab/* run build",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "changeset": "changeset"
   },
   "author": "enpitsulin",
   "license": "MIT",
   "devDependencies": {
+    "@changesets/cli": "^2.26.0",
     "@commitlint/cli": "^17.4.2",
     "@commitlint/config-conventional": "^17.4.2",
     "@types/node": "^18.11.18",
