@@ -4,7 +4,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "test": "vitest"
+    "build": "vite build",
+    "test": "pnpm build & vitest"
   },
   "devDependencies": {
     "@milkdown-lab/plugin-fullscreen": "workspace:^0.1.1",
