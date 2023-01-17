@@ -56,7 +56,7 @@ export const splitEditingPlugin = createPlugin((utils) => {
           initView(ctx, editorView)
           editorView.dispatch = (tr) => {
             editorView.updateState(editorView.state.apply(tr))
-            if (!tr.getMeta('sync')) {
+            if (!tr.getMeta('sync') && tr.docChanged) {
               const editor = ctx.get(editorCtx)
               const content = editor.action(getMarkdown())
               onEditorInput?.(content)
