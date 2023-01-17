@@ -36,8 +36,8 @@ importers:
 
   example:
     specifiers:
-      '@milkdown-lab/plugin-fullscreen': workspace:^0.1.0
-      '@milkdown-lab/plugin-split-editing': workspace:^0.1.0
+      '@milkdown-lab/plugin-fullscreen': workspace:^0.1.1
+      '@milkdown-lab/plugin-split-editing': workspace:^0.1.2
       '@milkdown/core': ^6.5.4
       '@milkdown/plugin-menu': ^6.5.4
       '@milkdown/preset-commonmark': ^6.5.4
@@ -132,6 +132,9 @@ packages:
     engines: {node: '>=6.9.0'}
     peerDependencies:
       '@babel/core': ^7.0.0-0
+    peerDependenciesMeta:
+      '@babel/core':
+        optional: true
     dependencies:
       '@babel/helper-plugin-utils': 7.20.2
 
@@ -615,6 +618,9 @@ packages:
     resolution: {integrity: sha512-xE7/hyLHJac7D2Ve9dKroBBZqBT7WuPQmWcq7HSGb84sUuP4mlOWoB8dvVfD9yk5DHkU1m6RW7xSoDtnQHNQeA==}
     peerDependencies:
       '@babel/core': ^7.0.0
+    peerDependenciesMeta:
+      '@babel/core':
+        optional: true
     dependencies:
       '@babel/helper-module-imports': 7.18.6
       '@babel/plugin-syntax-jsx': 7.18.6

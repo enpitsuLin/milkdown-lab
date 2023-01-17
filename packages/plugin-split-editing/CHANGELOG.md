@@ -1,5 +1,11 @@
 # @milkdown-lab/plugin-split-editing
 
+## 0.1.2
+
+### Patch Changes
+
+- 1bb3701: update usage doc
+
 ## 0.1.1
 
 ### Patch Changes
