@@ -23,6 +23,6 @@ describe.runIf(process.platform !== 'win32')('name', async () => {
 
   test('should work', async () => {
     await page.goto('http://localhost:3000')
-    await expect(page).toHaveTitle('e2e')
+    await expect(page).toHaveTitle('e2e test')
   })
 })
