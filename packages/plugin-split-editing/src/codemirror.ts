@@ -22,12 +22,11 @@ import {
   rectangularSelection,
 } from '@codemirror/view'
 import { createSlice } from '@milkdown/core'
+import { Options } from '.'
 
 const basicSetup: Extension = [
-  lineNumbers(),
   highlightActiveLineGutter(),
   highlightSpecialChars(),
-  foldGutter(),
   drawSelection(),
   dropCursor(),
   EditorState.allowMultipleSelections.of(true),
@@ -40,14 +39,18 @@ const basicSetup: Extension = [
   keymap.of(foldKeymap),
 ]
 
+export type CodemirrorOptions = Options & {
+  value?: string
+}
+
 export class CodemirrorEditor {
   state: EditorState
   view: EditorView
   onChange: (content: string) => void = () => {
     void 0
   }
-  constructor(root: HTMLElement, defaultValue?: string) {
-    this.state = this.createState(defaultValue)
+  constructor(root: HTMLElement, options?: CodemirrorOptions) {
+    this.state = this.createState(options)
     this.view = new EditorView({
       state: this.state,
       parent: root,
@@ -60,10 +63,12 @@ export class CodemirrorEditor {
       },
     })
   }
-  createState(value?: string) {
+  createState(options: CodemirrorOptions = {}) {
+    const { value = '', extensions = [], lineNumber = true } = options
+    if (lineNumber) extensions.push(lineNumbers(), foldGutter())
     return EditorState.create({
       doc: value,
-      extensions: [basicSetup, markdown(), EditorView.lineWrapping],
+      extensions: [basicSetup, markdown(), EditorView.lineWrapping, ...extensions],
     })
   }
   setContent = (content: string) => {

@@ -1,14 +1,26 @@
+import { Extension } from '@codemirror/state'
 import { createCmd, createCmdKey, createSlice, Ctx, editorCtx, rootDOMCtx } from '@milkdown/core'
 import { Plugin } from '@milkdown/prose/state'
 import type { EditorView } from '@milkdown/prose/view'
 import { AtomList, createPlugin, getMarkdown } from '@milkdown/utils'
 import { initTwoColumns, initWrapper } from './split-editor'
 
+export interface Options {
+  /**
+   * codemirror extensions
+   */
+  extensions?: Extension[]
+  /**
+   * lineNumber show or not
+   */
+  lineNumber?: boolean
+}
+
 export const splitEditingCtx = createSlice({ value: false }, 'two-columns')
 
 export const ToggleSplitEditing = createCmdKey('ToggleSplitEditing')
 
-export const splitEditingPlugin = createPlugin((utils) => {
+export const splitEditingPlugin = createPlugin<string, Options>((utils, options = {}) => {
   let onEditorInput: ((content: string) => void) | null = null
   let restoreDOM: (() => void) | null = null
   let twoColumns: HTMLDivElement | null = null
@@ -20,7 +32,13 @@ export const splitEditingPlugin = createPlugin((utils) => {
     }
 
     if (!twoColumns) {
-      const [_twoColumns, _restoreDOM, _onEditorInput] = initTwoColumns(utils, editorView, ctx, twoColumnWrapper)
+      const [_twoColumns, _restoreDOM, _onEditorInput] = initTwoColumns(
+        utils,
+        editorView,
+        ctx,
+        twoColumnWrapper,
+        options,
+      )
       twoColumns = _twoColumns
       restoreDOM = () => {
         const milkdownDOM = _restoreDOM()

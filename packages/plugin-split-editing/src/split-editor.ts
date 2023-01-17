@@ -13,6 +13,7 @@ import {
 import { Slice } from '@milkdown/prose/model'
 import { EditorView } from '@milkdown/prose/view'
 import { ThemeUtils } from '@milkdown/utils'
+import { Options } from '.'
 import { CodemirrorEditor } from './codemirror'
 
 const updateContent = (content: string) => {
@@ -28,7 +29,7 @@ const updateContent = (content: string) => {
   }
 }
 
-const codemirrorView = (utils: ThemeUtils, ctx: Ctx) => {
+const codemirrorView = (utils: ThemeUtils, ctx: Ctx, options: Options) => {
   const splitEditor = document.createElement('div')
   splitEditor.classList.add('milkdown-split-editor')
 
@@ -40,7 +41,11 @@ const codemirrorView = (utils: ThemeUtils, ctx: Ctx) => {
   const doc = getDoc(defaultValue, parser, schema)
   const content = doc ? serializer(doc) : ''
 
-  const codemirror = new CodemirrorEditor(splitEditor, content)
+  const codemirror = new CodemirrorEditor(splitEditor, {
+    value: content,
+    extensions: options.extensions,
+    lineNumber: options.lineNumber,
+  })
   codemirror.onChange = (content: string) => {
     const editor = ctx.get(editorCtx)
     editor.action(updateContent(content))
@@ -88,10 +93,16 @@ export const initWrapper = (_ctx: Ctx, view: EditorView) => {
   return wrapper
 }
 
-export const initTwoColumns = (utils: ThemeUtils, view: EditorView, ctx: Ctx, wrapper: HTMLDivElement | null) => {
+export const initTwoColumns = (
+  utils: ThemeUtils,
+  view: EditorView,
+  ctx: Ctx,
+  wrapper: HTMLDivElement | null,
+  options: Options,
+) => {
   if (!wrapper) throw new Error('Missing wrapper element')
 
-  const { splitEditor, onEditorInput } = codemirrorView(utils, ctx)
+  const { splitEditor, onEditorInput } = codemirrorView(utils, ctx, options)
 
   const editorDOM = view.dom as HTMLDivElement
 
