@@ -6,11 +6,11 @@ on:
 
 jobs:
   test:
-    uses: ./test.yml
+    uses: ./.github/workflows/test.yml
 
   release:
     needs: test
-    uses: ./release.yml
+    uses: ./.github/workflows/release.yml
     secrets:
       CHANGESET_TOKEN: ${{ secrets.CHANGESET_TOKEN }}
       NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
