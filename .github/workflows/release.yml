@@ -2,8 +2,8 @@ name: release package
 
 on:
   push:
-    branches:
-      - master
+    branches: master
+        
 env:
   CI: true
   PNPM_CACHE_FOLDER: .pnpm-store
@@ -53,5 +53,5 @@ jobs:
           publish: pnpm release
           commit: 'ci(changeset): update version'
         env:
-          GITHUB_TOKEN: ${{ secrets.TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
