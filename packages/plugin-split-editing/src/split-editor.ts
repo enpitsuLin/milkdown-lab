@@ -1,4 +1,15 @@
-import { Ctx, editorCtx, editorViewCtx, parserCtx, ThemeColor, ThemeScrollbar } from '@milkdown/core'
+import {
+  Ctx,
+  defaultValueCtx,
+  editorCtx,
+  editorViewCtx,
+  getDoc,
+  parserCtx,
+  schemaCtx,
+  serializerCtx,
+  ThemeColor,
+  ThemeScrollbar,
+} from '@milkdown/core'
 import { Slice } from '@milkdown/prose/model'
 import { EditorView } from '@milkdown/prose/view'
 import { ThemeUtils } from '@milkdown/utils'
@@ -21,7 +32,15 @@ const codemirrorView = (utils: ThemeUtils, ctx: Ctx) => {
   const splitEditor = document.createElement('div')
   splitEditor.classList.add('milkdown-split-editor')
 
-  const codemirror = new CodemirrorEditor(splitEditor)
+  const defaultValue = ctx.get(defaultValueCtx)
+  const schema = ctx.get(schemaCtx)
+  const parser = ctx.get(parserCtx)
+
+  const serializer = ctx.get(serializerCtx)
+  const doc = getDoc(defaultValue, parser, schema)
+  const content = doc ? serializer(doc) : ''
+
+  const codemirror = new CodemirrorEditor(splitEditor, content)
   codemirror.onChange = (content: string) => {
     const editor = ctx.get(editorCtx)
     editor.action(updateContent(content))
