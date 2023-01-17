@@ -9,7 +9,8 @@
     "lint": "eslint '*/**/*.{js,ts}' --quiet --fix",
     "build": "pnpm --parallel --filter=@milkdown-lab/* run build",
     "prepare": "husky install",
-    "changeset": "changeset"
+    "changeset": "changeset",
+    "release": "changeset publish"
   },
   "author": "enpitsulin",
   "license": "MIT",
