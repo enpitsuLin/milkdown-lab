@@ -1,5 +1,12 @@
 # @milkdown-lab/plugin-split-editing
 
+## 0.1.3
+
+### Patch Changes
+
+- 1df8b93: Fix #1
+  Add some options
+
 ## 0.1.2
 
 ### Patch Changes
