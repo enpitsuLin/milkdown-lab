@@ -2,7 +2,7 @@ import { createCmd, createCmdKey, createSlice, Ctx, editorCtx, rootDOMCtx } from
 import { Plugin } from '@milkdown/prose/state'
 import type { EditorView } from '@milkdown/prose/view'
 import { AtomList, createPlugin, getMarkdown } from '@milkdown/utils'
-import { initTwoColumns, initWrapper } from './two-columns'
+import { initTwoColumns, initWrapper } from './split-editor'
 
 export const splitEditingCtx = createSlice({ value: false }, 'two-columns')
 

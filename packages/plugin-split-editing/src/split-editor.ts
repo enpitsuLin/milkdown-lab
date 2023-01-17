@@ -17,11 +17,11 @@ const updateContent = (content: string) => {
   }
 }
 
-const textareaColumn = (utils: ThemeUtils, ctx: Ctx) => {
-  const twoColumns = document.createElement('div')
-  twoColumns.classList.add('milkdown-two-columns')
+const codemirrorView = (utils: ThemeUtils, ctx: Ctx) => {
+  const splitEditor = document.createElement('div')
+  splitEditor.classList.add('milkdown-split-editor')
 
-  const codemirror = new CodemirrorEditor(twoColumns)
+  const codemirror = new CodemirrorEditor(splitEditor)
   codemirror.onChange = (content: string) => {
     const editor = ctx.get(editorCtx)
     editor.action(updateContent(content))
@@ -44,14 +44,14 @@ const textareaColumn = (utils: ThemeUtils, ctx: Ctx) => {
       `
     })
 
-    if (style) twoColumns.classList.add(style)
+    if (style) splitEditor.classList.add(style)
   })
 
   const onEditorInput = (_content: string) => {
     codemirror.setContent(_content)
   }
 
-  return { twoColumns, onEditorInput }
+  return { splitEditor, onEditorInput }
 }
 
 export const initWrapper = (_ctx: Ctx, view: EditorView) => {
@@ -69,15 +69,10 @@ export const initWrapper = (_ctx: Ctx, view: EditorView) => {
   return wrapper
 }
 
-export const initTwoColumns = (
-  utils: ThemeUtils,
-  view: EditorView,
-  ctx: Ctx,
-  twoColumnsWrapper: HTMLDivElement | null,
-) => {
-  if (!twoColumnsWrapper) throw new Error('Missing wrapper element')
+export const initTwoColumns = (utils: ThemeUtils, view: EditorView, ctx: Ctx, wrapper: HTMLDivElement | null) => {
+  if (!wrapper) throw new Error('Missing wrapper element')
 
-  const { twoColumns, onEditorInput } = textareaColumn(utils, ctx)
+  const { splitEditor, onEditorInput } = codemirrorView(utils, ctx)
 
   const editorDOM = view.dom as HTMLDivElement
 
@@ -98,21 +93,21 @@ export const initTwoColumns = (
         }
       `
     })
-    if (wrapperStyle) twoColumnsWrapper.classList.add(wrapperStyle)
+    if (wrapperStyle) wrapper.classList.add(wrapperStyle)
   })
 
   const milkdownDOM = editorDOM.parentElement
   const editorRoot = milkdownDOM?.parentElement as HTMLElement
   if (!milkdownDOM) throw new Error('Missing root element')
 
-  twoColumnsWrapper.append(twoColumns)
+  wrapper.append(splitEditor)
 
   const restoreDOM = () => {
     editorRoot.appendChild(milkdownDOM)
-    twoColumnsWrapper.remove()
-    twoColumns.remove()
+    wrapper.remove()
+    splitEditor.remove()
     return milkdownDOM
   }
 
-  return [twoColumns, restoreDOM, onEditorInput] as const
+  return [splitEditor, restoreDOM, onEditorInput] as const
 }
