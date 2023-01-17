@@ -25,7 +25,7 @@ const editor = await Editor.make()
   .create()
 ```
 
-This plugins also provide a command key named `ToggleSplitEditing` can integrate easily with the official plugin `@milkdown/plugin-menu`.
+This plugins also provide a command key named `ToggleSplitEditing` can integrate easily with the official plugin `@milkdown/plugin-menu`. If you want use command programmatically please reference [doc](https://milkdown.dev/commands)
 
 ```javascript
 import { defaultConfig, menu, menuPlugin } from '@milkdown/plugin-menu'
