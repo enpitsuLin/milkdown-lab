@@ -1,0 +1,16 @@
+name: CI Workflows
+
+on:
+  push:
+    branches: master
+
+jobs:
+  test:
+    uses: ./test.yml
+
+  release:
+    needs: test
+    uses: ./release.yml
+    secrets:
+      CHANGESET_TOKEN: ${{ secrets.CHANGESET_TOKEN }}
+      NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
