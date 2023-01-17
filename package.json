@@ -10,7 +10,8 @@
     "build": "pnpm --parallel --filter=@milkdown-lab/* run build",
     "prepare": "husky install",
     "changeset": "changeset",
-    "release": "changeset publish"
+    "release": "changeset publish",
+    "test": "pnpm test --filter=./e2e"
   },
   "author": "enpitsulin",
   "license": "MIT",
