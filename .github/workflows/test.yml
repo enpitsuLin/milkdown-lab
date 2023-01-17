@@ -1,5 +1,8 @@
 name: Playwright Tests
 
+on:
+  workflow_call:
+
 jobs:
   test:
     timeout-minutes: 60

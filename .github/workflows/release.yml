@@ -1,9 +1,8 @@
 name: release package
 
 on:
-  push:
-    branches: master
-        
+  workflow_call:
+
 env:
   CI: true
   PNPM_CACHE_FOLDER: .pnpm-store
@@ -32,7 +31,7 @@ jobs:
         id: pnpm-cache
         run: |
           echo "::set-output name=pnpm_cache_dir::$(pnpm store path)"
-      
+
       - name: load cache
         uses: actions/cache@v3
         with:
@@ -43,7 +42,7 @@ jobs:
 
       - name: install dependencies
         run: pnpm install
-      
+
       - name: build packages
         run: pnpm build
 
