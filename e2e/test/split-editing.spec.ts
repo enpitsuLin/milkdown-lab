@@ -1,32 +1,38 @@
 import { Editor } from '@milkdown/core'
 import { Browser, chromium, Page } from 'playwright'
-import { preview, type PreviewServer } from 'vite'
-import { afterAll, beforeAll, describe, test, expect } from 'vitest'
+import { createServer, type ViteDevServer } from 'vite'
+import { afterAll, beforeAll, describe, test, expect, beforeEach, afterEach } from 'vitest'
 // import { expect } from '@playwright/test'
 
 describe.runIf(process.platform !== 'win32')('name', async () => {
-  let server: PreviewServer
+  let server: ViteDevServer
   let browser: Browser
   let page: Page
 
+  let editor: Editor | null = null
+
   beforeAll(async () => {
-    server = await preview({ preview: { port: 3000 } })
+    server = await createServer()
+    server.listen(3000)
     browser = await chromium.launch()
     page = await browser.newPage()
   })
 
   afterAll(async () => {
     await browser.close()
-    await new Promise<void>((resolve, reject) => {
-      server.httpServer.close((error) => (error ? reject(error) : resolve()))
-    })
+    await server.close()
+  })
+  beforeEach(async () => {
+    await page.goto('http://localhost:3000')
+    editor = await page.evaluate(() => window.render([window.getPlugins('spliteEditing')]))
+  })
+
+  afterEach(async () => {
+    editor = null
   })
 
   describe('plugin-split-editing test', () => {
-    let editor: Editor | null = null
     test('should render properly', async () => {
-      await page.goto('http://localhost:3000')
-      editor = await page.evaluate(() => window.render([window.getPlugins('spliteEditing')]))
       const wrapper = await page.$('.milkdown-split-editing-wrapper')
       expect(wrapper, 'split view wrapper render properly')
 
@@ -36,10 +42,8 @@ describe.runIf(process.platform !== 'win32')('name', async () => {
       const splitViewEditor = await wrapper?.$('.milkdown-split-editor > .cm-editor')
       expect(splitViewEditor, 'split editor render properly')
     })
-    test('content should be synced to split editor', async () => {
-      await page.goto('http://localhost:3000')
-      editor = await page.evaluate(() => window.render([window.getPlugins('spliteEditing')]))
 
+    test('content should be synced to split editor', async () => {
       const milkdownEditor = await page.$('.milkdown > .ProseMirror.editor')
 
       const splitViewEditor = await page.$('.milkdown-split-editor')
@@ -50,10 +54,8 @@ describe.runIf(process.platform !== 'win32')('name', async () => {
       await milkdownEditor?.type('This content should be synced')
       expect(await splitViewEditor?.textContent()).contain('This content should be synced')
     })
-    test('content should be synced to milkdown editor', async () => {
-      await page.goto('http://localhost:3000')
-      editor = await page.evaluate(() => window.render([window.getPlugins('spliteEditing')]))
 
+    test('content should be synced to milkdown editor', async () => {
       const milkdownEditor = await page.$('.milkdown > .ProseMirror.editor')
 
       const splitViewEditor = await page.$('.milkdown-split-editor > .cm-editor')
