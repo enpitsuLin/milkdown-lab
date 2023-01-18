@@ -1,4 +1,3 @@
-import { Editor } from '@milkdown/core'
 import { Browser, chromium, Page } from 'playwright'
 import { createServer, type ViteDevServer } from 'vite'
 import { afterAll, beforeAll, beforeEach, describe, expect, test } from 'vitest'
@@ -8,8 +7,6 @@ describe.runIf(process.platform !== 'win32')('name', async () => {
   let server: ViteDevServer
   let browser: Browser
   let page: Page
-
-  let editor: Editor | null = null
 
   beforeAll(async () => {
     server = await createServer()
@@ -22,11 +19,17 @@ describe.runIf(process.platform !== 'win32')('name', async () => {
     await browser.close()
     await server.close()
   })
+
   beforeEach(async () => {
     await page.goto('http://localhost:3000')
-    editor = await page.evaluate(() => window.render([window.getPlugins('spliteEditing')]))
-    return () => {
-      editor?.destroy?.()
+    await page.evaluate(async () => {
+      const editor = await render([getPlugins('spliteEditing')])
+      return (__Editor__ = editor)
+    })
+    return async () => {
+      await page.evaluate(() => {
+        __Editor__.destroy()
+      })
     }
   })
 
