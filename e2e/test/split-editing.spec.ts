@@ -38,7 +38,7 @@ describe.runIf(process.platform !== 'win32')('name', async () => {
     })
     test('content should be synced to split editor', async () => {
       await page.goto('http://localhost:3000')
-      editor = await page.evaluate(() => window.render([window.getPlugins('spliteEditing')]))
+      editor = await page.evaluate(() => render([getPlugins('spliteEditing')]))
 
       const milkdownEditor = await page.$('.milkdown > .ProseMirror.editor')
 
@@ -52,7 +52,7 @@ describe.runIf(process.platform !== 'win32')('name', async () => {
     })
     test('content should be synced to milkdown editor', async () => {
       await page.goto('http://localhost:3000')
-      editor = await page.evaluate(() => window.render([window.getPlugins('spliteEditing')]))
+      editor = await page.evaluate(() => render([getPlugins('spliteEditing')]))
 
       const milkdownEditor = await page.$('.milkdown > .ProseMirror.editor')
 
