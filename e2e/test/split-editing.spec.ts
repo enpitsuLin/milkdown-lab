@@ -13,6 +13,7 @@ describe.runIf(process.platform !== 'win32')('name', async () => {
     server.listen(3000)
     browser = await chromium.launch()
     page = await browser.newPage()
+    await page.waitForLoadState('domcontentloaded')
   })
 
   afterAll(async () => {
@@ -32,23 +33,25 @@ describe.runIf(process.platform !== 'win32')('name', async () => {
       })
     }
   })
-
+  async function findSplitEditor() {
+    const wrapper = await page.$('.milkdown-split-editing-wrapper')
+    const editor = await wrapper?.$('.milkdown > .ProseMirror.editor')
+    const splitEditor = await wrapper?.$('.milkdown-split-editor > .cm-editor')
+    return [wrapper, editor, splitEditor]
+  }
   describe('plugin-split-editing test', () => {
     test('should render properly', async () => {
-      const wrapper = await page.$('.milkdown-split-editing-wrapper')
+      const [wrapper, milkdownEditor, splitViewEditor] = await findSplitEditor()
+
       expect(wrapper, 'split view wrapper render properly')
 
-      const milkdownEditor = await wrapper?.$('.milkdown > .ProseMirror.editor')
       expect(milkdownEditor, 'milkdown editor render properly')
 
-      const splitViewEditor = await wrapper?.$('.milkdown-split-editor > .cm-editor')
       expect(splitViewEditor, 'split editor render properly')
     })
 
     test('content should be synced to split editor', async () => {
-      const milkdownEditor = await page.$('.milkdown > .ProseMirror.editor')
-
-      const splitViewEditor = await page.$('.milkdown-split-editor > .cm-editor')
+      const [, milkdownEditor, splitViewEditor] = await findSplitEditor()
 
       await milkdownEditor?.focus()
       await page.keyboard.press('End')
@@ -58,9 +61,7 @@ describe.runIf(process.platform !== 'win32')('name', async () => {
     })
 
     test('content should be synced to milkdown editor', async () => {
-      const milkdownEditor = await page.$('.milkdown > .ProseMirror.editor')
-
-      const splitViewEditor = await page.$('.milkdown-split-editor > .cm-editor')
+      const [, milkdownEditor, splitViewEditor] = await findSplitEditor()
 
       const spliteViewEditorContent = await splitViewEditor?.$('.cm-content')
       await spliteViewEditorContent?.focus()
@@ -68,6 +69,23 @@ describe.runIf(process.platform !== 'win32')('name', async () => {
       await page.keyboard.press('Enter')
       await spliteViewEditorContent?.type('This content should be synced')
       expect(await milkdownEditor?.textContent()).contain('This content should be synced')
+    })
+  })
+
+  describe('plugin-split-editing integrate test', () => {
+    test('should work fine with @milkdown/plugin-menu and menu button work', async () => {
+      await page.evaluate(() => __Editor__.destroy())
+      await page.evaluate(async () => {
+        const editor = await render([getPlugins('splitEditing')], true)
+        return (__Editor__ = editor)
+      })
+      const menuWrapper = await page.$('.milkdown-menu-wrapper')
+      expect(menuWrapper?.asElement())
+      const splitMenuButton = await menuWrapper?.$('button[title="splitEditing"]')
+      expect(await splitMenuButton?.textContent()).toEqual('view_week')
+      await splitMenuButton?.click()
+      const visible = await page.isVisible('.milkdown-split-editor')
+      expect(visible).toBeFalsy()
     })
   })
 })
