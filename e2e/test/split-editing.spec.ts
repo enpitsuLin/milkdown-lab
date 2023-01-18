@@ -11,7 +11,7 @@ describe.runIf(process.platform !== 'win32')('name', async () => {
 
   beforeAll(async () => {
     server = await preview({ preview: { port: 3000 } })
-    browser = await chromium.launch({ headless: false })
+    browser = await chromium.launch()
     page = await browser.newPage()
   })
 
