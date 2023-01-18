@@ -81,7 +81,7 @@ const codemirrorView = (utils: ThemeUtils, ctx: Ctx, options: Options) => {
 export const initWrapper = (_ctx: Ctx, view: EditorView) => {
   let wrapper: HTMLDivElement | null = null
   wrapper = document.createElement('div')
-  wrapper.classList.add('milkdown-two-columns-wrapper')
+  wrapper.classList.add('milkdown-split-editing-wrapper')
 
   const editorDOM = view.dom
   const milkdownDOM = editorDOM.parentElement
