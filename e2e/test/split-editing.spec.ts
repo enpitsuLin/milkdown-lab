@@ -1,7 +1,7 @@
 import { Editor } from '@milkdown/core'
 import { Browser, chromium, Page } from 'playwright'
 import { createServer, type ViteDevServer } from 'vite'
-import { afterAll, beforeAll, describe, test, expect, beforeEach, afterEach } from 'vitest'
+import { afterAll, beforeAll, beforeEach, describe, expect, test } from 'vitest'
 // import { expect } from '@playwright/test'
 
 describe.runIf(process.platform !== 'win32')('name', async () => {
@@ -25,10 +25,9 @@ describe.runIf(process.platform !== 'win32')('name', async () => {
   beforeEach(async () => {
     await page.goto('http://localhost:3000')
     editor = await page.evaluate(() => window.render([window.getPlugins('spliteEditing')]))
-  })
-
-  afterEach(async () => {
-    editor = null
+    return () => {
+      editor?.destroy?.()
+    }
   })
 
   describe('plugin-split-editing test', () => {
@@ -46,7 +45,7 @@ describe.runIf(process.platform !== 'win32')('name', async () => {
     test('content should be synced to split editor', async () => {
       const milkdownEditor = await page.$('.milkdown > .ProseMirror.editor')
 
-      const splitViewEditor = await page.$('.milkdown-split-editor')
+      const splitViewEditor = await page.$('.milkdown-split-editor > .cm-editor')
 
       await milkdownEditor?.focus()
       await page.keyboard.press('End')
@@ -60,7 +59,7 @@ describe.runIf(process.platform !== 'win32')('name', async () => {
 
       const splitViewEditor = await page.$('.milkdown-split-editor > .cm-editor')
 
-      const spliteViewEditorContent = await splitViewEditor!.$('.cm-content')
+      const spliteViewEditorContent = await splitViewEditor?.$('.cm-content')
       await spliteViewEditorContent?.focus()
       await page.keyboard.press('End')
       await page.keyboard.press('Enter')
