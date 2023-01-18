@@ -1,5 +1,11 @@
 # @milkdown-lab/plugin-split-editing
 
+## 0.1.4
+
+### Patch Changes
+
+- 5018f07: fix: typo in warpper className
+
 ## 0.1.3
 
 ### Patch Changes
