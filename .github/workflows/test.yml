@@ -33,13 +33,8 @@ jobs:
       - name: Install Playwright Browsers
         run: pnpm dlx playwright install --with-deps
 
-      - uses: actions/upload-artifact@v3
-        if: always()
-        with:
-          name: playwright-report
-          path: playwright-report/
-          retention-days: 30
-
+      - name: build packages
+        run: pnpm build
 
       - name: Run tests
         run: pnpm test
