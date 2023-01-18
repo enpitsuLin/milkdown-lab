@@ -35,8 +35,8 @@ async function render(plugins: Plugin[] = [], showMenu = false) {
 
   return editor.create()
 }
-const pluginMapping: Record<'spliteEditing' | 'fullscreen', Plugin> = {
-  spliteEditing: {
+const pluginMapping: Record<'splitEditing' | 'fullscreen', Plugin> = {
+  splitEditing: {
     plugin: splitEditing,
     menuConfig: [{ type: 'button', icon: 'splitEditing', key: 'ToggleSplitEditing' }],
   },
@@ -45,7 +45,7 @@ const pluginMapping: Record<'spliteEditing' | 'fullscreen', Plugin> = {
     menuConfig: [{ type: 'button', icon: 'fullscreen', key: 'ToggleFullscreen' }],
   },
 }
-function getPlugins(name: 'spliteEditing' | 'fullscreen') {
+function getPlugins(name: 'splitEditing' | 'fullscreen') {
   return pluginMapping[name]
 }
 

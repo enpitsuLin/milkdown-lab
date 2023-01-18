@@ -23,7 +23,7 @@ describe.runIf(process.platform !== 'win32')('name', async () => {
   beforeEach(async () => {
     await page.goto('http://localhost:3000')
     await page.evaluate(async () => {
-      const editor = await render([getPlugins('spliteEditing')])
+      const editor = await render([getPlugins('splitEditing')])
       return (__Editor__ = editor)
     })
     return async () => {
