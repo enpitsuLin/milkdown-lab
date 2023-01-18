@@ -67,11 +67,3 @@ describe.runIf(process.platform !== 'win32')('name', async () => {
     })
   })
 })
-
-function timeout(t: number) {
-  return new Promise<void>((r) => {
-    setTimeout(() => {
-      r()
-    }, t)
-  })
-}
