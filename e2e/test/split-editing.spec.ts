@@ -1,7 +1,6 @@
 import { Browser, chromium, Page } from 'playwright'
 import { createServer, type ViteDevServer } from 'vite'
 import { afterAll, beforeAll, beforeEach, describe, expect, test } from 'vitest'
-// import { expect } from '@playwright/test'
 
 describe.runIf(process.platform !== 'win32')('name', async () => {
   let server: ViteDevServer
