@@ -39,11 +39,13 @@ importers:
       '@milkdown-lab/plugin-fullscreen': workspace:^0.1.1
       '@milkdown-lab/plugin-split-editing': workspace:^0.1.4
       '@milkdown/core': 7.0.0
+      '@milkdown/core': 7.0.0
       '@milkdown/plugin-menu': ^6.5.4
       '@milkdown/preset-commonmark': 7.0.0
       '@milkdown/prose': 7.0.0
       '@milkdown/theme-nord': 7.0.0
-      playwright: ^1.30.0
+      '@playwright/test': ^1.29.2
+      playwright: ^1.29.2
       typescript: ^4.9.4
       vite: ^4.0.4
       vitest: ^0.28.0
@@ -55,7 +57,8 @@ importers:
       '@milkdown/preset-commonmark': 7.0.0_t3fakkxucpmkxikrwnrwl2alvy
       '@milkdown/prose': 7.0.0
       '@milkdown/theme-nord': 7.0.0_t3fakkxucpmkxikrwnrwl2alvy
-      playwright: 1.30.0
+      '@playwright/test': 1.29.2
+      playwright: 1.29.2
       typescript: 4.9.4
       vite: 4.0.4
       vitest: 0.28.1
@@ -65,7 +68,6 @@ importers:
       '@milkdown-lab/plugin-fullscreen': workspace:*
       '@milkdown-lab/plugin-split-editing': workspace:*
       '@milkdown/core': 7.0.0
-      '@milkdown/plugin-menu': ^6.5.4
       '@milkdown/preset-commonmark': 7.0.0
       '@milkdown/prose': 7.0.0
       '@milkdown/theme-nord': 7.0.0
@@ -74,7 +76,6 @@ importers:
     dependencies:
       '@milkdown-lab/plugin-fullscreen': link:../packages/plugin-fullscreen
       '@milkdown-lab/plugin-split-editing': link:../packages/plugin-split-editing
-      '@milkdown/plugin-menu': 6.5.4_t3fakkxucpmkxikrwnrwl2alvy
     devDependencies:
       '@milkdown/core': 7.0.0_@milkdown+prose@7.0.0
       '@milkdown/preset-commonmark': 7.0.0_t3fakkxucpmkxikrwnrwl2alvy
@@ -969,12 +970,13 @@ packages:
     resolution: {integrity: sha512-Uzxp0DfuCzRpzkrTkW6Asif2JTG3h15IXeD72PV5NiWao0DqY0zTA4C6vWLVGuoP4WLLJwUJn/uzlE7Z2z6P5A==}
     dependencies:
       '@milkdown/exception': 7.0.0
-      tslib: 2.4.1
+      tslib: 2.5.0
 
   /@milkdown/exception/6.5.4:
     resolution: {integrity: sha512-ZBiGT7iEocwsAY2zvY0Ft+xO2RKgY9VbEiu9tk4l3sZP3JNAPmVgssIjQhJL6eEln53oPel48/fXzs2NvyXSFQ==}
     dependencies:
       tslib: 2.4.1
+    dev: true
 
   /@milkdown/exception/7.0.0:
     resolution: {integrity: sha512-Bo2tmoErsJD3f20DZ4jBvePMBbGTSrBOV2EBTtxquKYPid5VXx4dhaXcotwdfHBaIy6EBykUJgpz4uCrPbpZJQ==}
@@ -992,6 +994,7 @@ packages:
       '@milkdown/prose': 7.0.0
       '@milkdown/utils': 6.5.4_t3fakkxucpmkxikrwnrwl2alvy
       tslib: 2.4.1
+    dev: true
 
   /@milkdown/preset-commonmark/7.0.0_t3fakkxucpmkxikrwnrwl2alvy:
     resolution: {integrity: sha512-WUUXCWNCfg/A94zA25mdyL+pdqGUCEYmJ4ryNJ4HglUnT39xzLJSEsbcMJXeJWjl+Rs0+/mdAWRGKmRt+Bx1pA==}
@@ -1071,6 +1074,7 @@ packages:
       '@milkdown/prose': 7.0.0
       nanoid: 4.0.0
       tslib: 2.4.1
+    dev: true
 
   /@milkdown/utils/7.0.0_j3asfmta2ulx7x2m2z27icwsgu:
     resolution: {integrity: sha512-tzdcP5VwQCDS8LaWirU/PZ7mIThE55sub4JGNYyaLHKR0Hooti2tiEG/A6l/BmgNNLd/VHEz3setJzHaHDpLsg==}
@@ -1085,8 +1089,8 @@ packages:
       '@milkdown/exception': 7.0.0
       '@milkdown/prose': 7.0.0
       '@milkdown/transformer': 7.0.0_@milkdown+prose@7.0.0
-      nanoid: 4.0.0
-      tslib: 2.4.1
+      nanoid: 4.0.1
+      tslib: 2.5.0
     dev: false
 
   /@milkdown/utils/7.0.0_t3fakkxucpmkxikrwnrwl2alvy:
@@ -1100,8 +1104,8 @@ packages:
       '@milkdown/core': 7.0.0_@milkdown+prose@7.0.0
       '@milkdown/exception': 7.0.0
       '@milkdown/prose': 7.0.0
-      nanoid: 4.0.0
-      tslib: 2.4.1
+      nanoid: 4.0.1
+      tslib: 2.5.0
 
   /@nodelib/fs.scandir/2.1.5:
     resolution: {integrity: sha512-vq24Bq3ym5HEQm2NKCr3yXDwjc7vTsEThRDnkp2DK9p1uqLR+DHurm/NOTo0KG7HYHU7eppKZj3MyqYuMBf62g==}
@@ -3408,6 +3412,7 @@ packages:
     resolution: {integrity: sha512-IgBP8piMxe/gf73RTQx7hmnhwz0aaEXYakvqZyE302IXW3HyVNhdNGC+O2MwMAVhLEnvXlvKtGbtJf6wvHihCg==}
     engines: {node: ^14 || ^16 || >=18}
     hasBin: true
+    dev: true
 
   /natural-compare-lite/1.4.0:
     resolution: {integrity: sha512-Tj+HTDSJJKaZnfiuw+iaF9skdPpTo2GtEly5JHnWV/hfv2Qj/9RKsGISQtLh2ox3l5EAGw487hnBee0sIJ6v2g==}
@@ -3716,15 +3721,6 @@ packages:
     resolution: {integrity: sha512-BtRV9BcncDyI2tsuS19zzhzoxD8Dh8LiCx7j7tHzrkz8GFXAexeWFdi22mjE1d16dftH2qNaytVxqiRTGlMfpw==}
     engines: {node: '>=10.13.0'}
     hasBin: true
-    dev: true
-
-  /pretty-format/27.5.1:
-    resolution: {integrity: sha512-Qb1gy5OrP5+zDf2Bvnzdl3jsTf1qXVMazbvCoKhtKqVs4/YK4ozX4gKQJJVyNe+cajNPn0KoC0MC3FUmaHWEmQ==}
-    engines: {node: ^10.13.0 || ^12.13.0 || ^14.15.0 || >=15.0.0}
-    dependencies:
-      ansi-regex: 5.0.1
-      ansi-styles: 5.2.0
-      react-is: 17.0.2
     dev: true
 
   /prosemirror-changeset/2.2.0:
@@ -4431,6 +4427,7 @@ packages:
 
   /tslib/2.4.1:
     resolution: {integrity: sha512-tGyy4dAjRIEwI7BzsB0lynWgOpfqjUdq91XXAlIWD2OwKBH7oCl/GZG/HT4BOHrTlPMOASlMQ7veyTqpmRcrNA==}
+    dev: true
 
   /tsutils/3.21.0_typescript@4.9.4:
     resolution: {integrity: sha512-mHKK3iUXL+3UF6xL5k0PEhKRUBKPBCv/+RkEOpjRWxxx27KKRBmmA60A9pgOUvMi8GKhRMPEmjBRPzs2W7O1OA==}
