@@ -18,7 +18,6 @@
   },
   "dependencies": {
     "@milkdown-lab/plugin-fullscreen": "workspace:*",
-    "@milkdown-lab/plugin-split-editing": "workspace:*",
-    "@milkdown/plugin-menu": "^6.5.4"
+    "@milkdown-lab/plugin-split-editing": "workspace:*"
   }
 }
