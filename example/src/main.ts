@@ -1,3 +1,4 @@
+import { fullscreen } from '@milkdown-lab/plugin-fullscreen'
 import { defaultValueCtx, Editor, rootCtx } from '@milkdown/core'
 import { commonmark } from '@milkdown/preset-commonmark'
 
@@ -14,6 +15,7 @@ async function main() {
       ctx.set(defaultValueCtx, '# Hello milkdown-lab')
     })
     .use(commonmark)
+    .use(fullscreen)
     .create()
 }
 
