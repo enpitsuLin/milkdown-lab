@@ -87,7 +87,7 @@ const toggleFullscreen = $command<boolean, 'ToggleFullscreen'>('ToggleFullscreen
 })
 
 export const fullscreenShortcut = $shortcut(() => ({
-  'Mod-F11': () => toggleFullscreen.run(),
+  F11: () => toggleFullscreen.run(),
 }))
 
 export const fullscreen: MilkdownPlugin[] = [
