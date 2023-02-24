@@ -1,84 +1,98 @@
-import { createCmd, createCmdKey, createSlice, editorViewCtx, rootCtx } from '@milkdown/core'
-import { AtomList, createPlugin, createShortcut } from '@milkdown/utils'
+import { Cmd, commandsCtx, createCmdKey, editorViewCtx, prosePluginsCtx, SchemaReady } from '@milkdown/core'
+import { createSlice, Ctx, MilkdownPlugin } from '@milkdown/ctx'
+import { keymap } from '@milkdown/prose/keymap'
+import { $Command, $Ctx, $Shortcut, Keymap } from '@milkdown/utils'
 
 export interface Options {
   /** className when editor be fullscreen */
   classes?: string
 }
 
-const getRoot = (root: string | Node | null | undefined) => {
-  if (!root) return document.body
-
-  if (typeof root === 'string') {
-    const el = document.querySelector(root)
-    if (el) return el
-
-    return document.body
+export const $ctx = <T, N extends string>(value: T, name: N): $Ctx<T, N> => {
+  const slice = createSlice(value, name)
+  const plugin: $Ctx<T, N> = (ctx) => {
+    ctx.inject(slice)
+    return () => {
+      return () => {
+        ctx.remove(slice)
+      }
+    }
   }
 
-  return root
+  plugin.key = slice
+
+  return plugin
 }
 
-export const fullscreenCtx = createSlice({ value: false }, 'fullscreen')
+export const $shortcut = (shortcut: (ctx: Ctx) => Keymap): $Shortcut => {
+  const plugin: MilkdownPlugin = (ctx) => async () => {
+    await ctx.wait(SchemaReady)
+    const k = shortcut(ctx)
+    const keymapPlugin = keymap(k)
+    ctx.update(prosePluginsCtx, (ps) => [...ps, keymapPlugin])
+    ;(<$Shortcut>plugin).keymap = k
 
-export const ToggleFullscreen = createCmdKey('ToggleFullscreen')
+    return () => {
+      ctx.update(prosePluginsCtx, (ps) => ps.filter((x) => x !== keymapPlugin))
+    }
+  }
 
-export const fullscreenPlugin = createPlugin<string, Options>((utils, options) => {
-  const id = 'fullscreen'
-  const classes = options?.classes
-    ? options.classes
-    : utils.getStyle(({ css }) => {
-        return css`
-          position: fixed !important;
-          top: 0;
-          bottom: 0;
-          left: 0;
-          right: 0;
-          z-index: 999;
-          .milkdown {
-            height: 100%;
-            overflow-y: scroll;
-          }
-        `
-      })
-  return {
-    id,
-    commands: (_type, ctx) => [
-      createCmd(ToggleFullscreen, () => {
-        const { value } = ctx.get(fullscreenCtx)
-        ctx.set(fullscreenCtx, { value: !value })
+  return <$Shortcut>plugin
+}
 
-        let targetDOM: HTMLElement | null = null
+export const $command = <T, K extends string>(key: K, cmd: (ctx: Ctx) => Cmd<T>): $Command<T> => {
+  const cmdKey = createCmdKey<T>(key)
 
-        const root = ctx.get(rootCtx)
-        const rootDOM = getRoot(root) as HTMLDivElement
+  const plugin: MilkdownPlugin = (ctx) => async () => {
+    ;(<$Command<T>>plugin).key = cmdKey
+    await ctx.wait(SchemaReady)
+    const command = cmd(ctx)
+    ctx.get(commandsCtx).create(cmdKey, command)
+    ;(<$Command<T>>plugin).run = (payload?: T) => ctx.get(commandsCtx).call(key, payload)
 
-        // compatible with official plugin-menu
-        const menuDOM = rootDOM.querySelector('div.milkdown-menu-wrapper') as HTMLDivElement
-        if (menuDOM) {
-          targetDOM = menuDOM
-        } else {
-          const editorDOM = ctx.get(editorViewCtx).dom
-          const milkdownDOM = editorDOM.parentElement
+    return () => {
+      ctx.get(commandsCtx).remove(cmdKey)
+    }
+  }
 
-          if (!milkdownDOM) throw new Error('Missing root element')
-          targetDOM = milkdownDOM
-        }
+  return <$Command<T>>plugin
+}
 
-        if (ctx.get(fullscreenCtx).value) {
-          targetDOM.classList.add(classes ?? '')
-        } else {
-          targetDOM.classList.remove(classes ?? '')
-        }
+export const fullscreenConfig = $ctx<Options, 'fullscreenConfig'>({ classes: 'fullscreen' }, 'fullscreenConfig')
 
-        return () => true
-      }),
-    ],
-    shortcuts: {
-      Fullscreen: createShortcut(ToggleFullscreen, 'F11'),
-    },
-    injectSlices: [fullscreenCtx],
+export const fullscreenCtx = $ctx({ value: false }, 'fullscreen')
+
+const toggleFullscreen = $command<boolean, 'ToggleFullscreen'>('ToggleFullscreen', (ctx) => {
+  return (payload) => {
+    const { value } = ctx.get(fullscreenCtx.key)
+
+    if (typeof payload === 'undefined') {
+      ctx.set(fullscreenCtx.key, { value: !value })
+    } else {
+      ctx.set(fullscreenCtx.key, { value: payload })
+    }
+
+    const editorDOM = ctx.get(editorViewCtx).dom
+    const milkdownDOM = editorDOM.parentElement
+
+    if (!milkdownDOM) throw new Error('Missing root element')
+
+    if (ctx.get(fullscreenCtx.key).value) {
+      milkdownDOM.classList.add('fullscreen')
+    } else {
+      milkdownDOM.classList.remove('fullscreen')
+    }
+    return () => true
   }
 })
 
-export const fullscreen = AtomList.create([fullscreenPlugin()])
+export const fullscreenShortcut = $shortcut(() => ({
+  'Mod-F11': () => toggleFullscreen.run(),
+}))
+
+export const fullscreen: MilkdownPlugin[] = [
+  fullscreenConfig,
+  fullscreenCtx,
+  toggleFullscreen,
+  fullscreenShortcut,
+].flat()
