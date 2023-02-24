@@ -13,16 +13,18 @@
   "keywords": [],
   "author": "enpitsulin <enpitsulin@gmail.com>",
   "peerDependencies": {
-    "@milkdown/core": "^6.5.4",
-    "@milkdown/prose": "^6.5.4"
+    "@milkdown/core": ">=7.0.0",
+    "@milkdown/prose": ">=7.0.0"
   },
   "license": "MIT",
   "devDependencies": {
-    "@milkdown/core": "^6.5.4",
-    "@milkdown/prose": "^6.5.4",
+    "@milkdown/core": "7.0.0",
+    "@milkdown/ctx": "7.0.0",
+    "@milkdown/prose": "7.0.0",
+    "@milkdown/transformer": "7.0.0",
     "typescript": "^4.9.4"
   },
   "dependencies": {
-    "@milkdown/utils": "^6.5.4"
+    "@milkdown/utils": "7.0.0"
   }
 }

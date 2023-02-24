@@ -9,16 +9,16 @@
     "preview": "vite preview"
   },
   "devDependencies": {
-    "@milkdown/core": "^6.5.4",
-    "@milkdown/preset-commonmark": "^6.5.4",
-    "@milkdown/prose": "^6.5.4",
-    "@milkdown/theme-nord": "^6.5.4",
+    "@milkdown/core": "7.0.0",
+    "@milkdown/preset-commonmark": "7.0.0",
+    "@milkdown/prose": "7.0.0",
+    "@milkdown/theme-nord": "7.0.0",
     "typescript": "^4.9.3",
     "vite": "^4.0.0"
   },
   "dependencies": {
-    "@milkdown-lab/plugin-fullscreen": "workspace:^0.1.1",
-    "@milkdown-lab/plugin-split-editing": "workspace:^0.1.2",
+    "@milkdown-lab/plugin-fullscreen": "workspace:*",
+    "@milkdown-lab/plugin-split-editing": "workspace:*",
     "@milkdown/plugin-menu": "^6.5.4"
   }
 }
