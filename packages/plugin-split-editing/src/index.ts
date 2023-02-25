@@ -17,6 +17,8 @@ export interface Options {
   lineNumber?: boolean
 }
 
+export const splitEditingDomCtx = $ctx({} as HTMLDivElement, 'splitEditingDom')
+
 export const splitEditingRootCtx = $ctx({} as HTMLDivElement, 'splitEditingRoot')
 
 export const splitEditingOptionsCtx = $ctx<Options, 'splitEditingOptions'>({}, 'splitEditingOptions')
@@ -27,10 +29,19 @@ export const toggleSplitEditing = $command<boolean, 'ToggleSplitEditing'>('Toggl
   return (payload) => {
     const { value } = ctx.get(splitEditingCtx.key)
 
+    const toggleHidden = (show: boolean) => {
+      if (show) {
+        ctx.get(splitEditingDomCtx.key).classList.add('hidden')
+      } else {
+        ctx.get(splitEditingDomCtx.key).classList.remove('hidden')
+      }
+    }
     if (typeof payload === 'undefined') {
       ctx.set(splitEditingCtx.key, { value: !value })
+      toggleHidden(!value)
     } else {
       ctx.set(splitEditingCtx.key, { value: payload })
+      toggleHidden(payload)
     }
     return () => true
   }
@@ -45,9 +56,11 @@ export const splitEditingProsePlugin = $prose((ctx) => {
 
       const splitEditorRoot = document.createElement('div')
       splitEditorRoot.classList.add('split-editor')
-      ctx.set(splitEditingRootCtx.key, splitEditorRoot)
 
       const { splitEditor, onEditorInput } = codemirrorView(ctx, options)
+
+      ctx.set(splitEditingDomCtx.key, splitEditor)
+      ctx.set(splitEditingRootCtx.key, splitEditorRoot)
 
       editorRoot.removeChild(editorDOM)
       editorRoot.appendChild(splitEditorRoot)
@@ -65,6 +78,7 @@ export const splitEditingProsePlugin = $prose((ctx) => {
       return {
         destroy: () => {
           editorRoot.removeChild(splitEditor)
+          editorRoot.appendChild(editorDOM)
         },
       }
     },
@@ -72,6 +86,7 @@ export const splitEditingProsePlugin = $prose((ctx) => {
 })
 
 export const splitEditing: MilkdownPlugin[] = [
+  splitEditingDomCtx,
   splitEditingRootCtx,
   splitEditingOptionsCtx,
   splitEditingCtx,
