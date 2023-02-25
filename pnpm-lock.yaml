@@ -45,7 +45,8 @@ importers:
       '@milkdown/prose': 7.0.0
       '@milkdown/theme-nord': 7.0.0
       '@milkdown/transformer': 7.0.0
-      playwright: ^1.30.0
+      '@playwright/test': ^1.31.1
+      playwright: ^1.31.1
       typescript: ^4.9.4
       vite: ^4.0.4
       vitest: ^0.28.0
@@ -60,7 +61,8 @@ importers:
       '@milkdown/preset-commonmark': 7.0.0_j3asfmta2ulx7x2m2z27icwsgu
       '@milkdown/prose': 7.0.0
       '@milkdown/theme-nord': 7.0.0_zja6enjlfs5gehnwwogyfi2vr4
-      playwright: 1.30.0
+      '@playwright/test': 1.31.1
+      playwright: 1.31.1
       typescript: 4.9.4
       vite: 4.0.4
       vitest: 0.28.1
@@ -1161,6 +1163,17 @@ packages:
     dependencies:
       '@nodelib/fs.scandir': 2.1.5
       fastq: 1.15.0
+    dev: true
+
+  /@playwright/test/1.31.1:
+    resolution: {integrity: sha512-IsytVZ+0QLDh1Hj83XatGp/GsI1CDJWbyDaBGbainsh0p2zC7F4toUocqowmjS6sQff2NGT3D9WbDj/3K2CJiA==}
+    engines: {node: '>=14'}
+    hasBin: true
+    dependencies:
+      '@types/node': 18.11.18
+      playwright-core: 1.31.1
+    optionalDependencies:
+      fsevents: 2.3.2
     dev: true
 
   /@tsconfig/node10/1.0.9:
@@ -3855,19 +3868,19 @@ packages:
       pathe: 1.1.0
     dev: true
 
-  /playwright-core/1.30.0:
-    resolution: {integrity: sha512-7AnRmTCf+GVYhHbLJsGUtskWTE33SwMZkybJ0v6rqR1boxq2x36U7p1vDRV7HO2IwTZgmycracLxPEJI49wu4g==}
+  /playwright-core/1.31.1:
+    resolution: {integrity: sha512-JTyX4kV3/LXsvpHkLzL2I36aCdml4zeE35x+G5aPc4bkLsiRiQshU5lWeVpHFAuC8xAcbI6FDcw/8z3q2xtJSQ==}
     engines: {node: '>=14'}
     hasBin: true
     dev: true
 
-  /playwright/1.30.0:
-    resolution: {integrity: sha512-ENbW5o75HYB3YhnMTKJLTErIBExrSlX2ZZ1C/FzmHjUYIfxj/UnI+DWpQr992m+OQVSg0rCExAOlRwB+x+yyIg==}
+  /playwright/1.31.1:
+    resolution: {integrity: sha512-zKJabsIA2rvOwJ12lGTqWv4HVJzlfw2JtUvO4hAr7J8UXQZ1qEPpX20E1vcz/9fotnTkwgqp3CVdIBwptBN3Fg==}
     engines: {node: '>=14'}
     hasBin: true
     requiresBuild: true
     dependencies:
-      playwright-core: 1.30.0
+      playwright-core: 1.31.1
     dev: true
 
   /postcss/8.4.21:
