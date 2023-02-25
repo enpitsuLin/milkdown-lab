@@ -9,9 +9,9 @@ export interface Options {
   attributes?: Record<string, string>
 }
 
-export const fullscreenOptionsCtx = $ctx<Options, 'fullscreenConfig'>(
+export const fullscreenOptionsCtx = $ctx<Options, 'fullscreenOptions'>(
   { attributes: { class: 'fullscreen' } },
-  'fullscreenConfig',
+  'fullscreenOptions',
 )
 
 export const fullscreenCtx = $ctx({ value: false }, 'fullscreen')
