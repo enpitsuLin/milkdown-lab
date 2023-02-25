@@ -1,0 +1,16 @@
+.milkdown.fullscreen {
+  position: fixed;
+  inset: 0;
+  overflow-y: scroll;
+}
+/* maybe also add stylesheet below if you don't have any styling for milkdown contenteditable element  */
+.milkdown > div {
+  width: 100%;
+  height: 100%;
+}
+
+.split-editor {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: 1fr;
+}
