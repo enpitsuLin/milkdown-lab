@@ -18,13 +18,13 @@
   },
   "license": "MIT",
   "devDependencies": {
+    "typescript": "^4.9.4"
+  },
+  "dependencies": {
     "@milkdown/core": "7.0.0",
     "@milkdown/ctx": "7.0.0",
     "@milkdown/prose": "7.0.0",
     "@milkdown/transformer": "7.0.0",
-    "typescript": "^4.9.4"
-  },
-  "dependencies": {
     "@milkdown/utils": "7.0.0"
   }
 }
