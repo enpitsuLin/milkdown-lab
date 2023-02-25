@@ -54,21 +54,22 @@ export class CodemirrorEditor {
     this.view = new EditorView({
       state: this.state,
       parent: root,
-      dispatch: (tr) => {
-        this.view.update([tr])
-        if (tr.isUserEvent('input')) {
-          const content = this.view.state.doc.toString()
-          this.onChange(content)
-        }
-      },
     })
   }
   createState(options: CodemirrorOptions = {}) {
     const { value = '', extensions = [], lineNumber = true } = options
     if (lineNumber) extensions.push(lineNumbers(), foldGutter())
+    const updateListener = EditorView.updateListener.of((update) => {
+      const allTrIsUserInput = !update.transactions.map((item) => item.isUserEvent('input')).some((i) => !i)
+
+      if (update.docChanged && allTrIsUserInput) {
+        const content = update.view.state.doc.toString()
+        this.onChange(content)
+      }
+    })
     return EditorState.create({
       doc: value,
-      extensions: [basicSetup, markdown(), EditorView.lineWrapping, ...extensions],
+      extensions: [basicSetup, markdown(), EditorView.lineWrapping, updateListener, ...extensions],
     })
   }
   setContent = (content: string) => {
