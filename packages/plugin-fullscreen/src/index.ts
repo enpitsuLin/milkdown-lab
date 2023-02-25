@@ -3,16 +3,27 @@ import { MilkdownPlugin } from '@milkdown/ctx'
 import { $command, $ctx, $shortcut } from '@milkdown/utils'
 
 export interface Options {
-  /** className when editor be fullscreen */
+  /**
+   * className when editor be fullscreen
+   * @deprecated use `attributes.class`
+   */
   classes?: string
+  /**
+   * attributes that will be added to editor Element
+   */
+  attributes?: Record<string, string>
 }
 
-export const fullscreenConfig = $ctx<Options, 'fullscreenConfig'>({ classes: 'fullscreen' }, 'fullscreenConfig')
+export const fullscreenOptionsCtx = $ctx<Options, 'fullscreenConfig'>(
+  { attributes: { class: 'fullscreen' } },
+  'fullscreenConfig',
+)
 
 export const fullscreenCtx = $ctx({ value: false }, 'fullscreen')
 
 const toggleFullscreen = $command<boolean, 'ToggleFullscreen'>('ToggleFullscreen', (ctx) => {
   return (payload) => {
+    const options = ctx.get(fullscreenOptionsCtx.key)
     const { value } = ctx.get(fullscreenCtx.key)
 
     if (typeof payload === 'undefined') {
@@ -27,9 +38,15 @@ const toggleFullscreen = $command<boolean, 'ToggleFullscreen'>('ToggleFullscreen
     if (!milkdownDOM) throw new Error('Missing root element')
 
     if (ctx.get(fullscreenCtx.key).value) {
-      milkdownDOM.classList.add('fullscreen')
+      Object.entries(options.attributes ?? {}).forEach(([attr, value]) => {
+        if (attr !== 'class') milkdownDOM.setAttribute(attr, value)
+        else milkdownDOM.classList.add('fullscreen')
+      })
     } else {
-      milkdownDOM.classList.remove('fullscreen')
+      Object.keys(options.attributes ?? {}).forEach((attr) => {
+        if (attr !== 'class') milkdownDOM.removeAttribute(attr)
+        else milkdownDOM.classList.remove('fullscreen')
+      })
     }
     return () => true
   }
@@ -40,7 +57,7 @@ export const fullscreenShortcut = $shortcut(() => ({
 }))
 
 export const fullscreen: MilkdownPlugin[] = [
-  fullscreenConfig,
+  fullscreenOptionsCtx,
   fullscreenCtx,
   toggleFullscreen,
   fullscreenShortcut,
