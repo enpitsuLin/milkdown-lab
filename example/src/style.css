@@ -9,8 +9,26 @@
   height: 100%;
 }
 
+.milkdown-split-editor {
+  background-color: #eee;
+}
+
 .split-editor {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: 1fr;
+}
+
+.split-editor:has(.milkdown-split-editor.hidden) {
+  grid-template-columns: repeat(1, 1fr);
+}
+
+.milkdown-split-editor.hidden {
+  display: none;
+}
+
+/* theme styling */
+
+.milkdown-theme-nord {
+  background-color: #eee;
 }
