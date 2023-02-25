@@ -1,8 +1,8 @@
 import { defaultValueCtx, editorCtx, editorViewCtx, getDoc, parserCtx, schemaCtx, serializerCtx } from '@milkdown/core'
 import { Ctx } from '@milkdown/ctx'
 import { Slice } from '@milkdown/prose/model'
-import { Options } from '.'
-import { CodemirrorEditor } from './codemirror'
+import type { Options } from '.'
+import { codemirrorCtx, CodemirrorEditor } from './codemirror'
 
 const updateContent = (content: string) => {
   return (ctx: Ctx) => {
@@ -33,15 +33,16 @@ export const codemirrorView = (ctx: Ctx, options: Options) => {
     value: content,
     extensions: options.extensions,
     lineNumber: options.lineNumber,
+    onChange: (content) => {
+      const editor = ctx.get(editorCtx)
+      editor.action(updateContent(content))
+    },
   })
-  codemirror.onChange = (content: string) => {
-    const editor = ctx.get(editorCtx)
-    editor.action(updateContent(content))
-  }
 
   const onEditorInput = (_content: string) => {
     codemirror.setContent(_content)
   }
+  ctx.set(codemirrorCtx.key, codemirror)
 
   return { splitEditor, onEditorInput }
 }

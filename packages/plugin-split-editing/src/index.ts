@@ -3,6 +3,7 @@ import { editorCtx } from '@milkdown/core'
 import { MilkdownPlugin } from '@milkdown/ctx'
 import { Plugin } from '@milkdown/prose/state'
 import { $command, $ctx, $prose, getMarkdown } from '@milkdown/utils'
+import { codemirrorCtx } from './codemirror'
 import { codemirrorView } from './split-editor'
 
 export interface Options {
@@ -15,6 +16,8 @@ export interface Options {
    */
   lineNumber?: boolean
 }
+
+export const splitEditingRootCtx = $ctx({} as HTMLDivElement, 'splitEditingRoot')
 
 export const splitEditingOptionsCtx = $ctx<Options, 'splitEditingOptions'>({}, 'splitEditingOptions')
 
@@ -34,19 +37,24 @@ export const toggleSplitEditing = $command<boolean, 'ToggleSplitEditing'>('Toggl
 })
 
 export const splitEditingProsePlugin = $prose((ctx) => {
+  const options = ctx.get(splitEditingOptionsCtx.key)
   return new Plugin({
     view: (editorView) => {
       const editorDOM = editorView.dom
       const editorRoot = editorDOM.parentElement as HTMLElement
 
-      const { splitEditor, onEditorInput } = codemirrorView(ctx, {})
+      const splitEditorRoot = document.createElement('div')
+      splitEditorRoot.classList.add('split-editor')
+      ctx.set(splitEditingRootCtx.key, splitEditorRoot)
 
-      editorRoot.classList.add('milkdown-split-editing')
-      editorRoot.appendChild(splitEditor)
+      const { splitEditor, onEditorInput } = codemirrorView(ctx, options)
+
+      editorRoot.removeChild(editorDOM)
+      editorRoot.appendChild(splitEditorRoot)
+      splitEditorRoot.append(editorDOM, splitEditor)
 
       editorView.dispatch = (tr) => {
         editorView.updateState(editorView.state.apply(tr))
-        console.log(tr.getMeta('addToHistory'))
 
         if (tr.getMeta('addToHistory') && tr.docChanged) {
           const editor = ctx.get(editorCtx)
@@ -55,7 +63,6 @@ export const splitEditingProsePlugin = $prose((ctx) => {
         }
       }
       return {
-        update: () => {},
         destroy: () => {
           editorRoot.removeChild(splitEditor)
         },
@@ -64,4 +71,11 @@ export const splitEditingProsePlugin = $prose((ctx) => {
   })
 })
 
-export const splitEditing: MilkdownPlugin[] = [splitEditingCtx, toggleSplitEditing, splitEditingProsePlugin]
+export const splitEditing: MilkdownPlugin[] = [
+  splitEditingRootCtx,
+  splitEditingOptionsCtx,
+  splitEditingCtx,
+  codemirrorCtx,
+  toggleSplitEditing,
+  splitEditingProsePlugin,
+]

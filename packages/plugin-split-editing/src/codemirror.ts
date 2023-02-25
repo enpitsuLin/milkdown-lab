@@ -41,20 +41,20 @@ const basicSetup: Extension = [
 
 export type CodemirrorOptions = Options & {
   value?: string
+  onChange?: (content: string) => void
 }
 
 export class CodemirrorEditor {
   state: EditorState
   view: EditorView
-  onChange: (content: string) => void = () => {
-    void 0
-  }
-  constructor(root: HTMLElement, options?: CodemirrorOptions) {
+  onChange: (content: string) => void
+  constructor(root: HTMLElement, options: CodemirrorOptions) {
     this.state = this.createState(options)
     this.view = new EditorView({
       state: this.state,
       parent: root,
     })
+    this.onChange = options?.onChange ?? (() => {})
   }
   createState(options: CodemirrorOptions = {}) {
     const { value = '', extensions = [], lineNumber = true } = options
@@ -69,7 +69,16 @@ export class CodemirrorEditor {
     })
     return EditorState.create({
       doc: value,
-      extensions: [basicSetup, markdown(), EditorView.lineWrapping, updateListener, ...extensions],
+      extensions: [
+        basicSetup,
+        markdown(),
+        EditorView.styleModule.of({
+          getRules: () => '.cm-editor{height:100%}',
+        }),
+        EditorView.lineWrapping,
+        updateListener,
+        ...extensions,
+      ],
     })
   }
   setContent = (content: string) => {
