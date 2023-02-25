@@ -1,5 +1,5 @@
 import { fullscreen, fullscreenOptionsCtx } from '@milkdown-lab/plugin-fullscreen'
-import { splitEditing, toggleSplitEditing,splitEditingOptionsCtx} from '@milkdown-lab/plugin-split-editing'
+import { splitEditing, toggleSplitEditing } from '@milkdown-lab/plugin-split-editing'
 import { commandsCtx, defaultValueCtx, Editor, rootCtx } from '@milkdown/core'
 import { commonmark } from '@milkdown/preset-commonmark'
 import { gfm } from '@milkdown/preset-gfm'
