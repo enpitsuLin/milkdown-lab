@@ -21,7 +21,7 @@ import {
   lineNumbers,
   rectangularSelection,
 } from '@codemirror/view'
-import { createSlice } from '@milkdown/core'
+import { $ctx } from '@milkdown/utils'
 import { Options } from '.'
 
 const basicSetup: Extension = [
@@ -78,4 +78,4 @@ export class CodemirrorEditor {
   }
 }
 
-export const codemirrorCtx = createSlice({}, 'codemirror')
+export const codemirrorCtx = $ctx({} as CodemirrorEditor, 'codemirror')
