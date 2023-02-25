@@ -36,8 +36,8 @@ importers:
 
   e2e:
     specifiers:
-      '@milkdown-lab/plugin-fullscreen': workspace:^0.1.1
-      '@milkdown-lab/plugin-split-editing': workspace:^0.1.4
+      '@milkdown-lab/plugin-fullscreen': workspace:^1.0.0
+      '@milkdown-lab/plugin-split-editing': workspace:^1.0.0
       '@milkdown/core': 7.0.0
       '@milkdown/ctx': 7.0.0
       '@milkdown/plugin-menu': ^6.5.4
