@@ -58,7 +58,12 @@ import { splitEditing } from '@milkdown-lab/plugin-fullscreen'
 // ...
 const editor = await Editor.make()
   .config(() => {
-    ctx.set(splitEditingOptionsCtx.key, { attributes: { class: 'grid grid-cols-2 grid-rows-none' } })
+    ctx.set(splitEditingOptionsCtx.key, {
+      wrapperAttributes: { class: 'grid grid-cols-2 grid-rows-none' },
+      attributes: { class: 'bg-#eee' },
+      hiddenAttribute: { class: 'hidden' },
+      hiddenWrapperAttributes: { class: 'grid-cols-none' },
+    })
     ctx.set(rootCtx, document.querySelector('#app'))
   })
   .use(splitEditing)
