@@ -15,12 +15,12 @@
 
 .split-editor {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: 1fr;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-rows: none;
 }
 
-.split-editor:has(.milkdown-split-editor.hidden) {
-  grid-template-columns: repeat(1, 1fr);
+.split-editor.hidden {
+  grid-template-columns: none;
 }
 
 .milkdown-split-editor.hidden {
