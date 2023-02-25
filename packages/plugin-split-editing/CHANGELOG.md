@@ -1,5 +1,11 @@
 # @milkdown-lab/plugin-split-editing
 
+## 1.0.0
+
+### Major Changes
+
+- 65b089d: upgrade to milkdown v7
+
 ## 0.1.4
 
 ### Patch Changes
