@@ -19,7 +19,10 @@ const updateContent = (content: string) => {
 
 export const codemirrorView = (ctx: Ctx, options: Options) => {
   const splitEditor = document.createElement('div')
-  splitEditor.classList.add('milkdown-split-editor')
+  Object.entries(options.attributes ?? { class: 'milkdown-split-editor' }).forEach(([key, val]) => {
+    if (key === 'class') splitEditor.classList.add(...val.split(' '))
+    else splitEditor.setAttribute(key, val)
+  })
 
   const defaultValue = ctx.get(defaultValueCtx)
   const schema = ctx.get(schemaCtx)

@@ -52,3 +52,15 @@ there are some selector necessary, for example:
 **WIP**
 
 You can also add attributes to split edit view element if you want if you want to build your own style logic or using atom css library like tailwindcss.
+
+```javascript
+import { splitEditing } from '@milkdown-lab/plugin-fullscreen'
+// ...
+const editor = await Editor.make()
+  .config(() => {
+    ctx.set(splitEditingOptionsCtx.key, { attributes: { class: 'grid grid-cols-2 grid-rows-none' } })
+    ctx.set(rootCtx, document.querySelector('#app'))
+  })
+  .use(splitEditing)
+  .create()
+```

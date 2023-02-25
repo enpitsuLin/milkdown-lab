@@ -15,9 +15,29 @@ export interface Options {
    * lineNumber show or not
    */
   lineNumber?: boolean
+  /**
+   * attribute that should be set to split view element which was codemirror parent
+   * @default { class: "milkdown-split-editor" }
+   */
+  attributes?: Record<string, string>
+  /**
+   * attribute when split view hide
+   * @default { class: "hidden" }
+   */
+  hiddenAttribute?: Record<string, string>
+  /**
+   * attribute that should be set to split view wrapper element
+   * @default { class: "split-editor" }
+   */
+  wrapperAttributes?: Record<string, string>
+  /**
+   * split view wrapper element's attribute when split view hide
+   * @default { class: "hidden" }
+   */
+  hiddenWrapperAttributes?: Record<string, string>
 }
 
-export const splitEditingDomCtx = $ctx({} as HTMLDivElement, 'splitEditingDom')
+export const splitEditingWrapperCtx = $ctx({} as HTMLDivElement, 'splitEditingWrapper')
 
 export const splitEditingRootCtx = $ctx({} as HTMLDivElement, 'splitEditingRoot')
 
@@ -26,15 +46,31 @@ export const splitEditingOptionsCtx = $ctx<Options, 'splitEditingOptions'>({}, '
 export const splitEditingCtx = $ctx({ value: false }, 'splitEditing')
 
 export const toggleSplitEditing = $command<boolean, 'ToggleSplitEditing'>('ToggleSplitEditing', (ctx) => {
+  const options = ctx.get(splitEditingOptionsCtx.key)
   return (payload) => {
     const { value } = ctx.get(splitEditingCtx.key)
 
     const toggleHidden = (show: boolean) => {
-      if (show) {
-        ctx.get(splitEditingDomCtx.key).classList.add('hidden')
-      } else {
-        ctx.get(splitEditingDomCtx.key).classList.remove('hidden')
-      }
+      const wrapper = ctx.get(splitEditingWrapperCtx.key)
+      const root = ctx.get(splitEditingRootCtx.key)
+      Object.entries(options.hiddenAttribute ?? { class: 'hidden' }).forEach(([key, val]) => {
+        if (show) {
+          if (key === 'class') wrapper.classList.add(...val.split(' '))
+          else wrapper.setAttribute(key, val)
+        } else {
+          if (key === 'class') wrapper.classList.remove(...val.split(' '))
+          else wrapper.removeAttribute(key)
+        }
+      })
+      Object.entries(options.hiddenWrapperAttributes ?? { class: 'hidden' }).forEach(([key, val]) => {
+        if (show) {
+          if (key === 'class') root.classList.add(...val.split(' '))
+          else root.setAttribute(key, val)
+        } else {
+          if (key === 'class') root.classList.remove(...val.split(' '))
+          else root.removeAttribute(key)
+        }
+      })
     }
     if (typeof payload === 'undefined') {
       ctx.set(splitEditingCtx.key, { value: !value })
@@ -55,15 +91,17 @@ export const splitEditingProsePlugin = $prose((ctx) => {
       const editorRoot = editorDOM.parentElement as HTMLElement
 
       const splitEditorRoot = document.createElement('div')
-      splitEditorRoot.classList.add('split-editor')
+      Object.entries(options.wrapperAttributes ?? { class: 'split-editor' }).forEach(([key, val]) => {
+        if (key === 'class') splitEditorRoot.classList.add(...val.split(' '))
+        else splitEditorRoot.setAttribute(key, val)
+      })
 
       const { splitEditor, onEditorInput } = codemirrorView(ctx, options)
 
-      ctx.set(splitEditingDomCtx.key, splitEditor)
+      ctx.set(splitEditingWrapperCtx.key, splitEditor)
       ctx.set(splitEditingRootCtx.key, splitEditorRoot)
 
-      editorRoot.removeChild(editorDOM)
-      editorRoot.appendChild(splitEditorRoot)
+      editorRoot.replaceChildren(editorDOM, splitEditorRoot)
       splitEditorRoot.append(editorDOM, splitEditor)
 
       editorView.dispatch = (tr) => {
@@ -77,8 +115,7 @@ export const splitEditingProsePlugin = $prose((ctx) => {
       }
       return {
         destroy: () => {
-          editorRoot.removeChild(splitEditor)
-          editorRoot.appendChild(editorDOM)
+          editorRoot.replaceChildren(splitEditorRoot, editorDOM)
         },
       }
     },
@@ -86,7 +123,7 @@ export const splitEditingProsePlugin = $prose((ctx) => {
 })
 
 export const splitEditing: MilkdownPlugin[] = [
-  splitEditingDomCtx,
+  splitEditingWrapperCtx,
   splitEditingRootCtx,
   splitEditingOptionsCtx,
   splitEditingCtx,
