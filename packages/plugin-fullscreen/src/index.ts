@@ -35,12 +35,12 @@ const toggleFullscreen = $command<boolean, 'ToggleFullscreen'>('ToggleFullscreen
     if (ctx.get(fullscreenCtx.key).value) {
       Object.entries(options.attributes ?? {}).forEach(([attr, value]) => {
         if (attr !== 'class') milkdownDOM.setAttribute(attr, value)
-        else milkdownDOM.classList.add('fullscreen')
+        else milkdownDOM.classList.add(value)
       })
     } else {
-      Object.keys(options.attributes ?? {}).forEach((attr) => {
+      Object.entries(options.attributes ?? {}).forEach(([attr, value]) => {
         if (attr !== 'class') milkdownDOM.removeAttribute(attr)
-        else milkdownDOM.classList.remove('fullscreen')
+        else milkdownDOM.classList.remove(value)
       })
     }
     return () => true
