@@ -1,8 +1,9 @@
 import { Extension } from '@codemirror/state'
-import { createCmd, createCmdKey, createSlice, Ctx, editorCtx, rootDOMCtx } from '@milkdown/core'
+import { editorCtx, rootDOMCtx } from '@milkdown/core'
+import { Ctx, MilkdownPlugin } from '@milkdown/ctx'
 import { Plugin } from '@milkdown/prose/state'
-import type { EditorView } from '@milkdown/prose/view'
-import { AtomList, createPlugin, getMarkdown } from '@milkdown/utils'
+import { EditorView } from '@milkdown/prose/view'
+import { $command, $ctx, $prose, getMarkdown } from '@milkdown/utils'
 import { initTwoColumns, initWrapper } from './split-editor'
 
 export interface Options {
@@ -16,11 +17,24 @@ export interface Options {
   lineNumber?: boolean
 }
 
-export const splitEditingCtx = createSlice({ value: false }, 'two-columns')
+export const splitEditingOptionsCtx = $ctx<Options, 'splitEditingOptions'>({}, 'splitEditingOptions')
 
-export const ToggleSplitEditing = createCmdKey('ToggleSplitEditing')
+export const splitEditingCtx = $ctx({ value: false }, 'splitEditing')
 
-export const splitEditingPlugin = createPlugin<string, Options>((utils, options = {}) => {
+export const toggleSplitEditing = $command<boolean, 'ToggleSplitEditing'>('ToggleSplitEditing', (ctx) => {
+  return (payload) => {
+    const { value } = ctx.get(splitEditingCtx.key)
+
+    if (typeof payload === 'undefined') {
+      ctx.set(splitEditingCtx.key, { value: !value })
+    } else {
+      ctx.set(splitEditingCtx.key, { value: payload })
+    }
+    return () => true
+  }
+})
+
+export const splitEditingProsePlugin = $prose((ctx) => {
   let onEditorInput: ((content: string) => void) | null = null
   let restoreDOM: (() => void) | null = null
   let twoColumns: HTMLDivElement | null = null
@@ -32,13 +46,7 @@ export const splitEditingPlugin = createPlugin<string, Options>((utils, options 
     }
 
     if (!twoColumns) {
-      const [_twoColumns, _restoreDOM, _onEditorInput] = initTwoColumns(
-        utils,
-        editorView,
-        ctx,
-        twoColumnWrapper,
-        options,
-      )
+      const [_twoColumns, _restoreDOM, _onEditorInput] = initTwoColumns(editorView, ctx, twoColumnWrapper, {})
       twoColumns = _twoColumns
       restoreDOM = () => {
         const milkdownDOM = _restoreDOM()
@@ -52,47 +60,28 @@ export const splitEditingPlugin = createPlugin<string, Options>((utils, options 
       }
     }
   }
-  return {
-    commands: (_type, ctx) => [
-      createCmd(ToggleSplitEditing, () => {
-        const { value } = ctx.get(splitEditingCtx)
-        ctx.set(splitEditingCtx, { value: !value })
-        if (twoColumns) {
-          if (value) {
-            twoColumns.classList.remove('hidden')
-          } else {
-            twoColumns.classList.add('hidden')
-          }
+  return new Plugin({
+    view: (view) => {
+      initView(ctx, view)
+      view.dispatch = (tr) => {
+        view.updateState(view.state.apply(tr))
+        if (!tr.getMeta('sync') && tr.docChanged) {
+          const editor = ctx.get(editorCtx)
+          const content = editor.action(getMarkdown())
+
+          onEditorInput?.(content)
         }
-        return () => true
-      }),
-    ],
-    injectSlices: [splitEditingCtx],
-    prosePlugins: (_, ctx) => {
-      const plugin = new Plugin({
-        view: (editorView) => {
-          initView(ctx, editorView)
-          editorView.dispatch = (tr) => {
-            editorView.updateState(editorView.state.apply(tr))
-            if (!tr.getMeta('sync') && tr.docChanged) {
-              const editor = ctx.get(editorCtx)
-              const content = editor.action(getMarkdown())
-              onEditorInput?.(content)
-            }
-          }
-          return {
-            update: () => {
-              initView(ctx, editorView)
-            },
-            destroy: () => {
-              restoreDOM?.()
-            },
-          }
+      }
+      return {
+        update: () => {
+          initView(ctx, view)
         },
-      })
-      return [plugin]
+        destroy: () => {
+          restoreDOM?.()
+        },
+      }
     },
-  }
+  })
 })
 
-export const splitEditing = AtomList.create([splitEditingPlugin()])
+export const splitEditing: MilkdownPlugin[] = [splitEditingCtx, toggleSplitEditing, splitEditingProsePlugin]
