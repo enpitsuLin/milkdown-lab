@@ -19,32 +19,36 @@ const editor = await Editor.make()
   .create()
 ```
 
-Plugins add keyboard shortcuts, you can use `F11` to toggle fullscreen when editor was be active.
+Plugins add keyboard shortcuts, you can use `F11` to toggle fullscreen when editor was be focused.
 
-This plugins also provide a command key named `ToggleSplitEditing` can integrate easily with the official plugin `@milkdown/plugin-menu`. If you want use command programmatically please reference [doc](https://milkdown.dev/commands)
+## Options
+
+### Styling
+
+`@milkdown-lab/plugin-fullscreen` is now headless as same as `milkdown` v7, see [here](https://saul-mirone.github.io/a-brief-introduction-to-milkdown-v7/) for reason, so you need styling the fullscreen element by yourself.
+
+you should styling `.milkdown.fullscreen` selector by default option, for example:
+
+```css
+.milkdown.fullscreen {
+  position: fixed;
+  inset: 0;
+  overflow-y: scroll;
+}
+```
+
+### Adding custom attributes
+
+You can also add attributes to fullscreen element if you want if you want to build your own style logic or using atom css library like tailwindcss.
 
 ```javascript
-import { defaultConfig, menu, menuPlugin } from '@milkdown/plugin-menu'
-import { fullscreen } from '@milkdown-lab/plugin-split-editing'
+import { fullscreen } from '@milkdown-lab/plugin-fullscreen'
 // ...
 const editor = await Editor.make()
   .config(() => {
+    ctx.set(fullscreenOptionsCtx.key, { attributes: { class: 'fixed inset-0 overflow-y-scroll' } })
     ctx.set(rootCtx, document.querySelector('#app'))
   })
-  .use(
-    menu.configure(menuPlugin, {
-      config: [
-        ...defaultConfig,
-        [
-          {
-            type: 'button',
-            icon: 'fullscreen',
-            key: 'ToggleFullscreen',
-          },
-        ],
-      ],
-    }),
-  )
   .use(fullscreen)
   .create()
 ```
