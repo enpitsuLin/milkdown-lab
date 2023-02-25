@@ -4,11 +4,6 @@ import { $command, $ctx, $shortcut } from '@milkdown/utils'
 
 export interface Options {
   /**
-   * className when editor be fullscreen
-   * @deprecated use `attributes.class`
-   */
-  classes?: string
-  /**
    * attributes that will be added to editor Element
    */
   attributes?: Record<string, string>
