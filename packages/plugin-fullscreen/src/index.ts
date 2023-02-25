@@ -27,7 +27,7 @@ const toggleFullscreen = $command<boolean, 'ToggleFullscreen'>('ToggleFullscreen
       ctx.set(fullscreenCtx.key, { value: payload })
     }
 
-    const editorDOM = ctx.get(editorViewCtx).dom
+    const editorDOM = (ctx.get('splitEditingRoot') as HTMLDivElement | undefined) ?? ctx.get(editorViewCtx).dom
     const milkdownDOM = editorDOM.parentElement
 
     if (!milkdownDOM) throw new Error('Missing root element')
