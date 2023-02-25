@@ -19,5 +19,9 @@
     "typescript": "^4.9.4",
     "vite": "^4.0.4",
     "vitest": "^0.28.0"
+  },
+  "dependencies": {
+    "@milkdown/ctx": "7.0.0",
+    "@milkdown/transformer": "7.0.0"
   }
 }

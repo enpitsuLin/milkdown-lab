@@ -1,16 +1,11 @@
 import { fullscreen } from '@milkdown-lab/plugin-fullscreen'
 import { splitEditing } from '@milkdown-lab/plugin-split-editing'
 import { defaultValueCtx, Editor, rootCtx } from '@milkdown/core'
-import { Config, ConfigItem, defaultConfig, menu, menuPlugin } from '@milkdown/plugin-menu'
 import { commonmark } from '@milkdown/preset-commonmark'
-import { overrideNord } from './theme'
+import { MilkdownPlugin } from '@milkdown/ctx'
+import { nord } from '@milkdown/theme-nord'
 
-type Truthy<T> = T extends false | '' | 0 | null | undefined ? never : T
-
-const filterTruthy = <T>(value: T): value is Truthy<T> => {
-  return Boolean(value)
-}
-async function render(plugins: Plugin[] = [], showMenu = false) {
+async function render(plugins: Plugin[] = []) {
   const root = document.querySelector('#app')
 
   let editor = Editor.make().config((ctx) => {
@@ -18,16 +13,7 @@ async function render(plugins: Plugin[] = [], showMenu = false) {
     ctx.set(defaultValueCtx, '# Hello milkdown')
   })
 
-  if (showMenu) {
-    const extraMenu: Config = Object.values(plugins)
-      .map((i) => i.menuConfig)
-      .filter(filterTruthy)
-
-    const menuConfig = defaultConfig.concat(extraMenu)
-    editor = editor.use(menu.configure(menuPlugin, { config: menuConfig }))
-  }
-
-  editor = editor.use(overrideNord).use(commonmark)
+  editor = editor.config(nord).use(commonmark)
 
   plugins.forEach((item) => {
     editor = editor.use(item.plugin)
@@ -38,11 +24,9 @@ async function render(plugins: Plugin[] = [], showMenu = false) {
 const pluginMapping: Record<'splitEditing' | 'fullscreen', Plugin> = {
   splitEditing: {
     plugin: splitEditing,
-    menuConfig: [{ type: 'button', icon: 'splitEditing', key: 'ToggleSplitEditing' }],
   },
   fullscreen: {
     plugin: fullscreen,
-    menuConfig: [{ type: 'button', icon: 'fullscreen', key: 'ToggleFullscreen' }],
   },
 }
 function getPlugins(name: 'splitEditing' | 'fullscreen') {
@@ -54,6 +38,5 @@ globalThis.render = render
 globalThis.getPlugins = getPlugins
 
 export interface Plugin {
-  plugin: import('@milkdown/core').MilkdownPlugin | import('@milkdown/core').MilkdownPlugin[]
-  menuConfig?: ConfigItem[]
+  plugin: MilkdownPlugin | MilkdownPlugin[]
 }
