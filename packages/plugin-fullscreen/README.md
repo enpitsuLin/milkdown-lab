@@ -25,7 +25,7 @@ Plugins add keyboard shortcuts, you can use `F11` to toggle fullscreen when edit
 
 ### Styling
 
-`@milkdown-lab/plugin-fullscreen` is now headless as same as `milkdown` v7, see [here](https://saul-mirone.github.io/a-brief-introduction-to-milkdown-v7/) for reason, so you need styling the fullscreen element by yourself.
+`@milkdown-lab/plugin-fullscreen` is now headless as same as `milkdown` v7, see [here](https://saul-mirone.github.io/a-brief-introduction-to-milkdown-v7/) for reason, so you need styling by yourself.
 
 you should styling `.milkdown.fullscreen` selector by default option, for example:
 

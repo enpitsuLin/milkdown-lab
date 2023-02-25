@@ -25,34 +25,30 @@ const editor = await Editor.make()
   .create()
 ```
 
-This plugins also provide a command key named `ToggleSplitEditing` can integrate easily with the official plugin `@milkdown/plugin-menu`. If you want use command programmatically please reference [doc](https://milkdown.dev/commands)
-
-```javascript
-import { defaultConfig, menu, menuPlugin } from '@milkdown/plugin-menu'
-import { splitEditing } from '@milkdown-lab/plugin-split-editing'
-// ...
-const editor = await Editor.make()
-  .config(() => {
-    ctx.set(rootCtx, document.querySelector('#app'))
-  })
-  .use(
-    menu.configure(menuPlugin, {
-      config: [
-        ...defaultConfig,
-        [
-          {
-            type: 'button',
-            icon: 'splitEditing',
-            key: 'ToggleSplitEditing',
-          },
-        ],
-      ],
-    }),
-  )
-  .use(splitEditing)
-  .create()
-```
-
 ## Options
 
-`None`
+`@milkdown-lab/plugin-split-editing` is now headless as same as `milkdown` v7, see [here](https://saul-mirone.github.io/a-brief-introduction-to-milkdown-v7/) for reason, so you need styling by yourself.
+
+there are some selector necessary, for example:
+
+```css
+.split-editor {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: 1fr;
+}
+
+.split-editor:has(.milkdown-split-editor.hidden) {
+  grid-template-columns: repeat(1, 1fr);
+}
+
+.milkdown-split-editor.hidden {
+  display: none;
+}
+```
+
+### Adding custom attributes
+
+**WIP**
+
+You can also add attributes to split edit view element if you want if you want to build your own style logic or using atom css library like tailwindcss.
