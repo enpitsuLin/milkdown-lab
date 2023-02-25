@@ -1,61 +1,10 @@
-import { Cmd, commandsCtx, createCmdKey, editorViewCtx, prosePluginsCtx, SchemaReady } from '@milkdown/core'
-import { createSlice, Ctx, MilkdownPlugin } from '@milkdown/ctx'
-import { keymap } from '@milkdown/prose/keymap'
-import { $Command, $Ctx, $Shortcut, Keymap } from '@milkdown/utils'
+import { editorViewCtx } from '@milkdown/core'
+import { MilkdownPlugin } from '@milkdown/ctx'
+import { $command, $ctx, $shortcut } from '@milkdown/utils'
 
 export interface Options {
   /** className when editor be fullscreen */
   classes?: string
-}
-
-export const $ctx = <T, N extends string>(value: T, name: N): $Ctx<T, N> => {
-  const slice = createSlice(value, name)
-  const plugin: $Ctx<T, N> = (ctx) => {
-    ctx.inject(slice)
-    return () => {
-      return () => {
-        ctx.remove(slice)
-      }
-    }
-  }
-
-  plugin.key = slice
-
-  return plugin
-}
-
-export const $shortcut = (shortcut: (ctx: Ctx) => Keymap): $Shortcut => {
-  const plugin: MilkdownPlugin = (ctx) => async () => {
-    await ctx.wait(SchemaReady)
-    const k = shortcut(ctx)
-    const keymapPlugin = keymap(k)
-    ctx.update(prosePluginsCtx, (ps) => [...ps, keymapPlugin])
-    ;(<$Shortcut>plugin).keymap = k
-
-    return () => {
-      ctx.update(prosePluginsCtx, (ps) => ps.filter((x) => x !== keymapPlugin))
-    }
-  }
-
-  return <$Shortcut>plugin
-}
-
-export const $command = <T, K extends string>(key: K, cmd: (ctx: Ctx) => Cmd<T>): $Command<T> => {
-  const cmdKey = createCmdKey<T>(key)
-
-  const plugin: MilkdownPlugin = (ctx) => async () => {
-    ;(<$Command<T>>plugin).key = cmdKey
-    await ctx.wait(SchemaReady)
-    const command = cmd(ctx)
-    ctx.get(commandsCtx).create(cmdKey, command)
-    ;(<$Command<T>>plugin).run = (payload?: T) => ctx.get(commandsCtx).call(key, payload)
-
-    return () => {
-      ctx.get(commandsCtx).remove(cmdKey)
-    }
-  }
-
-  return <$Command<T>>plugin
 }
 
 export const fullscreenConfig = $ctx<Options, 'fullscreenConfig'>({ classes: 'fullscreen' }, 'fullscreenConfig')
