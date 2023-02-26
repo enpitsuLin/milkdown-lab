@@ -41,10 +41,16 @@ export const select = (config: SelectConfig) => {
   const $button = document.createElement('button')
   $button.role = 'menuitem'
   $button.setAttribute('type', 'button')
-  $button.textContent = config.text
   $button.setAttribute('aria-haspopup', 'true')
   $button.setAttribute('aria-expanded', 'false')
   $button.setAttribute('tab-index', '0')
+  $button.textContent = config.text
+
+  const $buttonExpand = document.createElement('span')
+  $buttonExpand.className = 'material-icons material-icons-outlined'
+  $buttonExpand.textContent = 'expand_more'
+
+  $button.append($buttonExpand)
 
   const $select = document.createElement('ul')
   $select.role = 'menu'

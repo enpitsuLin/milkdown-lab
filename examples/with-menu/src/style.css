@@ -48,12 +48,27 @@
 
 .milkdown-menu button {
   border: none;
+  display: inline-flex;
+  align-items: center;
   padding: 0.5rem 0.5rem;
-  margin: 8px;
+  margin: 8px 0;
   font-size: 1rem;
   background-color: transparent;
   color: white;
   cursor: pointer;
+}
+
+.milkdown-menu button:not(:only-child) {
+  min-width: 160px;
+  justify-content: space-between;
+}
+
+.milkdown-menu button:not(:only-child) > span {
+  transition: transform 0.2s ease-in;
+}
+
+.milkdown-menu button:not(:only-child):where([aria-expanded='true']) > span {
+  transform: rotate(-180deg);
 }
 
 .milkdown-menu button:hover,
@@ -78,10 +93,9 @@
 .milkdown-menu ul[role='menu'] {
   display: none;
   margin: 0;
-  transform: translateY(10px);
   padding: 0;
   position: absolute;
-  border: 2px solid var(--color-border);
+  border: 1px solid var(--color-border);
   background-color: var(--color-bg);
   z-index: 100;
 }
@@ -95,6 +109,8 @@
   color: white;
   cursor: pointer;
   padding: 0.75rem 1rem;
+  font-size: 14px;
+  min-width: 160px;
 }
 
 .milkdown-menu ul[role='menu'] li[role='menuitem']:hover {
