@@ -113,7 +113,7 @@
   min-width: 160px;
 }
 
-.milkdown-menu ul[role='menu'] li[role='menuitem']:hover {
+.milkdown-menu ul[role='menu'] li[role='menuitem']:is(:hover, :focus) {
   background-color: var(--color-bg-hover);
   color: var(--color-text-hover);
 }

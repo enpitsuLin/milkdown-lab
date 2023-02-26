@@ -38,12 +38,12 @@ export const defaultConfig: MenuConfig = [
     {
       type: 'button',
       content: createIconContent('format_bold'),
-      key: 'ToggleBold',
+      key: 'ToggleStrong',
     },
     {
       type: 'button',
       content: createIconContent('format_italic'),
-      key: 'ToggleItalic',
+      key: 'ToggleEmphasis',
     },
     {
       type: 'button',
@@ -62,11 +62,12 @@ export const defaultConfig: MenuConfig = [
       content: createIconContent('format_list_numbered'),
       key: 'WrapInOrderedList',
     },
-    {
-      type: 'button',
-      content: createIconContent('checklist'),
-      key: 'TurnIntoTaskList',
-    },
+    // Notice: didn't provider any more in preset-gfm after v7
+    // {
+    //   type: 'button',
+    //   content: createIconContent('checklist'),
+    //   key: 'TurnIntoTaskList',
+    // },
     {
       type: 'button',
       content: createIconContent('format_indent_decrease'),
@@ -111,11 +112,12 @@ export const defaultConfig: MenuConfig = [
       content: createIconContent('horizontal_rule'),
       key: 'InsertHr',
     },
-    {
-      type: 'button',
-      content: createIconContent('select_all'),
-      key: 'SelectParent',
-    },
+    // TODO:provide command by this package?
+    // {
+    //   type: 'button',
+    //   content: createIconContent('select_all'),
+    //   key: 'SelectParent',
+    // },
   ],
 ]
 

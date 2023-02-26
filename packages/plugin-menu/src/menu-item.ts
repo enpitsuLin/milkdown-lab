@@ -1,3 +1,6 @@
+import { commandsCtx } from '@milkdown/core'
+import { Ctx } from '@milkdown/ctx'
+
 export type ButtonConfig = {
   type: 'button'
   content: string | HTMLElement
@@ -19,7 +22,7 @@ export type MenuConfigItem = SelectConfig | ButtonConfig
 
 export type MenuConfig = MenuConfigItem[][]
 
-export const button = (config: ButtonConfig) => {
+export const button = (config: ButtonConfig, ctx: Ctx) => {
   const $button = document.createElement('button')
   $button.role = 'menuitem'
   $button.setAttribute('type', 'button')
@@ -28,6 +31,9 @@ export const button = (config: ButtonConfig) => {
   } else {
     $button.innerText = config.content
   }
+  $button.addEventListener('click', () => {
+    ctx.get(commandsCtx).call(config.key)
+  })
   return [$button]
 }
 
@@ -37,7 +43,7 @@ export const divider = () => {
   return [$divider]
 }
 
-export const select = (config: SelectConfig) => {
+export const select = (config: SelectConfig, _ctx: Ctx) => {
   const $button = document.createElement('button')
   $button.role = 'menuitem'
   $button.setAttribute('type', 'button')
@@ -54,7 +60,6 @@ export const select = (config: SelectConfig) => {
 
   const $select = document.createElement('ul')
   $select.role = 'menu'
-  $select.setAttribute('data-option', config.text)
   $select.setAttribute('aria-label', config.text)
   $select.setAttribute('tabindex', '-1')
 
@@ -76,8 +81,10 @@ export const select = (config: SelectConfig) => {
     $button.setAttribute('aria-expanded', !expanded ? 'true' : 'false')
     if (!expanded) {
       $select.classList.add('show')
+      ;($select.firstChild as HTMLElement).focus()
     } else {
       $select.classList.remove('show')
+      $select.blur()
     }
   })
   return [$button, $select]

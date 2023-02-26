@@ -35,8 +35,8 @@ const createMenuBar = (ctx: Ctx) => {
       listItem.role = 'none'
       const createItem = () => {
         if (typeof item === 'string') return divider()
-        else if (item.type === 'button') return button(item)
-        else return select(item)
+        else if (item.type === 'button') return button(item, ctx)
+        else return select(item, ctx)
       }
       listItem.append(...createItem())
 
