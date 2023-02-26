@@ -1,5 +1,5 @@
 {
-  "name": "example",
+  "name": "example-with-menu",
   "private": true,
   "version": "0.0.2",
   "type": "module",
@@ -20,8 +20,6 @@
   },
   "dependencies": {
     "@milkdown-lab/plugin-fullscreen": "workspace:*",
-    "@milkdown-lab/plugin-menu": "workspace:*",
-    "@milkdown-lab/plugin-split-editing": "workspace:*",
     "@milkdown/preset-gfm": "^7.0.0"
   }
 }

@@ -67,7 +67,7 @@ importers:
       vite: 4.0.4
       vitest: 0.29.1
 
-  example:
+  examples/with-menu:
     specifiers:
       '@milkdown-lab/plugin-fullscreen': workspace:*
       '@milkdown-lab/plugin-menu': workspace:*
@@ -82,9 +82,9 @@ importers:
       typescript: ^4.9.3
       vite: ^4.0.0
     dependencies:
-      '@milkdown-lab/plugin-fullscreen': link:../packages/plugin-fullscreen
-      '@milkdown-lab/plugin-menu': link:../packages/plugin-menu
-      '@milkdown-lab/plugin-split-editing': link:../packages/plugin-split-editing
+      '@milkdown-lab/plugin-fullscreen': link:../../packages/plugin-fullscreen
+      '@milkdown-lab/plugin-menu': link:../../packages/plugin-menu
+      '@milkdown-lab/plugin-split-editing': link:../../packages/plugin-split-editing
       '@milkdown/preset-gfm': 7.0.0_rel76nqv3ryy3plmmp4vdz7jnm
     devDependencies:
       '@milkdown/core': 7.0.0_k4cma33hoyb3totlovo6vuxyya
