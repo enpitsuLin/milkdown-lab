@@ -32,3 +32,66 @@
 .milkdown-theme-nord {
   background-color: #eee;
 }
+
+.milkdown-menu {
+  background-color: #eeeeee;
+  
+  padding: 1rem 0;
+  border-bottom: 1px #aaa solid;
+}
+
+.milkdown-menu ul li:not(:has(div[role='separator'])) {
+  margin-right: 0.2rem;
+}
+.milkdown-menu ul {
+  list-style: none;
+}
+
+.milkdown-menu button {
+  border: 1px solid #aaa;
+  padding: 0.5rem 0.5rem;
+  border-radius: 0.25rem;
+  background: white;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.milkdown-menu button:hover {
+  background: #eee;
+}
+
+.milkdown-menu div[role='separator'] {
+  margin: 0 4px;
+}
+
+.milkdown-menu ul[role='menubar'] {
+  display: flex;
+  align-items: center;
+}
+
+.milkdown-menu ul[role='menubar'] li:has(button:focus) ul[role='menu'] {
+  display: block;
+}
+
+.milkdown-menu ul[role='menu'] {
+  display: none;
+  margin: 0;
+  transform: translateY(10px);
+  padding: 0.2rem;
+  position: absolute;
+  border: 2px solid #aaa;
+  background-color: #eee;
+  z-index: 100;
+}
+
+.milkdown-menu ul[role='menu'] li[role='menuitem'] {
+  padding: 6px;
+  background-color: #eee;
+  border: 0 solid #eee;
+  color: black;
+  cursor: pointer;
+}
+
+.milkdown-menu ul[role='menu'] li[role='menuitem']:hover {
+  text-decoration: underline;
+}

@@ -3,13 +3,12 @@
   "version": "0.1.0",
   "description": "",
   "type": "module",
-  "main": "./lib/index.mjs",
+  "main": "./lib/index.js",
   "types": "./lib/index.d.ts",
   "scripts": {
-    "build": "unbuild",
-    "stub": "unbuild --stub",
-    "lint": "eslint '*/**/*.{js,ts}' --quiet --fix",
-    "prepare": "pnpm run build"
+    "build": "tsup",
+    "dev":"tsup --watch",
+    "lint": "eslint '*/**/*.{js,ts}' --quiet --fix"
   },
   "keywords": [],
   "author": "enpitsulin <enpitsulin@gmail.com>",
@@ -19,13 +18,14 @@
   },
   "license": "MIT",
   "devDependencies": {
-    "@milkdown/core": "7.0.0",
-    "@milkdown/prose": "7.0.0",
-    "typescript": "^4.9.4",
-    "unbuild": "^1.1.2"
+    "tsup": "^6.6.3",
+    "typescript": "^4.9.4"
   },
   "dependencies": {
+    "@milkdown/core": "7.0.0",
     "@milkdown/ctx": "7.0.0",
+    "@milkdown/prose": "7.0.0",
+    "@milkdown/transformer": "7.0.0",
     "@milkdown/utils": "7.0.0"
   }
 }

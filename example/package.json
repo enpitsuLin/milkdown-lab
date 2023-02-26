@@ -20,6 +20,7 @@
   },
   "dependencies": {
     "@milkdown-lab/plugin-fullscreen": "workspace:*",
+    "@milkdown-lab/plugin-menu": "workspace:*",
     "@milkdown-lab/plugin-split-editing": "workspace:*",
     "@milkdown/preset-gfm": "^7.0.0"
   }

@@ -1,5 +1,5 @@
-import { fullscreen, fullscreenOptionsCtx } from '@milkdown-lab/plugin-fullscreen'
-import { splitEditing, toggleSplitEditing } from '@milkdown-lab/plugin-split-editing'
+import { menu, menuDefaultConfig } from '@milkdown-lab/plugin-menu'
+import { toggleSplitEditing } from '@milkdown-lab/plugin-split-editing'
 import { commandsCtx, defaultValueCtx, Editor, rootCtx } from '@milkdown/core'
 import { commonmark } from '@milkdown/preset-commonmark'
 import { gfm } from '@milkdown/preset-gfm'
@@ -18,15 +18,14 @@ async function main() {
   root?.appendChild(button)
   const editor = await Editor.make()
     .config(nord)
+    .config(menuDefaultConfig)
     .config((ctx) => {
-      ctx.set(fullscreenOptionsCtx.key, { attributes: { class: 'fullscreen' } })
       ctx.set(rootCtx, root)
       ctx.set(defaultValueCtx, '# Hello milkdown-lab')
     })
+    .use(menu)
     .use(commonmark)
     .use(gfm)
-    .use(splitEditing)
-    .use(fullscreen)
     .create()
 }
 
