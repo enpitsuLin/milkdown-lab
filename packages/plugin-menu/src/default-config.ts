@@ -2,16 +2,23 @@ import { Ctx } from '@milkdown/ctx'
 import { MenuConfig } from './menu-item'
 import { menuConfigCtx } from './menu-plugin'
 
+const createIconContent = (icon: string) => {
+  const span = document.createElement('span')
+  span.className = 'material-icons material-icons-outlined'
+  span.textContent = icon
+  return span
+}
+
 export const defaultConfig: MenuConfig = [
   [
     {
       type: 'button',
-      content: 'undo',
+      content: createIconContent('turn_left'),
       key: 'Undo',
     },
     {
       type: 'button',
-      content: 'redo',
+      content: createIconContent('turn_right'),
       key: 'Redo',
     },
   ],
@@ -30,83 +37,83 @@ export const defaultConfig: MenuConfig = [
   [
     {
       type: 'button',
-      content: 'bold',
+      content: createIconContent('format_bold'),
       key: 'ToggleBold',
     },
     {
       type: 'button',
-      content: 'italic',
+      content: createIconContent('format_italic'),
       key: 'ToggleItalic',
     },
     {
       type: 'button',
-      content: 'strikeThrough',
+      content: createIconContent('strikethrough_s'),
       key: 'ToggleStrikeThrough',
     },
   ],
   [
     {
       type: 'button',
-      content: 'bulletList',
+      content: createIconContent('format_list_bulleted'),
       key: 'WrapInBulletList',
     },
     {
       type: 'button',
-      content: 'orderedList',
+      content: createIconContent('format_list_numbered'),
       key: 'WrapInOrderedList',
     },
     {
       type: 'button',
-      content: 'taskList',
+      content: createIconContent('checklist'),
       key: 'TurnIntoTaskList',
     },
     {
       type: 'button',
-      content: 'liftList',
+      content: createIconContent('format_indent_decrease'),
       key: 'LiftListItem',
     },
     {
       type: 'button',
-      content: 'sinkList',
+      content: createIconContent('format_indent_increase'),
       key: 'SinkListItem',
     },
   ],
   [
     {
       type: 'button',
-      content: 'link',
+      content: createIconContent('link'),
       key: 'ToggleLink',
     },
     {
       type: 'button',
-      content: 'image',
+      content: createIconContent('image'),
       key: 'InsertImage',
     },
     {
       type: 'button',
-      content: 'table',
+      content: createIconContent('table_chart'),
       key: 'InsertTable',
     },
     {
       type: 'button',
-      content: 'code',
+      content: createIconContent('code'),
       key: 'TurnIntoCodeFence',
     },
   ],
   [
     {
       type: 'button',
-      content: 'quote',
+      content: createIconContent('format_quote'),
       key: 'WrapInBlockquote',
     },
     {
       type: 'button',
-      content: 'divider',
+      content: createIconContent('horizontal_rule'),
       key: 'InsertHr',
     },
     {
       type: 'button',
-      content: 'select',
+      content: createIconContent('select_all'),
       key: 'SelectParent',
     },
   ],
