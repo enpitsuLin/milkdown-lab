@@ -19,7 +19,7 @@
     "vite": "^4.0.0"
   },
   "dependencies": {
-    "@milkdown-lab/plugin-fullscreen": "workspace:*",
+    "@milkdown-lab/plugin-menu": "workspace:*",
     "@milkdown/preset-gfm": "^7.0.0"
   }
 }

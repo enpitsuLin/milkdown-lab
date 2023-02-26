@@ -69,9 +69,7 @@ importers:
 
   examples/with-menu:
     specifiers:
-      '@milkdown-lab/plugin-fullscreen': workspace:*
       '@milkdown-lab/plugin-menu': workspace:*
-      '@milkdown-lab/plugin-split-editing': workspace:*
       '@milkdown/core': 7.0.0
       '@milkdown/ctx': 7.0.0
       '@milkdown/preset-commonmark': 7.0.0
@@ -82,9 +80,7 @@ importers:
       typescript: ^4.9.3
       vite: ^4.0.0
     dependencies:
-      '@milkdown-lab/plugin-fullscreen': link:../../packages/plugin-fullscreen
       '@milkdown-lab/plugin-menu': link:../../packages/plugin-menu
-      '@milkdown-lab/plugin-split-editing': link:../../packages/plugin-split-editing
       '@milkdown/preset-gfm': 7.0.0_rel76nqv3ryy3plmmp4vdz7jnm
     devDependencies:
       '@milkdown/core': 7.0.0_k4cma33hoyb3totlovo6vuxyya
