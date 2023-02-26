@@ -1,0 +1,31 @@
+{
+  "name": "@milkdown-lab/plugin-menu",
+  "version": "0.1.0",
+  "description": "",
+  "type": "module",
+  "main": "./lib/index.mjs",
+  "types": "./lib/index.d.ts",
+  "scripts": {
+    "build": "unbuild",
+    "stub": "unbuild --stub",
+    "lint": "eslint '*/**/*.{js,ts}' --quiet --fix",
+    "prepare": "pnpm run build"
+  },
+  "keywords": [],
+  "author": "enpitsulin <enpitsulin@gmail.com>",
+  "peerDependencies": {
+    "@milkdown/core": ">=7.0.0",
+    "@milkdown/prose": ">=7.0.0"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@milkdown/core": "7.0.0",
+    "@milkdown/prose": "7.0.0",
+    "typescript": "^4.9.4",
+    "unbuild": "^1.1.2"
+  },
+  "dependencies": {
+    "@milkdown/ctx": "7.0.0",
+    "@milkdown/utils": "7.0.0"
+  }
+}
