@@ -7,9 +7,14 @@
   "types": "./lib/index.d.ts",
   "scripts": {
     "build": "tsup",
-    "dev":"tsup --watch",
-    "lint": "eslint '*/**/*.{js,ts}' --quiet --fix"
+    "dev": "tsup --watch",
+    "lint": "eslint '*/**/*.{js,ts}' --quiet --fix",
+    "prepack": "pnpm run build"
   },
+  "files": [
+    "lib",
+    "style.css"
+  ],
   "keywords": [],
   "author": "enpitsulin <enpitsulin@gmail.com>",
   "peerDependencies": {
