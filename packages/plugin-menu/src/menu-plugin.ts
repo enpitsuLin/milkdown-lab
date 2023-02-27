@@ -64,12 +64,20 @@ export const menuView = $prose((ctx) => {
       return {
         update: () => {
           menubar.items.forEach((item) => {
-            if (typeof item.config !== 'string' && item.config.type === 'button' && item.config.active) {
-              const isActive = item.config.active(ctx.get(editorStateCtx), ctx.get(schemaCtx))
-              if (isActive) {
-                item.$.querySelector('button')?.classList.add('active')
-              } else {
-                item.$.querySelector('button')?.classList.remove('active')
+            if (typeof item.config !== 'string') {
+              if (item.config.type === 'button' && item.config.active) {
+                const isActive = item.config.active(ctx.get(editorStateCtx), ctx.get(schemaCtx))
+                if (isActive) {
+                  item.$.querySelector('button')?.classList.add('active')
+                } else {
+                  item.$.querySelector('button')?.classList.remove('active')
+                }
+              }
+              if (typeof item.config.disabled != 'undefined') {
+                const isEnabled = item.config.disabled(ctx)
+                if (!isEnabled) {
+                  item.$.remove()
+                }
               }
             }
           })

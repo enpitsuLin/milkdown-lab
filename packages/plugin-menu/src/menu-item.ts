@@ -10,6 +10,7 @@ export type ButtonConfig = {
   content: string | HTMLElement
   key: string | [string, CommandPayload]
   active?: (state: EditorState, schema: Schema) => boolean
+  disabled?: (ctx: Ctx) => boolean
 }
 
 export type SelectOptions = {
@@ -22,6 +23,7 @@ export type SelectConfig = {
   options: SelectOptions[]
   text: string
   onSelect: (id: SelectOptions['id']) => [string, CommandPayload] | string
+  disabled?: (ctx: Ctx) => boolean
 }
 
 export type MenuConfigItem = SelectConfig | ButtonConfig
