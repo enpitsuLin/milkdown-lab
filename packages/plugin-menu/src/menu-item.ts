@@ -9,7 +9,7 @@ export type ButtonConfig = {
   type: 'button'
   content: string | HTMLElement
   key: string | [string, CommandPayload]
-  active?: (state: EditorState, schema: Schema) => boolean
+  active?: (ctx: Ctx) => boolean
   disabled?: (ctx: Ctx) => boolean
 }
 
