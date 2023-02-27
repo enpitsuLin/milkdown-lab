@@ -1,7 +1,5 @@
 import { commandsCtx, editorViewCtx } from '@milkdown/core'
 import { Ctx } from '@milkdown/ctx'
-import { Schema } from '@milkdown/prose/model'
-import { EditorState } from '@milkdown/prose/state'
 
 type CommandPayload = unknown
 

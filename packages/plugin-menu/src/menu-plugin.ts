@@ -1,4 +1,4 @@
-import { editorStateCtx, rootDOMCtx, schemaCtx } from '@milkdown/core'
+import { rootDOMCtx } from '@milkdown/core'
 import { Ctx } from '@milkdown/ctx'
 import { Plugin, PluginKey } from '@milkdown/prose/state'
 import { $ctx, $prose } from '@milkdown/utils'
