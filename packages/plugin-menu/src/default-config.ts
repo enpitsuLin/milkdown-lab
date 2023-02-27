@@ -25,11 +25,33 @@ export const defaultConfig: MenuConfig = [
       type: 'button',
       content: createIconContent('turn_left'),
       key: 'Undo',
+      disabled: (ctx) => {
+        try {
+          //@ts-expect-error: milkdown type error
+          if (!ctx.get('historyProviderConfig')) {
+            return true
+          }
+        } catch (error) {
+          return false
+        }
+        return false
+      },
     },
     {
       type: 'button',
       content: createIconContent('turn_right'),
       key: 'Redo',
+      disabled: (ctx) => {
+        try {
+          //@ts-expect-error: milkdown type error
+          if (!ctx.get('historyProviderConfig')) {
+            return true
+          }
+        } catch (error) {
+          return false
+        }
+        return false
+      },
     },
   ],
   [
