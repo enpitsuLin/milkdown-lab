@@ -1,4 +1,6 @@
 import { Ctx } from '@milkdown/ctx'
+import { MarkType } from '@milkdown/prose/model'
+import { EditorState } from '@milkdown/prose/state'
 import { MenuConfig } from './menu-item'
 import { menuConfigCtx } from './menu-plugin'
 
@@ -7,6 +9,14 @@ const createIconContent = (icon: string) => {
   span.className = 'material-icons material-icons-outlined'
   span.textContent = icon
   return span
+}
+
+const hasMark = (state: EditorState, type: MarkType | undefined): boolean => {
+  if (!type) return false
+  const { from, $from, to, empty } = state.selection
+  if (empty) return !!type.isInSet(state.storedMarks || $from.marks())
+
+  return state.doc.rangeHasMark(from, to, type)
 }
 
 export const defaultConfig: MenuConfig = [
@@ -40,16 +50,19 @@ export const defaultConfig: MenuConfig = [
       type: 'button',
       content: createIconContent('format_bold'),
       key: 'ToggleStrong',
+      active: (state, schema) => hasMark(state, schema.marks.strong),
     },
     {
       type: 'button',
       content: createIconContent('format_italic'),
       key: 'ToggleEmphasis',
+      active: (state, schema) => hasMark(state, schema.marks.emphasis),
     },
     {
       type: 'button',
       content: createIconContent('strikethrough_s'),
       key: 'ToggleStrikeThrough',
+      active: (state, schema) => hasMark(state, schema.marks.strike_through),
     },
   ],
   [

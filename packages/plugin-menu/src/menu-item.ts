@@ -1,5 +1,7 @@
 import { commandsCtx, editorViewCtx } from '@milkdown/core'
 import { Ctx } from '@milkdown/ctx'
+import { Schema } from '@milkdown/prose/model'
+import { EditorState } from '@milkdown/prose/state'
 
 type CommandPayload = unknown
 
@@ -7,6 +9,7 @@ export type ButtonConfig = {
   type: 'button'
   content: string | HTMLElement
   key: string | [string, CommandPayload]
+  active?: (state: EditorState, schema: Schema) => boolean
 }
 
 export type SelectOptions = {
@@ -38,6 +41,7 @@ export const button = (config: ButtonConfig, ctx: Ctx) => {
     if (typeof config.key === 'string') ctx.get(commandsCtx).call(config.key)
     else ctx.get(commandsCtx).call(config.key[0], config.key[1])
   })
+
   return [$button]
 }
 
@@ -96,8 +100,6 @@ export const select = (config: SelectConfig, ctx: Ctx) => {
     $button.setAttribute('aria-expanded', !expanded ? 'true' : 'false')
     if (!expanded) {
       $select.classList.add('show')
-      ;($select.firstChild as HTMLElement).focus()
-
       ctx.get(editorViewCtx).dom.addEventListener('click', onClickOutside)
     } else {
       $select.classList.remove('show')

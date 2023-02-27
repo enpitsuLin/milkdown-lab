@@ -1,4 +1,4 @@
-import { rootDOMCtx } from '@milkdown/core'
+import { editorStateCtx, rootDOMCtx, schemaCtx } from '@milkdown/core'
 import { Ctx } from '@milkdown/ctx'
 import { Plugin, PluginKey } from '@milkdown/prose/state'
 import { $ctx, $prose } from '@milkdown/utils'
@@ -29,21 +29,21 @@ const createMenuBar = (ctx: Ctx) => {
 
     return acc.concat(...curr).concat('divider')
   }, [] as (MenuConfigItem | 'divider')[])
-  menubar.append(
-    ...itemsWithDivider.map((item) => {
-      const listItem = document.createElement('li')
-      listItem.role = 'none'
-      const createItem = () => {
-        if (typeof item === 'string') return divider()
-        else if (item.type === 'button') return button(item, ctx)
-        else return select(item, ctx)
-      }
-      listItem.append(...createItem())
 
-      return listItem
-    }),
-  )
-  return menubar
+  const menuBarItems = itemsWithDivider.map((item) => {
+    const listItem = document.createElement('li')
+    listItem.role = 'none'
+    const createItem = () => {
+      if (typeof item === 'string') return divider()
+      else if (item.type === 'button') return button(item, ctx)
+      else return select(item, ctx)
+    }
+    listItem.append(...createItem())
+
+    return { $: listItem, config: item }
+  })
+  menubar.append(...menuBarItems.map((item) => item.$))
+  return { dom: menubar, items: menuBarItems }
 }
 
 export const menuView = $prose((ctx) => {
@@ -58,9 +58,22 @@ export const menuView = $prose((ctx) => {
 
       root.insertBefore(container, editor)
 
-      container.append(createMenuBar(ctx))
+      const menubar = createMenuBar(ctx)
+      container.append(menubar.dom)
 
       return {
+        update: () => {
+          menubar.items.forEach((item) => {
+            if (typeof item.config !== 'string' && item.config.type === 'button' && item.config.active) {
+              const isActive = item.config.active(ctx.get(editorStateCtx), ctx.get(schemaCtx))
+              if (isActive) {
+                item.$.querySelector('button')?.classList.add('active')
+              } else {
+                item.$.querySelector('button')?.classList.remove('active')
+              }
+            }
+          })
+        },
         destroy: () => {
           container?.remove()
         },
