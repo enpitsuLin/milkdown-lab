@@ -7,6 +7,7 @@ import { nord } from '@milkdown/theme-nord'
 import '@milkdown/theme-nord/style.css'
 import 'uno.css'
 import './style.css'
+import '@milkdown-lab/plugin-menu/style.css'
 
 async function main() {
   const root = document.querySelector('#app')
