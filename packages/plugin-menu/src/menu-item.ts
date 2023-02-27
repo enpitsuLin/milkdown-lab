@@ -1,14 +1,16 @@
-import { commandsCtx } from '@milkdown/core'
+import { commandsCtx, editorViewCtx } from '@milkdown/core'
 import { Ctx } from '@milkdown/ctx'
+
+type CommandPayload = unknown
 
 export type ButtonConfig = {
   type: 'button'
   content: string | HTMLElement
-  key: string
+  key: string | [string, CommandPayload]
 }
 
 export type SelectOptions = {
-  id: string
+  id: string | number
   content: string | HTMLElement
 }
 
@@ -16,6 +18,7 @@ export type SelectConfig = {
   type: 'select'
   options: SelectOptions[]
   text: string
+  onSelect: (id: SelectOptions['id']) => [string, CommandPayload] | string
 }
 
 export type MenuConfigItem = SelectConfig | ButtonConfig
@@ -32,7 +35,8 @@ export const button = (config: ButtonConfig, ctx: Ctx) => {
     $button.innerText = config.content
   }
   $button.addEventListener('click', () => {
-    ctx.get(commandsCtx).call(config.key)
+    if (typeof config.key === 'string') ctx.get(commandsCtx).call(config.key)
+    else ctx.get(commandsCtx).call(config.key[0], config.key[1])
   })
   return [$button]
 }
@@ -43,7 +47,7 @@ export const divider = () => {
   return [$divider]
 }
 
-export const select = (config: SelectConfig, _ctx: Ctx) => {
+export const select = (config: SelectConfig, ctx: Ctx) => {
   const $button = document.createElement('button')
   $button.role = 'menuitem'
   $button.setAttribute('type', 'button')
@@ -73,6 +77,17 @@ export const select = (config: SelectConfig, _ctx: Ctx) => {
       } else {
         listItem.textContent = item.content
       }
+      listItem.addEventListener('click', () => {
+        const command = config.onSelect(item.id)
+        if (typeof command === 'string') {
+          ctx.get(commandsCtx).call(command)
+        } else {
+          ctx.get(commandsCtx).call(command[0], command[1])
+        }
+        $button.setAttribute('aria-expanded', 'false')
+        $select.classList.remove('show')
+        $select.blur()
+      })
       return listItem
     }),
   )
@@ -82,10 +97,19 @@ export const select = (config: SelectConfig, _ctx: Ctx) => {
     if (!expanded) {
       $select.classList.add('show')
       ;($select.firstChild as HTMLElement).focus()
+
+      ctx.get(editorViewCtx).dom.addEventListener('click', onClickOutside)
     } else {
+      $select.classList.remove('show')
+      $select.blur()
+      ctx.get(editorViewCtx).dom.removeEventListener('click', onClickOutside)
+    }
+    function onClickOutside() {
+      $button.setAttribute('aria-expanded', 'false')
       $select.classList.remove('show')
       $select.blur()
     }
   })
+
   return [$button, $select]
 }

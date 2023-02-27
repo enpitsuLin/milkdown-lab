@@ -27,11 +27,12 @@ export const defaultConfig: MenuConfig = [
       type: 'select',
       text: 'Heading',
       options: [
-        { id: '1', content: 'Large Heading' },
-        { id: '2', content: 'Medium Heading' },
-        { id: '3', content: 'Small Heading' },
-        { id: '0', content: 'Plain Text' },
+        { id: 1, content: 'Large Heading' },
+        { id: 2, content: 'Medium Heading' },
+        { id: 3, content: 'Small Heading' },
+        { id: 0, content: 'Plain Text' },
       ],
+      onSelect: (id) => (!!id ? ['WrapInHeading', id] : 'TurnIntoText'),
     },
   ],
   [
@@ -71,7 +72,7 @@ export const defaultConfig: MenuConfig = [
     {
       type: 'button',
       content: createIconContent('format_indent_decrease'),
-      key: 'LiftListItem',
+      key: 'SplitListItem',
     },
     {
       type: 'button',
@@ -80,16 +81,18 @@ export const defaultConfig: MenuConfig = [
     },
   ],
   [
-    {
-      type: 'button',
-      content: createIconContent('link'),
-      key: 'ToggleLink',
-    },
-    {
-      type: 'button',
-      content: createIconContent('image'),
-      key: 'InsertImage',
-    },
+    // Notice: this two command work properly, but maybe need improve UX
+    // {
+    //   type: 'button',
+    //   content: createIconContent('link'),
+    //   key: ['ToggleLink', { href: '' }],
+    // },
+    //
+    // {
+    //   type: 'button',
+    //   content: createIconContent('image'),
+    //   key: 'InsertImage',
+    // },
     {
       type: 'button',
       content: createIconContent('table_chart'),
@@ -98,7 +101,7 @@ export const defaultConfig: MenuConfig = [
     {
       type: 'button',
       content: createIconContent('code'),
-      key: 'TurnIntoCodeFence',
+      key: 'CreateCodeBlock',
     },
   ],
   [
