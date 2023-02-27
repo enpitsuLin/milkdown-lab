@@ -1,3 +1,4 @@
+import { editorStateCtx, schemaCtx } from '@milkdown/core'
 import { Ctx } from '@milkdown/ctx'
 import { MarkType } from '@milkdown/prose/model'
 import { EditorState } from '@milkdown/prose/state'
@@ -72,19 +73,31 @@ export const defaultConfig: MenuConfig = [
       type: 'button',
       content: createIconContent('format_bold'),
       key: 'ToggleStrong',
-      active: (state, schema) => hasMark(state, schema.marks.strong),
+      active: (ctx) => {
+        const state = ctx.get(editorStateCtx)
+        const schema = ctx.get(schemaCtx)
+        return hasMark(state, schema.marks.strong)
+      },
     },
     {
       type: 'button',
       content: createIconContent('format_italic'),
       key: 'ToggleEmphasis',
-      active: (state, schema) => hasMark(state, schema.marks.emphasis),
+      active: (ctx) => {
+        const state = ctx.get(editorStateCtx)
+        const schema = ctx.get(schemaCtx)
+        return hasMark(state, schema.marks.emphasis)
+      },
     },
     {
       type: 'button',
       content: createIconContent('strikethrough_s'),
       key: 'ToggleStrikeThrough',
-      active: (state, schema) => hasMark(state, schema.marks.strike_through),
+      active: (ctx) => {
+        const state = ctx.get(editorStateCtx)
+        const schema = ctx.get(schemaCtx)
+        return hasMark(state, schema.marks.strike_through)
+      },
     },
   ],
   [

@@ -66,7 +66,7 @@ export const menuView = $prose((ctx) => {
           menubar.items.forEach((item) => {
             if (typeof item.config !== 'string') {
               if (item.config.type === 'button' && item.config.active) {
-                const isActive = item.config.active(ctx.get(editorStateCtx), ctx.get(schemaCtx))
+                const isActive = item.config.active(ctx)
                 if (isActive) {
                   item.$.querySelector('button')?.classList.add('active')
                 } else {
