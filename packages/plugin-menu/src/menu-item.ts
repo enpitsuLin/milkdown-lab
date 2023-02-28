@@ -59,8 +59,8 @@ export const select = (config: SelectConfig, ctx: Ctx) => {
   $button.textContent = config.text
 
   const $buttonExpand = document.createElement('span')
-  $buttonExpand.className = 'material-icons material-icons-outlined'
-  $buttonExpand.textContent = 'expand_more'
+
+  $buttonExpand.innerHTML = `<svg style="vertical-align: middle;" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="m12 15.375l-6-6l1.4-1.4l4.6 4.6l4.6-4.6l1.4 1.4l-6 6Z"/></svg>`
 
   $button.append($buttonExpand)
 
