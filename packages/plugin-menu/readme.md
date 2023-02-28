@@ -63,3 +63,77 @@ Menubar create by this plugin will create HTML structure like:
 ```
 
 </details>
+
+### Adding custom attributes
+
+You can also add attributes to menu element which was `div.milkdown-menu` by default configuration.
+
+```javascript
+import { menu, menuConfigCtx, defaultConfigItems } from '@milkdown-lab/plugin-menu'
+// ...
+const editor = await Editor.make()
+  .config(() => {
+    ctx.set(menuConfigCtx.key, {
+      attributes: { class: 'milkdown-menu', 'data-menu': 'true' },
+      items: defaultConfigItems,
+    })
+    ctx.set(rootCtx, document.querySelector('#app'))
+  })
+  .use(menu)
+  .create()
+```
+
+### configuration menubar defaultConfigItems
+
+menu items type just reference `MenuConfigItem`
+
+```javascript
+import { menu, menuConfigCtx, MenuConfigItem } from '@milkdown-lab/plugin-menu'
+// ...
+
+const menuItems: MenuConfigItem[][] = [
+  [
+    {
+      type: 'select',
+      text: 'Heading',
+      options: [
+        { id: 1, content: 'Large Heading' },
+        { id: 2, content: 'Medium Heading' },
+        { id: 3, content: 'Small Heading' },
+        { id: 0, content: 'Plain Text' },
+      ],
+      // return [commandKey,payload] or commandKey
+      onSelect: (id) => (!!id ? ['WrapInHeading', id] : 'TurnIntoText'),
+    },
+  ],
+  [
+    {
+      type: 'button',
+      content: 'B',
+      // commandKey
+      key: 'ToggleStrong',
+    },
+    {
+      type: 'button',
+      content: 'I',
+      key: 'ToggleEmphasis',
+    },
+    {
+      type: 'button',
+      content: 'S',
+      key: 'ToggleStrikeThrough',
+    },
+  ],
+]
+
+const editor = await Editor.make()
+  .config(() => {
+    ctx.set(menuConfigCtx.key, {
+      attributes: { class: 'milkdown-menu', 'data-menu': 'true' },
+      items: menuItems,
+    })
+    ctx.set(rootCtx, document.querySelector('#app'))
+  })
+  .use(menu)
+  .create()
+```
