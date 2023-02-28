@@ -26,8 +26,6 @@ export type SelectConfig = {
 
 export type MenuConfigItem = SelectConfig | ButtonConfig
 
-export type MenuConfig = MenuConfigItem[][]
-
 export const button = (config: ButtonConfig, ctx: Ctx) => {
   const $button = document.createElement('button')
   $button.role = 'menuitem'

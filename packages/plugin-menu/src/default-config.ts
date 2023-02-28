@@ -2,8 +2,8 @@ import { editorStateCtx, schemaCtx } from '@milkdown/core'
 import { Ctx } from '@milkdown/ctx'
 import { MarkType } from '@milkdown/prose/model'
 import { EditorState } from '@milkdown/prose/state'
-import { MenuConfig } from './menu-item'
-import { menuConfigCtx } from './menu-plugin'
+import { MenuConfigItem } from './menu-item'
+import { menuConfigCtx, MenuPluginConfig } from './menu-plugin'
 
 const createIconContent = (icon: string) => {
   const span = document.createElement('span')
@@ -20,7 +20,7 @@ const hasMark = (state: EditorState, type: MarkType | undefined): boolean => {
   return state.doc.rangeHasMark(from, to, type)
 }
 
-export const defaultConfig: MenuConfig = [
+export const defaultConfigItems: MenuConfigItem[][] = [
   [
     {
       type: 'button',
@@ -171,6 +171,11 @@ export const defaultConfig: MenuConfig = [
     // },
   ],
 ]
+
+export const defaultConfig: Required<MenuPluginConfig> = {
+  items: defaultConfigItems,
+  attributes: { class: 'milkdown-menu' },
+}
 
 export const menuDefaultConfig = (ctx: Ctx) => {
   ctx.set(menuConfigCtx.key, defaultConfig)
