@@ -13,7 +13,10 @@ export type MenuPluginConfig = {
 export const menuDomCtx = $ctx({}, 'menuDom')
 
 // menu config context
-export const menuConfigCtx = $ctx({ items: [], attributes: {} } as Required<MenuPluginConfig>, 'menuConfig')
+export const menuConfigCtx = $ctx(
+  { items: [], attributes: { class: 'milkdown-menu' } } as Required<MenuPluginConfig>,
+  'menuConfig',
+)
 
 const key = new PluginKey('MILKDOWN_PLUGIN_MENU')
 
