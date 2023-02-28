@@ -5,3 +5,4 @@ export const menu: MilkdownPlugin[] = [menuDomCtx, menuConfigCtx, menuView]
 
 export * from './default-config'
 export * from './menu-plugin'
+export * from './menu-item'
