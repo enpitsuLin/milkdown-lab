@@ -71,7 +71,9 @@ export const menuView = $prose((ctx) => {
       root.insertBefore(container, editor)
 
       const menubar = createMenuBar(ctx)
-      container.append(menubar.dom)
+      if (menubar.dom.children.length !== 0) {
+        container.append(menubar.dom)
+      }
 
       return {
         update: () => {
