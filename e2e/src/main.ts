@@ -1,9 +1,12 @@
 import { fullscreen } from '@milkdown-lab/plugin-fullscreen'
 import { splitEditing } from '@milkdown-lab/plugin-split-editing'
+import { menu, menuDefaultConfig } from '@milkdown-lab/plugin-menu'
 import { defaultValueCtx, Editor, rootCtx } from '@milkdown/core'
 import { commonmark } from '@milkdown/preset-commonmark'
 import { MilkdownPlugin } from '@milkdown/ctx'
 import { nord } from '@milkdown/theme-nord'
+import { gfm } from '@milkdown/preset-gfm'
+import '@milkdown-lab/plugin-menu/style.css'
 
 async function render(plugins: Plugin[] = []) {
   const root = document.querySelector('#app')
@@ -13,7 +16,7 @@ async function render(plugins: Plugin[] = []) {
     ctx.set(defaultValueCtx, '# Hello milkdown')
   })
 
-  editor = editor.config(nord).use(commonmark)
+  editor = editor.config(nord).config(menuDefaultConfig).use(commonmark).use(gfm)
 
   plugins.forEach((item) => {
     editor = editor.use(item.plugin)
@@ -21,15 +24,18 @@ async function render(plugins: Plugin[] = []) {
 
   return editor.create()
 }
-const pluginMapping: Record<'splitEditing' | 'fullscreen', Plugin> = {
+const pluginMapping: Record<'splitEditing' | 'fullscreen' | 'menu', Plugin> = {
   splitEditing: {
     plugin: splitEditing,
   },
   fullscreen: {
     plugin: fullscreen,
   },
+  menu: {
+    plugin: menu,
+  },
 }
-function getPlugins(name: 'splitEditing' | 'fullscreen') {
+function getPlugins(name: 'splitEditing' | 'fullscreen' | 'menu') {
   return pluginMapping[name]
 }
 

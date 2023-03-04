@@ -2,7 +2,7 @@ import { Browser, chromium, Page } from 'playwright'
 import { createServer, type ViteDevServer } from 'vite'
 import { afterAll, beforeAll, beforeEach, describe, expect, test } from 'vitest'
 
-describe.runIf(process.platform !== 'win32')('name', async () => {
+describe.runIf(process.platform !== 'win32')('plugin-split-editing', async () => {
   let server: ViteDevServer
   let browser: Browser
   let page: Page
@@ -71,7 +71,7 @@ describe.runIf(process.platform !== 'win32')('name', async () => {
     })
   })
 
-  // skip 
+  // skip
   describe.skip('plugin-split-editing integrate test', () => {
     test('should work fine with @milkdown/plugin-menu and menu button work', async () => {
       await page.evaluate(() => __Editor__.destroy())
