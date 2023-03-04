@@ -103,6 +103,7 @@ importers:
       '@milkdown/prose': 7.0.0
       '@milkdown/transformer': 7.0.0
       '@milkdown/utils': 7.0.0
+      tsup: ^6.6.3
       typescript: ^4.9.4
     dependencies:
       '@milkdown/core': 7.0.0_k4cma33hoyb3totlovo6vuxyya
@@ -111,6 +112,7 @@ importers:
       '@milkdown/transformer': 7.0.0_@milkdown+prose@7.0.0
       '@milkdown/utils': 7.0.0_j3asfmta2ulx7x2m2z27icwsgu
     devDependencies:
+      tsup: 6.6.3_typescript@4.9.4
       typescript: 4.9.4
 
   packages/plugin-menu:
@@ -143,6 +145,7 @@ importers:
       '@milkdown/ctx': 7.0.0
       '@milkdown/prose': 7.0.0
       '@milkdown/utils': 7.0.0
+      tsup: ^6.6.3
       typescript: ^4.9.4
     dependencies:
       '@codemirror/commands': 6.1.3
@@ -155,6 +158,7 @@ importers:
     devDependencies:
       '@milkdown/core': 7.0.0_nruh3bolx6jeqs65qd35eyoila
       '@milkdown/prose': 7.0.0
+      tsup: 6.6.3_typescript@4.9.4
       typescript: 4.9.4
 
 packages:

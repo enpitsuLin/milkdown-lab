@@ -2,15 +2,22 @@
   "name": "@milkdown-lab/plugin-split-editing",
   "version": "1.0.0",
   "description": "The plugin adds split editing view to milkdown",
+  "type": "module",
   "main": "./lib/index.js",
   "typings": "./lib/index.d.ts",
   "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
     "lint": "eslint '*/**/*.{js,ts}' --quiet --fix",
-    "dev": "vite",
-    "tsc": "tsc --noEmit",
-    "build": "tsc --outDir lib"
+    "prepack": "pnpm run build"
   },
-  "keywords": [],
+  "files": [
+    "lib"
+  ],
+  "keywords": [
+    "milkdown",
+    "milkdown-plugin"
+  ],
   "author": "enpitsulin <enpitsulin@gmail.com>",
   "peerDependencies": {
     "@milkdown/core": ">=7.0.0",
@@ -20,6 +27,7 @@
   "devDependencies": {
     "@milkdown/core": "7.0.0",
     "@milkdown/prose": "7.0.0",
+    "tsup": "^6.6.3",
     "typescript": "^4.9.4"
   },
   "dependencies": {
