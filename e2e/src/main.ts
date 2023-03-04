@@ -3,7 +3,7 @@ import { splitEditing } from '@milkdown-lab/plugin-split-editing'
 import { menu, menuDefaultConfig } from '@milkdown-lab/plugin-menu'
 import { defaultValueCtx, Editor, rootCtx } from '@milkdown/core'
 import { commonmark } from '@milkdown/preset-commonmark'
-import { MilkdownPlugin } from '@milkdown/ctx'
+import { Ctx, MilkdownPlugin } from '@milkdown/ctx'
 import { nord } from '@milkdown/theme-nord'
 import { gfm } from '@milkdown/preset-gfm'
 import '@milkdown-lab/plugin-menu/style.css'
@@ -16,10 +16,14 @@ async function render(plugins: Plugin[] = []) {
     ctx.set(defaultValueCtx, '# Hello milkdown')
   })
 
-  editor = editor.config(nord).config(menuDefaultConfig).use(commonmark).use(gfm)
+  editor = editor.config(nord).use(commonmark).use(gfm)
 
   plugins.forEach((item) => {
     editor = editor.use(item.plugin)
+
+    if (item.config) {
+      editor = editor.config(item.config)
+    }
   })
 
   return editor.create()
@@ -33,6 +37,7 @@ const pluginMapping: Record<'splitEditing' | 'fullscreen' | 'menu', Plugin> = {
   },
   menu: {
     plugin: menu,
+    config: menuDefaultConfig,
   },
 }
 function getPlugins(name: 'splitEditing' | 'fullscreen' | 'menu') {
@@ -45,4 +50,5 @@ globalThis.getPlugins = getPlugins
 
 export interface Plugin {
   plugin: MilkdownPlugin | MilkdownPlugin[]
+  config?: (ctx: Ctx) => void
 }
