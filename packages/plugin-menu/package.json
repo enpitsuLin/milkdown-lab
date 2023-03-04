@@ -4,7 +4,7 @@
   "description": "The plugin adds menubar of milkdown",
   "type": "module",
   "main": "./lib/index.js",
-  "types": "./lib/index.d.ts",
+  "typings": "./lib/index.d.ts",
   "scripts": {
     "build": "tsup",
     "dev": "tsup --watch",
@@ -15,7 +15,10 @@
     "lib",
     "style.css"
   ],
-  "keywords": [],
+  "keywords": [
+    "milkdown",
+    "milkdown-plugin"
+  ],
   "author": "enpitsulin <enpitsulin@gmail.com>",
   "peerDependencies": {
     "@milkdown/core": ">=7.0.0",
