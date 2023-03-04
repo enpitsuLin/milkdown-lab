@@ -9,9 +9,9 @@
   },
   "devDependencies": {
     "@milkdown-lab/plugin-fullscreen": "workspace:*",
+    "@milkdown-lab/plugin-menu": "workspace:*",
     "@milkdown-lab/plugin-split-editing": "workspace:*",
     "@milkdown/core": "7.0.0",
-    "@milkdown/plugin-menu": "^6.5.4",
     "@milkdown/preset-commonmark": "7.0.0",
     "@milkdown/prose": "7.0.0",
     "@milkdown/theme-nord": "7.0.0",
@@ -23,6 +23,7 @@
   },
   "dependencies": {
     "@milkdown/ctx": "7.0.0",
+    "@milkdown/preset-gfm": "7.0.0",
     "@milkdown/transformer": "7.0.0"
   }
 }
