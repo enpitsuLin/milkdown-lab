@@ -30,7 +30,7 @@
     "typescript": "^4.9.4"
   },
   "dependencies": {
-    "@milkdown/core": "7.0.0",
+    "@milkdown/core": "7.1.0",
     "@milkdown/ctx": "7.0.0",
     "@milkdown/prose": "7.0.0",
     "@milkdown/transformer": "7.0.0",
