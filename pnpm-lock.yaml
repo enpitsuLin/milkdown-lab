@@ -44,7 +44,7 @@ importers:
       '@milkdown/preset-commonmark': 7.0.0
       '@milkdown/preset-gfm': 7.0.0
       '@milkdown/prose': 7.0.0
-      '@milkdown/theme-nord': 7.0.0
+      '@milkdown/theme-nord': 7.1.0
       '@milkdown/transformer': 7.0.0
       '@playwright/test': ^1.31.1
       playwright: ^1.31.1
@@ -62,7 +62,7 @@ importers:
       '@milkdown/core': 7.0.0_k4cma33hoyb3totlovo6vuxyya
       '@milkdown/preset-commonmark': 7.0.0_j3asfmta2ulx7x2m2z27icwsgu
       '@milkdown/prose': 7.0.0
-      '@milkdown/theme-nord': 7.0.0_zja6enjlfs5gehnwwogyfi2vr4
+      '@milkdown/theme-nord': 7.1.0_zja6enjlfs5gehnwwogyfi2vr4
       '@playwright/test': 1.31.1
       playwright: 1.31.1
       typescript: 4.9.4
@@ -1302,6 +1302,20 @@ packages:
 
   /@milkdown/theme-nord/7.0.0_zja6enjlfs5gehnwwogyfi2vr4:
     resolution: {integrity: sha512-cbXDktBvVzcnNQ21RaV+s6dGR89ogNKMlkDYTMuOa+0zTxcUm6JBlAaYMt+F3A1itk1tFIByeKh2tlrtcJghhA==}
+    peerDependencies:
+      '@milkdown/core': ^7.0.0-next.0
+      '@milkdown/ctx': ^7.0.0-next.0
+      '@milkdown/prose': ^7.0.0-next.0
+    dependencies:
+      '@milkdown/core': 7.0.0_k4cma33hoyb3totlovo6vuxyya
+      '@milkdown/ctx': 7.0.0
+      '@milkdown/prose': 7.0.0
+      clsx: 1.2.1
+      tslib: 2.4.1
+    dev: true
+
+  /@milkdown/theme-nord/7.1.0_zja6enjlfs5gehnwwogyfi2vr4:
+    resolution: {integrity: sha512-QU8nESmR1bQYDlUt3o0uTwCRFGG4s2mnz6QsiwqIl684l1x/Z+VP9l71sPbhGHj6rSQlLTDIyVAMkplyt54i6A==}
     peerDependencies:
       '@milkdown/core': ^7.0.0-next.0
       '@milkdown/ctx': ^7.0.0-next.0
