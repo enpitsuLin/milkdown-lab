@@ -12,7 +12,7 @@
     "@milkdown-lab/plugin-menu": "workspace:*",
     "@milkdown-lab/plugin-split-editing": "workspace:*",
     "@milkdown/core": "7.0.0",
-    "@milkdown/preset-commonmark": "7.0.0",
+    "@milkdown/preset-commonmark": "7.1.0",
     "@milkdown/prose": "7.0.0",
     "@milkdown/theme-nord": "7.0.0",
     "@playwright/test": "^1.31.1",
