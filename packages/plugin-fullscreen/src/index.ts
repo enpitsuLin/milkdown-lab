@@ -30,7 +30,6 @@ const toggleFullscreen = $command<boolean, 'ToggleFullscreen'>('ToggleFullscreen
     let editorDOM: HTMLElement
 
     try {
-      //@ts-expect-error: for milkdown type error
       editorDOM = ctx.get('splitEditingRoot')
     } catch (error) {
       // maybe need check error is MilkdownError

@@ -28,7 +28,6 @@ export const defaultConfigItems: MenuConfigItem[][] = [
       key: 'Undo',
       disabled: (ctx) => {
         try {
-          //@ts-expect-error: milkdown type error
           if (!ctx.get('historyProviderConfig')) {
             return true
           }
@@ -44,7 +43,6 @@ export const defaultConfigItems: MenuConfigItem[][] = [
       key: 'Redo',
       disabled: (ctx) => {
         try {
-          //@ts-expect-error: milkdown type error
           if (!ctx.get('historyProviderConfig')) {
             return true
           }
