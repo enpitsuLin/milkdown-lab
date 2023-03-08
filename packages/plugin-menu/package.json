@@ -1,6 +1,6 @@
 {
   "name": "@milkdown-lab/plugin-menu",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "The plugin adds menubar of milkdown",
   "type": "module",
   "main": "./lib/index.js",
