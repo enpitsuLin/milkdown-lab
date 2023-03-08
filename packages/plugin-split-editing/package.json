@@ -1,6 +1,6 @@
 {
   "name": "@milkdown-lab/plugin-split-editing",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "The plugin adds split editing view to milkdown",
   "type": "module",
   "main": "./lib/index.js",
