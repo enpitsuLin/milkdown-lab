@@ -23,7 +23,7 @@
   },
   "dependencies": {
     "@milkdown/ctx": "7.1.0",
-    "@milkdown/preset-gfm": "7.1.0",
+    "@milkdown/preset-gfm": "7.2.0",
     "@milkdown/transformer": "7.1.0"
   }
 }
