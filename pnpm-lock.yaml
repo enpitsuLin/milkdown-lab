@@ -44,7 +44,7 @@ importers:
       '@milkdown/preset-commonmark': 7.1.0
       '@milkdown/preset-gfm': 7.1.0
       '@milkdown/prose': 7.1.0
-      '@milkdown/theme-nord': 7.1.0
+      '@milkdown/theme-nord': 7.2.0
       '@milkdown/transformer': 7.1.0
       '@playwright/test': ^1.31.1
       playwright: ^1.31.1
@@ -62,7 +62,7 @@ importers:
       '@milkdown/core': 7.1.0_c3r5dnopq2fkbj274fowd6pqe4
       '@milkdown/preset-commonmark': 7.1.0_732s7te4rg2orop6g3xf7k4a4q
       '@milkdown/prose': 7.1.0
-      '@milkdown/theme-nord': 7.1.0_fnri332nzjq6erd5dndce6khhq
+      '@milkdown/theme-nord': 7.2.0_fnri332nzjq6erd5dndce6khhq
       '@playwright/test': 1.31.1
       playwright: 1.31.1
       typescript: 5.0.2
@@ -1268,7 +1268,7 @@ packages:
   /@milkdown/exception/7.0.0:
     resolution: {integrity: sha512-Bo2tmoErsJD3f20DZ4jBvePMBbGTSrBOV2EBTtxquKYPid5VXx4dhaXcotwdfHBaIy6EBykUJgpz4uCrPbpZJQ==}
     dependencies:
-      tslib: 2.4.1
+      tslib: 2.5.0
 
   /@milkdown/exception/7.1.0:
     resolution: {integrity: sha512-495C8KDHPuwPp+dE/fy1c8Lfm7eQwxslDXkEvmt1OMrpQ2G2Q4PRmyBnWT8+/ItlEybFtzKd3P3hmgPj82hbLw==}
@@ -1407,12 +1407,12 @@ packages:
       tslib: 2.4.1
     dev: true
 
-  /@milkdown/theme-nord/7.1.0_fnri332nzjq6erd5dndce6khhq:
-    resolution: {integrity: sha512-QU8nESmR1bQYDlUt3o0uTwCRFGG4s2mnz6QsiwqIl684l1x/Z+VP9l71sPbhGHj6rSQlLTDIyVAMkplyt54i6A==}
+  /@milkdown/theme-nord/7.2.0_fnri332nzjq6erd5dndce6khhq:
+    resolution: {integrity: sha512-2K4rmQYshRav5FP8/GcFDq1W2pQuSXmWAmtGtv3eRrg1hZdY+MpuSYAx6dk2fTVa7uDW0KzWR6G61ocHl03X2A==}
     peerDependencies:
-      '@milkdown/core': ^7.0.0-next.0
-      '@milkdown/ctx': ^7.0.0-next.0
-      '@milkdown/prose': ^7.0.0-next.0
+      '@milkdown/core': ^7.2.0
+      '@milkdown/ctx': ^7.2.0
+      '@milkdown/prose': ^7.2.0
     dependencies:
       '@milkdown/core': 7.1.0_c3r5dnopq2fkbj274fowd6pqe4
       '@milkdown/ctx': 7.1.0
@@ -1469,7 +1469,7 @@ packages:
       '@milkdown/prose': 7.0.0
       '@milkdown/transformer': 7.0.0_@milkdown+prose@7.0.0
       nanoid: 4.0.0
-      tslib: 2.4.1
+      tslib: 2.5.0
 
   /@milkdown/utils/7.1.0_732s7te4rg2orop6g3xf7k4a4q:
     resolution: {integrity: sha512-oHwvLVZVzJGrWMy1eYhpHhglEsXz+n24Xyzsf/9iuavLqMAF+BDjwrwWmwW9PVVx476ahyQK0wnIqwfyKAf1YA==}
