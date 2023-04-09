@@ -22,7 +22,7 @@
     "vitest": "^0.29.0"
   },
   "dependencies": {
-    "@milkdown/ctx": "7.1.0",
+    "@milkdown/ctx": "7.2.0",
     "@milkdown/preset-gfm": "7.1.0",
     "@milkdown/transformer": "7.1.0"
   }
