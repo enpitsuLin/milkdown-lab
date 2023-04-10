@@ -1,5 +1,11 @@
 # @milkdown-lab/plugin-fullscreen
 
+## 1.1.0
+
+### Minor Changes
+
+- 3296b39: update dependencies @milkdown/\* from ^7.1.0 to ^7.2.0
+
 ## 1.0.1
 
 ### Patch Changes
