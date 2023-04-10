@@ -22,26 +22,18 @@ jobs:
         with:
           node-version: 14
 
-      - uses: pnpm/action-setup@v2.2.4
-        with:
-          version: latest
-          run_install: false
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
 
-      - name: get pnpm store directory
-        id: pnpm-cache
-        run: |
-          echo "::set-output name=pnpm_cache_dir::$(pnpm store path)"
-
-      - name: load cache
-        uses: actions/cache@v3
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
         with:
-          path: ${{ steps.pnpm-cache.outputs.pnpm_cache_dir }}
-          key: ${{ runner.os }}-${{ hashFiles('**/pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}
+          node-version: 18
+          cache: pnpm
+          registry-url: "https://registry.npmjs.org"
 
       - name: install dependencies
-        run: pnpm install
+        run: pnpm install --no-frozen-lockfile
 
       - name: build packages
         run: pnpm build
