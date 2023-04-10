@@ -8,28 +8,24 @@ jobs:
     timeout-minutes: 60
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - name: checkout code repository
+        uses: actions/checkout@v3
         with:
-          node-version: 16
+          fetch-dept: 0
 
-      - uses: pnpm/action-setup@v2.2.4
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
         with:
-          version: latest
-          run_install: false
-      - name: get pnpm store directory
-        id: pnpm-cache
-        run: |
-          echo "::set-output name=pnpm_cache_dir::$(pnpm store path)"
-      - name: load cache
-        uses: actions/cache@v3
-        with:
-          path: ${{ steps.pnpm-cache.outputs.pnpm_cache_dir }}
-          key: ${{ runner.os }}-${{ hashFiles('**/pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}
+          node-version: 18
+          cache: pnpm
+          registry-url: "https://registry.npmjs.org"
+
       - name: install dependencies
-        run: pnpm install
+        run: pnpm install --no-frozen-lockfile
+        
       - name: Install Playwright Browsers
         run: pnpm dlx playwright install --with-deps
 
