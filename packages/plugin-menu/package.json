@@ -34,6 +34,6 @@
     "@milkdown/ctx": "7.2.0",
     "@milkdown/prose": "7.2.0",
     "@milkdown/transformer": "7.2.0",
-    "@milkdown/utils": "7.2.0"
+    "@milkdown/utils": "7.2.4"
   }
 }
