@@ -75,8 +75,8 @@ importers:
         specifier: 7.2.0
         version: 7.2.0
       '@milkdown/theme-nord':
-        specifier: 7.2.0
-        version: 7.2.0(@milkdown/core@7.2.0)(@milkdown/ctx@7.2.0)(@milkdown/prose@7.2.0)
+        specifier: 7.2.4
+        version: 7.2.4(@milkdown/core@7.2.0)(@milkdown/ctx@7.2.0)(@milkdown/prose@7.2.0)
       '@playwright/test':
         specifier: ^1.31.1
         version: 1.31.1
@@ -1408,6 +1408,20 @@ packages:
       '@milkdown/prose': 7.2.0
       clsx: 1.2.1
       tslib: 2.5.0
+    dev: true
+
+  /@milkdown/theme-nord@7.2.4(@milkdown/core@7.2.0)(@milkdown/ctx@7.2.0)(@milkdown/prose@7.2.0):
+    resolution: {integrity: sha512-egmTcf9KnPr0sjj5SQNcLxQfwQ3LZ+fuf4Dtn4ATfdJBkJV13ufbG6mG7o12yq5FtjgOPDvdC4WFINam9Wj8sQ==}
+    peerDependencies:
+      '@milkdown/core': ^7.2.0
+      '@milkdown/ctx': ^7.2.0
+      '@milkdown/prose': ^7.2.0
+    dependencies:
+      '@milkdown/core': 7.2.0(@milkdown/ctx@7.2.0)(@milkdown/prose@7.2.0)(@milkdown/transformer@7.2.0)
+      '@milkdown/ctx': 7.2.0
+      '@milkdown/prose': 7.2.0
+      clsx: 1.2.1
+      tslib: 2.5.2
     dev: true
 
   /@milkdown/transformer@7.2.0(@milkdown/prose@7.2.0):
