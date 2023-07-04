@@ -26,14 +26,14 @@
   },
   "license": "MIT",
   "devDependencies": {
-    "tsup": "^6.7.0",
-    "typescript": "^5.0.4"
+    "tsup": "^7.1.0",
+    "typescript": "^5.1.6"
   },
   "dependencies": {
-    "@milkdown/core": "7.2.0",
-    "@milkdown/ctx": "7.2.0",
-    "@milkdown/prose": "7.2.0",
-    "@milkdown/transformer": "7.2.0",
-    "@milkdown/utils": "7.2.0"
+    "@milkdown/core": "7.2.4",
+    "@milkdown/ctx": "7.2.4",
+    "@milkdown/prose": "7.2.4",
+    "@milkdown/transformer": "7.2.4",
+    "@milkdown/utils": "7.2.4"
   }
 }

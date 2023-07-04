@@ -2,7 +2,7 @@
   "name": "milkdown-lab",
   "private": true,
   "version": "0.0.0",
-  "packageManager": "pnpm@8.2.0",
+  "packageManager": "pnpm@8.6.6",
   "main": "n/a",
   "scripts": {
     "preinstall": "npx only-allow pnpm",
@@ -16,19 +16,19 @@
   "author": "enpitsulin",
   "license": "MIT",
   "devDependencies": {
-    "@changesets/cli": "^2.26.0",
-    "@commitlint/cli": "^17.4.2",
-    "@commitlint/config-conventional": "^17.4.2",
-    "@types/node": "^18.11.18",
-    "@typescript-eslint/eslint-plugin": "^5.48.1",
-    "@typescript-eslint/parser": "^5.48.1",
-    "eslint": "^8.31.0",
-    "eslint-config-prettier": "^8.6.0",
+    "@changesets/cli": "^2.26.2",
+    "@commitlint/cli": "^17.6.6",
+    "@commitlint/config-conventional": "^17.6.6",
+    "@types/node": "^18.16.19",
+    "@typescript-eslint/eslint-plugin": "^5.61.0",
+    "@typescript-eslint/parser": "^5.61.0",
+    "eslint": "^8.44.0",
+    "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-prettier": "^4.2.1",
     "husky": "^8.0.3",
-    "lint-staged": "^13.1.0",
-    "prettier": "^2.8.2",
-    "typescript": "^5.0.0"
+    "lint-staged": "^13.2.3",
+    "prettier": "^2.8.8",
+    "typescript": "^5.1.6"
   },
   "pnpm": {
     "peerDependencyRules": {
