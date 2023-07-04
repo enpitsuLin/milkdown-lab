@@ -1,5 +1,11 @@
 # @milkdown-lab/plugin-menu
 
+## 1.1.1
+
+### Patch Changes
+
+- 3f17a29: update milkdown deps
+
 ## 1.1.0
 
 ### Minor Changes
