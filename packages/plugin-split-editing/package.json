@@ -26,7 +26,7 @@
   "license": "MIT",
   "devDependencies": {
     "@milkdown/core": "7.2.4",
-    "@milkdown/prose": "7.2.4",
+    "@milkdown/prose": "7.3.0",
     "tsup": "^7.1.0",
     "typescript": "^5.1.6"
   },
