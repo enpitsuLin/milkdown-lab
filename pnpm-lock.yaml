@@ -54,8 +54,8 @@ importers:
         specifier: 7.2.4
         version: 7.2.4
       '@milkdown/preset-gfm':
-        specifier: 7.2.4
-        version: 7.2.4(@milkdown/core@7.2.4)(@milkdown/ctx@7.2.4)(@milkdown/preset-commonmark@7.2.4)(@milkdown/prose@7.2.4)(@milkdown/transformer@7.2.4)
+        specifier: 7.3.0
+        version: 7.3.0(@milkdown/core@7.2.4)(@milkdown/ctx@7.2.4)(@milkdown/preset-commonmark@7.2.4)(@milkdown/prose@7.2.4)(@milkdown/transformer@7.2.4)
       '@milkdown/transformer':
         specifier: 7.2.4
         version: 7.2.4(@milkdown/prose@7.2.4)
@@ -1374,6 +1374,12 @@ packages:
     dependencies:
       tslib: 2.5.2
 
+  /@milkdown/exception@7.3.0:
+    resolution: {integrity: sha512-ZqN+3dOfTQ8OafkJz6WqNrNWxg3D6hACMa2XyPul+uVU0MLZXURfijCO26eByNlhG05w0Uo/FJfaapPZO3aE6g==}
+    dependencies:
+      tslib: 2.6.0
+    dev: false
+
   /@milkdown/preset-commonmark@7.2.4(@milkdown/core@7.2.4)(@milkdown/ctx@7.2.4)(@milkdown/prose@7.2.4)(@milkdown/transformer@7.2.4):
     resolution: {integrity: sha512-Exncik8ucDhxzE5EPF+YR/213ioiLZ81mKgqJo3WN2HM9Zvbj3fe26cvROvf6y+lmZi0+8xDRb5wRni/z7w6xw==}
     peerDependencies:
@@ -1411,6 +1417,28 @@ packages:
       '@milkdown/utils': 7.2.4(@milkdown/core@7.2.4)(@milkdown/ctx@7.2.4)(@milkdown/prose@7.2.4)(@milkdown/transformer@7.2.4)
       remark-gfm: 3.0.1
       tslib: 2.5.2
+    transitivePeerDependencies:
+      - supports-color
+    dev: false
+
+  /@milkdown/preset-gfm@7.3.0(@milkdown/core@7.2.4)(@milkdown/ctx@7.2.4)(@milkdown/preset-commonmark@7.2.4)(@milkdown/prose@7.2.4)(@milkdown/transformer@7.2.4):
+    resolution: {integrity: sha512-ulaJ1Ck90SflxIe+tjq092ntu8PNbIM/pF0oYUuuUFHcKVkwqMmYevjRmFYo2MZiBvUv8eYOLbJ1xnGauB0aAg==}
+    peerDependencies:
+      '@milkdown/core': ^7.2.0
+      '@milkdown/ctx': ^7.2.0
+      '@milkdown/preset-commonmark': ^7.2.0
+      '@milkdown/prose': ^7.2.0
+      '@milkdown/transformer': ^7.2.0
+    dependencies:
+      '@milkdown/core': 7.2.4(@milkdown/ctx@7.2.4)(@milkdown/prose@7.2.4)(@milkdown/transformer@7.2.4)
+      '@milkdown/ctx': 7.2.4
+      '@milkdown/exception': 7.3.0
+      '@milkdown/preset-commonmark': 7.2.4(@milkdown/core@7.2.4)(@milkdown/ctx@7.2.4)(@milkdown/prose@7.2.4)(@milkdown/transformer@7.2.4)
+      '@milkdown/prose': 7.2.4
+      '@milkdown/transformer': 7.2.4(@milkdown/prose@7.2.4)
+      '@milkdown/utils': 7.3.0(@milkdown/core@7.2.4)(@milkdown/ctx@7.2.4)(@milkdown/prose@7.2.4)(@milkdown/transformer@7.2.4)
+      remark-gfm: 3.0.1
+      tslib: 2.6.0
     transitivePeerDependencies:
       - supports-color
     dev: false
@@ -1480,6 +1508,23 @@ packages:
       '@milkdown/transformer': 7.2.4(@milkdown/prose@7.2.4)
       nanoid: 4.0.1
       tslib: 2.5.2
+
+  /@milkdown/utils@7.3.0(@milkdown/core@7.2.4)(@milkdown/ctx@7.2.4)(@milkdown/prose@7.2.4)(@milkdown/transformer@7.2.4):
+    resolution: {integrity: sha512-hOb6UwRIX2e7lpAn3sjAtsF2idzQN/wQ9MLbjoIevQXjO1EgNYiBTFIfTDnI4ka+VrVScvZtZ2D8cAA+3+ndxw==}
+    peerDependencies:
+      '@milkdown/core': ^7.2.0
+      '@milkdown/ctx': ^7.2.0
+      '@milkdown/prose': ^7.2.0
+      '@milkdown/transformer': ^7.2.0
+    dependencies:
+      '@milkdown/core': 7.2.4(@milkdown/ctx@7.2.4)(@milkdown/prose@7.2.4)(@milkdown/transformer@7.2.4)
+      '@milkdown/ctx': 7.2.4
+      '@milkdown/exception': 7.3.0
+      '@milkdown/prose': 7.2.4
+      '@milkdown/transformer': 7.2.4(@milkdown/prose@7.2.4)
+      nanoid: 4.0.1
+      tslib: 2.6.0
+    dev: false
 
   /@nodelib/fs.scandir@2.1.5:
     resolution: {integrity: sha512-vq24Bq3ym5HEQm2NKCr3yXDwjc7vTsEThRDnkp2DK9p1uqLR+DHurm/NOTo0KG7HYHU7eppKZj3MyqYuMBf62g==}
@@ -5106,7 +5151,7 @@ packages:
   /rxjs@7.8.0:
     resolution: {integrity: sha512-F2+gxDshqmIub1KdvZkaEfGDwLNpPvk9Fs6LD/MyQxNgMds/WH9OdDDXOmxUZpME+iSK3rQCctkL0DYyytUqMg==}
     dependencies:
-      tslib: 2.5.2
+      tslib: 2.6.0
     dev: true
 
   /sade@1.8.1:
@@ -5442,7 +5487,7 @@ packages:
     engines: {node: ^14.18.0 || >=16.0.0}
     dependencies:
       '@pkgr/utils': 2.4.2
-      tslib: 2.5.2
+      tslib: 2.6.0
     dev: true
 
   /term-size@2.2.1:
@@ -5587,7 +5632,6 @@ packages:
 
   /tslib@2.6.0:
     resolution: {integrity: sha512-7At1WUettjcSRHXCyYtTselblcHl9PJFFVKiCAy/bY97+BPZXSQ2wbq0P9s8tK2G7dFQfNnlJnPAiArVBVBsfA==}
-    dev: true
 
   /tsup@7.1.0(ts-node@10.9.1)(typescript@5.1.6):
     resolution: {integrity: sha512-mazl/GRAk70j8S43/AbSYXGgvRP54oQeX8Un4iZxzATHt0roW0t6HYDVZIXMw0ZQIpvr1nFMniIVnN5186lW7w==}
