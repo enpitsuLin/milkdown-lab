@@ -31,7 +31,7 @@
   },
   "dependencies": {
     "@milkdown/core": "7.2.4",
-    "@milkdown/ctx": "7.2.4",
+    "@milkdown/ctx": "7.3.0",
     "@milkdown/prose": "7.2.4",
     "@milkdown/transformer": "7.2.4",
     "@milkdown/utils": "7.2.4"
