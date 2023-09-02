@@ -25,18 +25,18 @@
   },
   "license": "MIT",
   "devDependencies": {
-    "@milkdown/core": "7.2.4",
-    "@milkdown/prose": "7.2.4",
-    "tsup": "^7.1.0",
-    "typescript": "^5.1.6"
+    "@milkdown/core": "7.3.0",
+    "@milkdown/prose": "7.3.0",
+    "tsup": "^7.2.0",
+    "typescript": "^5.2.2"
   },
   "dependencies": {
-    "@codemirror/commands": "^6.2.4",
+    "@codemirror/commands": "^6.2.5",
     "@codemirror/lang-markdown": "^6.2.0",
-    "@codemirror/language": "^6.8.0",
+    "@codemirror/language": "^6.9.0",
     "@codemirror/state": "^6.2.1",
-    "@codemirror/view": "^6.14.0",
-    "@milkdown/ctx": "7.2.4",
-    "@milkdown/utils": "7.2.4"
+    "@codemirror/view": "^6.17.1",
+    "@milkdown/ctx": "7.3.0",
+    "@milkdown/utils": "7.3.0"
   }
 }
