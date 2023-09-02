@@ -1,5 +1,11 @@
 # @milkdown-lab/plugin-menu
 
+## 1.2.0
+
+### Minor Changes
+
+- d5ed2d1: update milkdown deps
+
 ## 1.1.1
 
 ### Patch Changes
