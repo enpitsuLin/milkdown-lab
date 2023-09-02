@@ -1,6 +1,6 @@
 {
   "name": "@milkdown-lab/plugin-fullscreen",
-  "version": "1.1.1",
+  "version": "1.2.0",
   "description": "The plugin adds `fullscreen` feature to milkdown",
   "type": "module",
   "main": "./lib/index.js",

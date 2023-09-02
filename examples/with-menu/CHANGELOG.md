@@ -1,5 +1,12 @@
 # example-with-menu
 
+## 0.0.7
+
+### Patch Changes
+
+- Updated dependencies [d5ed2d1]
+  - @milkdown-lab/plugin-menu@1.2.0
+
 ## 0.0.6
 
 ### Patch Changes
