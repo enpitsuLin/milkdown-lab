@@ -1,9 +1,9 @@
-import { editorStateCtx, schemaCtx } from '@milkdown/core'
+import { editorStateCtx, prosePluginsCtx, schemaCtx } from '@milkdown/core'
 import { Ctx } from '@milkdown/ctx'
 import { MarkType } from '@milkdown/prose/model'
 import { EditorState } from '@milkdown/prose/state'
 import { MenuConfigItem } from './menu-item'
-import { menuConfigCtx, MenuPluginConfig } from './menu-plugin'
+import { MenuPluginConfig, menuConfigCtx } from './menu-plugin'
 
 const createIconContent = (icon: string) => {
   const span = document.createElement('span')
@@ -20,6 +20,28 @@ const hasMark = (state: EditorState, type: MarkType | undefined): boolean => {
   return state.doc.rangeHasMark(from, to, type)
 }
 
+const getUndoDepth = (ctx: Ctx): number => {
+  const historyKey = ctx.get(prosePluginsCtx).find(
+    //@ts-expect-error: inner property
+    (i) => i.key === 'history$',
+  )
+
+  const state = ctx.get(editorStateCtx)
+  const hist = historyKey?.getState(state)
+  return hist ? hist.done.eventCount : 0
+}
+
+const getRedoDepth = (ctx: Ctx): number => {
+  const historyKey = ctx.get(prosePluginsCtx).find(
+    //@ts-expect-error: inner property
+    (i) => i.key === 'history$',
+  )
+
+  const state = ctx.get(editorStateCtx)
+  const hist = historyKey?.getState(state)
+  return hist ? hist.undone.eventCount : 0
+}
+
 export const defaultConfigItems: MenuConfigItem[][] = [
   [
     {
@@ -28,13 +50,14 @@ export const defaultConfigItems: MenuConfigItem[][] = [
       key: 'Undo',
       disabled: (ctx) => {
         try {
-          if (!ctx.get('historyProviderConfig')) {
-            return true
+          if (!!ctx.get('historyProviderConfig')) {
+            const undoDepth = getUndoDepth(ctx)
+            return undoDepth <= 0
           }
         } catch (error) {
-          return false
+          return true
         }
-        return false
+        return true
       },
     },
     {
@@ -43,13 +66,14 @@ export const defaultConfigItems: MenuConfigItem[][] = [
       key: 'Redo',
       disabled: (ctx) => {
         try {
-          if (!ctx.get('historyProviderConfig')) {
-            return true
+          if (!!ctx.get('historyProviderConfig')) {
+            const redoDepth = getRedoDepth(ctx)
+            return redoDepth <= 0
           }
         } catch (error) {
-          return false
+          return true
         }
-        return false
+        return true
       },
     },
   ],
