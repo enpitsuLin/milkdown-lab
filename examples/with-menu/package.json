@@ -20,6 +20,7 @@
   },
   "dependencies": {
     "@milkdown-lab/plugin-menu": "workspace:*",
+    "@milkdown/plugin-history": "^7.3.0",
     "@milkdown/preset-gfm": "^7.3.0",
     "unocss": "^0.56.5"
   }
