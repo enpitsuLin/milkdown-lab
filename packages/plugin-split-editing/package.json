@@ -31,11 +31,11 @@
     "typescript": "^5.2.2"
   },
   "dependencies": {
-    "@codemirror/commands": "^6.2.5",
-    "@codemirror/lang-markdown": "^6.2.0",
-    "@codemirror/language": "^6.9.0",
-    "@codemirror/state": "^6.2.1",
-    "@codemirror/view": "^6.17.1",
+    "@codemirror/commands": "^6.3.0",
+    "@codemirror/lang-markdown": "^6.2.2",
+    "@codemirror/language": "^6.9.1",
+    "@codemirror/state": "^6.3.1",
+    "@codemirror/view": "^6.21.3",
     "@milkdown/ctx": "7.3.0",
     "@milkdown/utils": "7.3.0"
   }

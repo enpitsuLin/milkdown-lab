@@ -36,11 +36,14 @@ const createMenuBar = (ctx: Ctx) => {
   menubar.setAttribute('aria-label', 'Editor menubar')
 
   const config = ctx.get(menuConfigCtx.key)
-  const itemsWithDivider = config.items.reduce((acc, curr, index) => {
-    if (index === config.items.length - 1) return acc.concat(...curr)
+  const itemsWithDivider = config.items.reduce(
+    (acc, curr, index) => {
+      if (index === config.items.length - 1) return acc.concat(...curr)
 
-    return acc.concat(...curr).concat('divider')
-  }, [] as (MenuConfigItem | 'divider')[])
+      return acc.concat(...curr).concat('divider')
+    },
+    [] as (MenuConfigItem | 'divider')[],
+  )
 
   const menuBarItems = itemsWithDivider.map((item) => {
     const listItem = document.createElement('li')
@@ -88,9 +91,11 @@ export const menuView = $prose((ctx) => {
                 }
               }
               if (typeof item.config.disabled != 'undefined') {
-                const isEnabled = item.config.disabled(ctx)
-                if (!isEnabled) {
-                  item.$.remove()
+                const isDisabled = item.config.disabled(ctx)
+                if (isDisabled) {
+                  item.$.style.display = 'none'
+                } else {
+                  item.$.style.display = 'unset'
                 }
               }
             }
