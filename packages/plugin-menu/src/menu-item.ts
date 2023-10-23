@@ -1,12 +1,12 @@
-import { commandsCtx, editorViewCtx } from '@milkdown/core'
+import { CmdKey, commandsCtx, editorViewCtx } from '@milkdown/core'
 import { Ctx } from '@milkdown/ctx'
 
 type CommandPayload = unknown
 
-export type ButtonConfig = {
+export type ButtonConfig<T = unknown> = {
   type: 'button'
   content: string | HTMLElement
-  key: string | [string, CommandPayload]
+  key: string | [string, CommandPayload] | [CmdKey<T>, T]
   active?: (ctx: Ctx) => boolean
   disabled?: (ctx: Ctx) => boolean
 }
