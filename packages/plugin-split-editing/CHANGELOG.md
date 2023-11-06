@@ -1,5 +1,12 @@
 # @milkdown-lab/plugin-split-editing
 
+## 1.2.1
+
+### Patch Changes
+
+- 152dd9d: fix: disabled property of plugin-menu
+  chore: update deps
+
 ## 1.2.0
 
 ### Minor Changes
