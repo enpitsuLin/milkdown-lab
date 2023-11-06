@@ -1,7 +1,7 @@
 {
   "name": "example-with-menu",
   "private": true,
-  "version": "0.0.7",
+  "version": "0.0.8",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -15,7 +15,7 @@
     "@milkdown/prose": "7.3.1",
     "@milkdown/theme-nord": "7.3.1",
     "@milkdown/transformer": "7.3.1",
-    "@milkdown/plugin-history":"7.3.1",
+    "@milkdown/plugin-history": "7.3.1",
     "typescript": "^5.2.2",
     "vite": "^4.5.0"
   },
