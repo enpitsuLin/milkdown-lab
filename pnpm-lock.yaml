@@ -155,6 +155,9 @@ importers:
       '@milkdown/ctx':
         specifier: 7.3.1
         version: 7.3.1
+      '@milkdown/plugin-history':
+        specifier: 7.3.1
+        version: 7.3.1(@milkdown/core@7.3.1)(@milkdown/ctx@7.3.1)(@milkdown/prose@7.3.1)(@milkdown/transformer@7.3.1)
       '@milkdown/preset-commonmark':
         specifier: 7.3.1
         version: 7.3.1(@milkdown/core@7.3.1)(@milkdown/ctx@7.3.1)(@milkdown/prose@7.3.1)(@milkdown/transformer@7.3.1)
@@ -1150,6 +1153,22 @@ packages:
     resolution: {integrity: sha512-e2x1h/zE8paoF9ygEbUVZZTNpp1acw6azqExSvL+3myoMgwTsmE/G6oK9YpajY1BfSsLM2J3ii9ByIcsRM6+9w==}
     dependencies:
       tslib: 2.6.2
+
+  /@milkdown/plugin-history@7.3.1(@milkdown/core@7.3.1)(@milkdown/ctx@7.3.1)(@milkdown/prose@7.3.1)(@milkdown/transformer@7.3.1):
+    resolution: {integrity: sha512-GizezQO+GuiLh3rjshnV7RqZzsVauev/5mT3C8+Y3YEblRCiPTOmEbMCf6CBG2896xcJCUOvIDKAUrnVAdnCog==}
+    peerDependencies:
+      '@milkdown/core': ^7.2.0
+      '@milkdown/ctx': ^7.2.0
+      '@milkdown/prose': ^7.2.0
+    dependencies:
+      '@milkdown/core': 7.3.1(@milkdown/ctx@7.3.1)(@milkdown/prose@7.3.1)(@milkdown/transformer@7.3.1)
+      '@milkdown/ctx': 7.3.1
+      '@milkdown/prose': 7.3.1
+      '@milkdown/utils': 7.3.1(@milkdown/core@7.3.1)(@milkdown/ctx@7.3.1)(@milkdown/prose@7.3.1)(@milkdown/transformer@7.3.1)
+      tslib: 2.6.2
+    transitivePeerDependencies:
+      - '@milkdown/transformer'
+    dev: true
 
   /@milkdown/preset-commonmark@7.3.1(@milkdown/core@7.3.1)(@milkdown/ctx@7.3.1)(@milkdown/prose@7.3.1)(@milkdown/transformer@7.3.1):
     resolution: {integrity: sha512-8qiz/jQ4st6Sd3r7wuTSc9XCqsRqcOJFyI3N7Jt6I+Opi/JPE6AXiihsbbfPcN9y4w5w1MuuWH50fq6om5cXXA==}
