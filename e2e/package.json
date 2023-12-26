@@ -11,7 +11,7 @@
     "@milkdown-lab/plugin-fullscreen": "workspace:*",
     "@milkdown-lab/plugin-menu": "workspace:*",
     "@milkdown-lab/plugin-split-editing": "workspace:*",
-    "@milkdown/core": "7.3.1",
+    "@milkdown/core": "7.3.3",
     "@milkdown/preset-commonmark": "7.3.1",
     "@milkdown/prose": "7.3.1",
     "@milkdown/theme-nord": "7.3.1",
