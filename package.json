@@ -8,7 +8,6 @@
     "preinstall": "npx only-allow pnpm",
     "lint": "eslint '*/**/*.{js,ts}' --quiet --fix",
     "build": "pnpm --parallel --filter=@milkdown-lab/* run build",
-    "prepare": "husky install",
     "changeset": "changeset",
     "release": "changeset publish",
     "test": "pnpm test --filter=./e2e"
@@ -25,9 +24,9 @@
     "eslint": "^8.53.0",
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-prettier": "^5.0.1",
-    "husky": "^8.0.3",
     "lint-staged": "^15.0.2",
     "prettier": "^3.0.3",
+    "simple-git-hooks": "^2.9.0",
     "typescript": "^5.2.2",
     "vite": "^4.5.0"
   },
@@ -37,5 +36,13 @@
         "@babel/core"
       ]
     }
+  },
+  "simple-git-hooks": {
+    "pre-commit": "npx esno scripts/prepare.ts && npx lint-staged"
+  },
+  "lint-staged": {
+    "*.{js,ts,tsx,vue,md}": [
+      "eslint --cache --fix"
+    ]
   }
 }
