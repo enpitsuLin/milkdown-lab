@@ -40,7 +40,7 @@
   },
   "simple-git-hooks": {
     "pre-commit": "npx lint-staged",
-    "commit-msg": "yarn commitlint -e"
+    "commit-msg": "npx commitlint -e"
   },
   "lint-staged": {
     "*.{js,ts,tsx,vue,md}": [
