@@ -48,8 +48,8 @@ importers:
         specifier: ^5.3.3
         version: 5.3.3
       vite:
-        specifier: ^4.5.2
-        version: 4.5.2(@types/node@18.19.9)
+        specifier: ^5.0.0
+        version: 5.0.12(@types/node@18.19.9)
 
   e2e:
     dependencies:
@@ -94,8 +94,8 @@ importers:
         specifier: ^5.3.3
         version: 5.3.3
       vite:
-        specifier: ^4.5.2
-        version: 4.5.2(@types/node@18.19.9)
+        specifier: ^5.0.0
+        version: 5.0.12(@types/node@18.19.9)
       vitest:
         specifier: ^1.2.1
         version: 1.2.1(@types/node@18.19.9)
