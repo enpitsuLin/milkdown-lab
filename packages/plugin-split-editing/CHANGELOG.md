@@ -1,5 +1,11 @@
 # @milkdown-lab/plugin-split-editing
 
+## 1.2.2
+
+### Patch Changes
+
+- 06f7f1b: update @milkdown/\* dependencies
+
 ## 1.2.1
 
 ### Patch Changes
