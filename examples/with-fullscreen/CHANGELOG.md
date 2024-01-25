@@ -1,5 +1,12 @@
 # with-fullscreen
 
+## 0.0.4
+
+### Patch Changes
+
+- Updated dependencies [06f7f1b]
+  - @milkdown-lab/plugin-fullscreen@1.2.2
+
 ## 0.0.3
 
 ### Patch Changes
