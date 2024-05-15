@@ -16,7 +16,7 @@ export const fullscreenOptionsCtx = $ctx<Options, 'fullscreenOptions'>(
 
 export const fullscreenCtx = $ctx({ value: false }, 'fullscreen')
 
-const toggleFullscreen = $command<boolean, 'ToggleFullscreen'>('ToggleFullscreen', (ctx) => {
+export const toggleFullscreen = $command<boolean, 'ToggleFullscreen'>('ToggleFullscreen', (ctx) => {
   return (payload) => {
     const options = ctx.get(fullscreenOptionsCtx.key)
     const { value } = ctx.get(fullscreenCtx.key)
