@@ -11,19 +11,19 @@
     "@milkdown-lab/plugin-fullscreen": "workspace:*",
     "@milkdown-lab/plugin-menu": "workspace:*",
     "@milkdown-lab/plugin-split-editing": "workspace:*",
-    "@milkdown/core": "^7.3.3",
-    "@milkdown/preset-commonmark": "^7.3.3",
-    "@milkdown/prose": "^7.3.3",
-    "@milkdown/theme-nord": "^7.3.3",
-    "@playwright/test": "^1.41.1",
-    "playwright": "^1.41.1",
-    "typescript": "^5.3.3",
-    "vite": "^4.5.2",
-    "vitest": "^1.2.1"
+    "@milkdown/core": "^7.3.6",
+    "@milkdown/preset-commonmark": "^7.3.6",
+    "@milkdown/prose": "^7.3.6",
+    "@milkdown/theme-nord": "^7.3.6",
+    "@playwright/test": "^1.44.0",
+    "playwright": "^1.44.0",
+    "typescript": "^5.4.5",
+    "vite": "^5.2.11",
+    "vitest": "^1.6.0"
   },
   "dependencies": {
-    "@milkdown/ctx": "^7.3.3",
-    "@milkdown/preset-gfm": "^7.3.3",
-    "@milkdown/transformer": "^7.3.3"
+    "@milkdown/ctx": "^7.3.6",
+    "@milkdown/preset-gfm": "^7.3.6",
+    "@milkdown/transformer": "^7.3.6"
   }
 }
