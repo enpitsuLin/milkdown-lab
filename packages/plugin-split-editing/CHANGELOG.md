@@ -1,5 +1,11 @@
 # @milkdown-lab/plugin-split-editing
 
+## 1.2.3
+
+### Patch Changes
+
+- 51db714: update deps and export necessary in plugin-fullscreen
+
 ## 1.2.2
 
 ### Patch Changes
