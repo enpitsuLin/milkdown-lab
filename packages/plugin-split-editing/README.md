@@ -53,7 +53,7 @@ there are some selector necessary, for example:
 You can also add attributes to split edit view element if you want to build your own style logic or using atom css library like tailwindcss.
 
 ```javascript
-import { splitEditing, splitEditingOptionsCtx } from '@milkdown-lab/plugin-fullscreen'
+import { splitEditing, splitEditingOptionsCtx } from '@milkdown-lab/plugin-split-editing'
 // ...
 const editor = await Editor.make()
   .config(() => {
