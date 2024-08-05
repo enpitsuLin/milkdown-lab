@@ -106,8 +106,7 @@ export const splitEditingProsePlugin = $prose((ctx) => {
 
       editorView.dispatch = (tr) => {
         editorView.updateState(editorView.state.apply(tr))
-
-        if (tr.getMeta('addToHistory') != false && tr.docChanged) {
+        if ((tr.getMeta('addToHistory') != false || tr.getMeta('y-sync$')) && tr.docChanged) {
           const editor = ctx.get(editorCtx)
           const content = editor.action(getMarkdown())
           onEditorInput(content)
