@@ -1,5 +1,11 @@
 # @milkdown-lab/plugin-menu
 
+## 1.3.0
+
+### Minor Changes
+
+- b27a05b: No Summary
+
 ## 1.2.3
 
 ### Patch Changes
