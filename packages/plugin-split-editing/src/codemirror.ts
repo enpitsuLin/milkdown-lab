@@ -22,6 +22,7 @@ import {
   rectangularSelection,
 } from '@codemirror/view'
 import { $ctx } from '@milkdown/utils'
+import { StyleModule } from 'style-mod'
 import { Options } from '.'
 
 const basicSetup: Extension = [
@@ -72,9 +73,13 @@ export class CodemirrorEditor {
       extensions: [
         basicSetup,
         markdown(),
-        EditorView.styleModule.of({
-          getRules: () => '.cm-editor{height:100%}',
-        }),
+        EditorView.styleModule.of(
+          new StyleModule({
+            '.cm-editor': {
+              height: '100%',
+            },
+          }),
+        ),
         EditorView.lineWrapping,
         updateListener,
         ...extensions,
