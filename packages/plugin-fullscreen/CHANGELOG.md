@@ -1,5 +1,11 @@
 # @milkdown-lab/plugin-fullscreen
 
+## 1.3.1
+
+### Patch Changes
+
+- a6e21ec: fix: use style-mod in split-editing (@nikoPLP)
+
 ## 1.3.0
 
 ### Minor Changes
