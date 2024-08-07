@@ -27,8 +27,9 @@
   "devDependencies": {
     "@milkdown/core": "^7.4.0",
     "@milkdown/prose": "^7.4.0",
+    "style-mod": "^4.1.0",
     "tsup": "^8.2.4",
-    "typescript": "^5.5.4"
+    "typescript": "^5.5.4",
   },
   "dependencies": {
     "@codemirror/commands": "^6.6.0",
