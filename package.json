@@ -2,7 +2,7 @@
   "name": "milkdown-lab",
   "private": true,
   "version": "0.0.0",
-  "packageManager": "pnpm@9.6.0",
+  "packageManager": "pnpm@9.12.2",
   "main": "n/a",
   "scripts": {
     "preinstall": "npx only-allow pnpm",
